@@ -5,7 +5,7 @@ abstract class PDORepository {
     const USERNAME = "root";
     const PASSWORD = "";
 	const HOST ="localhost";
-	const DB = "jota";
+	const DB = "homeswitchhome";
 
 
     private function getConnection(){
