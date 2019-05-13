@@ -47,7 +47,7 @@ Class PropiedadesRepository extends PDORepository {
     public function listar_propiedades(){
       try {
         $propiedades = [];
-        $query = PropertieRepository::getInstance()->queryAll("SELECT * FROM Propiedad ");
+        $query = PropertieRepository::getInstance()->queryAll("SELECT * FROM propiedad ");
         foreach ($query as $row) {
           $propiedad = new Propertie($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hot_sale'], $row['monto_base']);
           $propiedades[]=$propiedad;
@@ -65,7 +65,7 @@ Class PropiedadesRepository extends PDORepository {
 
     public function buscar_propiedad($nombre_propiedad){
       try {
-          $query = PropertieRepository::getInstance()->queryAll("SELECT * FROM viaje WHERE nombre = '{$nombre_propiedad}'");
+          $query = PropertieRepository::getInstance()->queryAll("SELECT * FROM propiedad WHERE nombre = '{$nombre_propiedad}'");
           foreach ($query as $row) {
               $propiedad = new Propertie($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hot_sale'], $row['monto_base']);
           }
@@ -80,9 +80,10 @@ Class PropiedadesRepository extends PDORepository {
 
     //** ELIMINAR PROPIEDAD **//
 
-    public function eliminar_propiedad($nombre){
-      $propiedad = self::getInstance()->buscar_propiedad($nombre)[0];
-        self::getInstance()->queryAll("DELETE FROM propiedades WHERE nombre = '{$nombre}'");
+    public function eliminar_propiedad(){
+  //    $propiedad = self::getInstance()->buscar_propiedad($nombre)[0];
+				$id = $_GET['id'];
+        self::getInstance()->queryAll("DELETE FROM propiedad WHERE id = '{$id}'");
         $mensaje = "La propiedad ha sido eliminada";
       }
       echo "<script>";
