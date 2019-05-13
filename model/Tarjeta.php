@@ -1,10 +1,10 @@
 <?php
 
-//**Description of Cards**//
+//**Description of Tarjeta**//
 
-Class Card {
+Class Tarjeta {
 
-    private $id;
+  private $id;
 	private $numero;
 	private $fecha_vencimiento;
 	private $codigo;
@@ -25,7 +25,7 @@ Class Card {
     public function getId() {
         return $this->id;
     }
-    
+
     public function getNumero() {
     	return $this->numero;
     }

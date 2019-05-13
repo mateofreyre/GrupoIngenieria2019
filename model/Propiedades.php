@@ -1,9 +1,9 @@
 <?php
 
-//**Description of Propertie**//
+//**Description of Propiedades**//
 
-Class Propertie {
-	
+Class Propiedades {
+
 	private $id;
 	private $nombre;
 	private $lugar;

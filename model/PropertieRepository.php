@@ -1,9 +1,8 @@
 <?php
 
-Class PropertieRepository extends PDORepository {
+Class PropiedadesRepository extends PDORepository {
 
 	private static $instance;
-	private $propertie_state = array (0 => "Inactivo", 1 => "Activo")
 
 	public static function getInstance() {
 		if (!isset(self::$instance)) {
