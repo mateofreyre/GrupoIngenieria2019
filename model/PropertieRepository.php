@@ -26,7 +26,7 @@ Class PropiedadesRepository extends PDORepository {
         $hot_sale = $_POST['hot_sale'];
         $monto_base = $_POST['monto_base'];
         try{
-          PropertieRepository::getInstance() -> queryAll("INSERT INTO propiedad (id, nombre, lugar, monto_normal, hot_sale, monto_base) VALUES ('$id', $nombre', '$lugar', '$monto_normal', '$hot_sale', '$monto_base')");
+          PropertieRepository::getInstance() -> queryAll("INSERT INTO propiedad (id, nombre, lugar, monto_normal, hotsale, monto_base) VALUES ('$id', $nombre', '$lugar', '$monto_normal', '$hot_sale', '$monto_base')");
           $mensaje = "Propiedad agregada exitosamente";
           echo "<script>";
           echo "alert('$mensaje');";
