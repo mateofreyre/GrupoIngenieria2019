@@ -1,8 +1,8 @@
 <?php
 
-//**Description of Bidder**//
+//**Description of Pujador**//
 
-Class Bidder {
+Class Pujador {
 
 	private $id;
 	private $monto;
@@ -23,7 +23,7 @@ Class Bidder {
 	public function getId() {
 		return $this->id;
 	}
-	
+
 	public function getMonto() {
 		return $this->monto;
 	}

@@ -2,9 +2,9 @@
 
 //**Description of Usuario**//
 
-Class User {
+Class Usuario {
 
-    private $id;
+  private $id;
 	private $nombre;
 	private $apellido;
 	private $email;
@@ -17,7 +17,7 @@ Class User {
 
 	public function __construct($id,$nombre, $apellido, $email, $password, $fecha_nacimiento, $creditos, $premium){
 		$this->id = $id;
-        $this->nombre = $nombre;
+    $this->nombre = $nombre;
 		$this->apellido = $apellido;
 		$this->email = $email;
 		$this->password = $password;
