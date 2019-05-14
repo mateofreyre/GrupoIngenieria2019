@@ -49,6 +49,10 @@ Class Propiedades {
 		return $this->monto_base;
 	}
 
+	public function cambiar_estado(){
+		$this->hot_sale= !($this->hot_sale);
+	}
+
 }
 
 ?>

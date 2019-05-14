@@ -85,11 +85,26 @@ Class PropiedadesRepository extends PDORepository {
 				$id = $_GET['id'];
         self::getInstance()->queryAll("DELETE FROM propiedad WHERE id = '{$id}'");
         $mensaje = "La propiedad ha sido eliminada";
-      }
       echo "<script>";
       echo "alert('$mensaje');";
       echo "</script>";
 
       return true;
+		}
+
+
+		//* PONER O SACAR UNA PROPIEDAD EN HOT SALE *//
+		public function cambiar_estado_hotSale(){
+			$id = $_GET['id'];
+			$consulta = self::getInstance()->queryAll("SELECT * FROM propiedad WHERE id = '{$id}'");
+			foreach ($consulta as $row) {
+					$propiedad = new Propertie($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hot_sale'], $row['monto_base']);
+			}
+			$consulta = null;
+			$propiedad->cambiar_estado();
+			$estado_nuevo = $propiedad->getEstado();
+			self::getInstance()->queryAll("UPDATE propiedad SET hot_sale='{$estado_nuevo}' WHERE id = '{$id}'");
+		}
+
 }
 ?>
