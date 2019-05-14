@@ -106,5 +106,32 @@ Class PropiedadesRepository extends PDORepository {
 			self::getInstance()->queryAll("UPDATE propiedad SET hot_sale='{$estado_nuevo}' WHERE id = '{$id}'");
 		}
 
+//TERMINAR!!!!
+		public function modificar_datos_propiedad(){
+          $nombre= $_POST['nombre'];
+          $monto_normal = $_POST['monto_normal'];
+					$monto_base = $_POST['monto_base'];
+          self::getInstance()->queryAll("UPDATE usuario SET mail='{$email}', nombre='{$nombre}', apellido='{$apellido}', fecha_nacimiento='{fecha_nacimiento}' WHERE id = '{$id}'");
+          else{
+              if (!$mail_correcto) {
+              $mensaje = "La operacion ha sido rechazada por mail duplicado.";
+              echo "<script>";
+              echo "alert('$mensaje');";
+              echo "</script>";
+              }
+              if(!$fecha_correcta){
+                  $mensaje = "La operacion ha sido rechazada por fecha incorrecta.";
+                  echo "<script>";
+                  echo "alert('$mensaje');";
+                  echo "</script>";
+              }
+
+          $mensaje = "La operacion ha sido realizada con exito.";
+              echo "<script>";
+              echo "alert('$mensaje');";
+              echo "</script>";
+          }
+    }
+
 }
 ?>
