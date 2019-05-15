@@ -11,11 +11,16 @@ class ResourceController {
         return self::$instance;
     }
 
+
+		//PAGINAS COMUNES
 		public function home(){
         $view = new Home();
         $view->show();
     }
 
+
+
+		//PROPIEDADES ABM Y LISTAR
 		public function listar_propiedades(){
 			$model = PropiedadesRepository::getInstance()->listar_propiedades();
 			$view = new Listar_propiedades();
@@ -41,6 +46,38 @@ class ResourceController {
 			$model = PropiedadesRepository::getInstance()-> cambiar_estado_hotSale();
 			self::getInstance()->listar_propiedades();
 		}
+
+
+		public function modificar_propiedad(){
+			$model = PropiedadesRepository::getInstance()->buscar_propiedad();
+			$view = new Modificar_datos_propiedad();
+			$view -> show($model);
+		}
+
+
+
+		//SUBASTAS
+		public function formulario_subastar_propiedad(){
+			$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
+			$view = new SubastarPropiedad();
+			$view -> show($model_propiedad);
+		}
+
+		public function chequear_subasta(){
+			$model = SubastaRespository()::getInstance()-> chequear_subasta();
+			if($model){
+				self::getInstance()->listar_propiedades();
+			}
+			else{
+				$error="Se ha producido un error en la consulta";
+						$view = new Error_display();
+						$view->show($error);
+				self::getInstance()-> formulario_subastar_propiedad();
+			}
+		}
+
+		$model_subasta = SubastaRespository::getInstance()->buscar_mejor_postor($model_propiedad);
+		$costo_actual = $model['monto'];
 
 			}
 

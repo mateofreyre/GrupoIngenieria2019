@@ -14,11 +14,21 @@ require_once('controller/permission.php');
 require_once('vendor/autoload.php');
 
 require_once('model/PDORepository.php');
-require_once('model/UserRepository.php');
-require_once('model/User.php');
+//require_once('model/UsuarioRepository.php');
+require_once('model/Usuario.php');
+require_once('model/PropiedadesRepository.php');
+require_once('model/Propiedades.php')
+require_once('model/Tarjeta.php');
+require_once('model/SubastaRespository.php');
+require_once('model/Subasta.php');
+require_once('model/Pujador.php');
+require_once('model/Reservas.php');
+require_once('model/Admin.php');
 
 require_once('view/TwigView.php');
-require_once('view/agregar_tarjeta.php');
+require_once('view/Agregar_propiedad.php');
+require_once('view/Modificar_datos_propiedad.php');
+require_once('view/Listar_propiedades.php');
 
 
 if(isset($_GET["action"])) {

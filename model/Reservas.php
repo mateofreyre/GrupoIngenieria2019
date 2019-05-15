@@ -48,6 +48,30 @@ Class Reservas {
 		return $this->id_usuario;
 	}
 
+	public function seRealizaDentroDe($fecha_desde, $fecha_hasta){
+		return (self->seEncuentraDentro($fecha_desde,$fecha_hasta) OR (self->desfazadoHaciaIzquierda($fecha_desde,$fecha_hasta)) OR (self->desfazadoHaciaDerecha($fecha_desde,$fecha_hasta)));
+	}
+
+	public function seEncuentraDentro($fecha_desde,$fecha_hasta){
+		return (self->yoMeEncuentroDentro($fecha_desde,$fecha_hasta) OR (self->seEncuentraDentro($fecha_desde,$fecha_hasta)));
+	}
+
+	public function yoMeEncuentroDentro($fecha_desde,$fecha_hasta){
+		return (self->getFechaDesde > $fecha_desde) AND (self->getFechaHasta < $fecha_hasta);
+	}
+
+	public function seEncuentraDentro($fecha_desde,$fecha_hasta){
+		return (self->getFechaDesde < $fecha_desde) AND (self->getFechaHasta > $fecha_hasta);
+	}
+
+	public function desfazadoHaciaIzquierda($fecha_desde, $fecha_hasta){
+		return (self-> getFechaDesde > $fecha_desde) AND (self-> getFechaHasta < $fecha_hasta);
+	}
+
+	public function desfazadoHaciaDerecha($fecha_Desde, $fecha_hasta){
+		return (self-> getFechaDesde < $fecha_desde) AND (self-> getFechaHasta > $fecha_hasta);
+	}
+
 }
 
 ?>

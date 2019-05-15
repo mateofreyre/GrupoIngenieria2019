@@ -27,18 +27,22 @@
                     <li>Lugar: {{propiedad.getLugar}}</li>
                     <li>Monto normal: {{propiedad.getMontoNormal}}</li>
                     <li>Monto base: {{propiedad.getBase}}</li>
+                    {% if rol == 2 %}
                     <li><a href="./?action=modificar_propiedad&id={{propiedad.getId}}">Modificar propiedad</a></li>
                     <li><a href="./?action=eliminar_propiedad&id={{propiedad.getId}}">Eliminar propiedad</a></li>
+                    <li><a href="./?action=formulario_subastar_propiedad&id={{propiedad.getId}}">Agregar nueva subasta para esta propiedad</a></li>
                     {% if {propiedad.getHotSale} %}
                         <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}">Poner en hot sale</a></li>
                     {% else %}
                         <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}">Sacar de hot sale</a></li>
+                    {%endif%}
+                    {%endif%}
 
                 </ul>
                 <hr />
             {% endfor %}
-            {% if vehiculos is empty %}
-                <h5>Todavía no subiste ningún vehículo. <a href="./?action=agregar_vehiculo">Hacelo desde acá</a></h5>
+            {% if propiedades is empty %}
+                <h5>Todavía no subiste ningúna propeidad. <a href="./?action=agregar_propiedad">Hacelo desde acá</a></h5>
             {%endif%}
 
     </body>
