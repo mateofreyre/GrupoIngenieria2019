@@ -82,9 +82,9 @@ Class PropiedadesRepository extends PDORepository {
 
     public function eliminar_propiedad(){
   //    $propiedad = self::getInstance()->buscar_propiedad($nombre)[0];
-				$id = $_GET['id'];
-        self::getInstance()->queryAll("DELETE FROM propiedad WHERE id = '{$id}'");
-        $mensaje = "La propiedad ha sido eliminada";
+			$id = $_GET['id'];
+      self::getInstance()->queryAll("DELETE FROM propiedad WHERE id = '{$id}'");
+      $mensaje = "La propiedad ha sido eliminada";
       echo "<script>";
       echo "alert('$mensaje');";
       echo "</script>";
@@ -106,26 +106,14 @@ Class PropiedadesRepository extends PDORepository {
 			self::getInstance()->queryAll("UPDATE propiedad SET hot_sale='{$estado_nuevo}' WHERE id = '{$id}'");
 		}
 
-//TERMINAR!!!!
+		//Modifica todos los datos de una propiedad
 		public function modificar_datos_propiedad(){
           $nombre= $_POST['nombre'];
+					$lugar= $_POST['lugar'];
           $monto_normal = $_POST['monto_normal'];
 					$monto_base = $_POST['monto_base'];
-          self::getInstance()->queryAll("UPDATE usuario SET mail='{$email}', nombre='{$nombre}', apellido='{$apellido}', fecha_nacimiento='{fecha_nacimiento}' WHERE id = '{$id}'");
-          else{
-              if (!$mail_correcto) {
-              $mensaje = "La operacion ha sido rechazada por mail duplicado.";
-              echo "<script>";
-              echo "alert('$mensaje');";
-              echo "</script>";
-              }
-              if(!$fecha_correcta){
-                  $mensaje = "La operacion ha sido rechazada por fecha incorrecta.";
-                  echo "<script>";
-                  echo "alert('$mensaje');";
-                  echo "</script>";
-              }
-
+					$id= $_GET['id'];
+          self::getInstance()->queryAll("UPDATE propiedad SET nombre='{$nombre}', monto_normal='{$monto_normal}', monto_base='{$monto_base}', lugar='{$lugar}' WHERE id = '{$id}'");
           $mensaje = "La operacion ha sido realizada con exito.";
               echo "<script>";
               echo "alert('$mensaje');";
