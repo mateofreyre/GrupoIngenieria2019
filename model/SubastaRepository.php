@@ -29,7 +29,7 @@ Class SubastaRepository extends PDORepository {
 	}
 
 	public function agregar_subasta(){
-		//recuperar datos de la fecha ingersada y id de propiedad
+		//recuperar datos de la fecha ingresada y id de propiedad
 		$id_propiedad = $_GET['id'];
 		$fecha_desde = $_POST['fecha'];
 		//Se le agregan 7 dias a la fecha ingresada
