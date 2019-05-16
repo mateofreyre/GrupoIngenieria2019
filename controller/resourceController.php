@@ -18,6 +18,19 @@ class ResourceController {
         $view->show();
     }
 
+    //ADMINISTRADOR
+
+    public function chequear_administrador(){
+    	$codigo = $_POST['codigo'];
+    	$model = AdminRepository::getInstance()-> chequear_codigo($codigo);
+    	if($model){
+    		self::getInstance()->listar_propiedades();
+    	}
+    	else{
+    		self::getInstance()-> home();
+    	}
+    }
+
 
 
 		//PROPIEDADES ABM Y LISTAR
@@ -39,7 +52,7 @@ class ResourceController {
 
 		public function check_agregar_propiedad(){
 			$model = PropiedadesRepository::getInstance()->agregar_propiedad();
-			self::getInstance()-> home();
+			self::getInstance()-> listar_propiedades();
 		}
 
 		public function cambiar_estado_hotSale(){
@@ -54,6 +67,11 @@ class ResourceController {
 			$view -> show($model);
 		}
 
+		public function check_modificar_propiedad(){
+			$model = PropiedadesRepository::getInstance()->modificar_datos_propiedad();
+			self::getInstance()-> listar_propiedades();
+		}
+
 
 
 		//SUBASTAS
@@ -64,7 +82,7 @@ class ResourceController {
 		}
 
 		public function chequear_subasta(){
-			$model = SubastaRespository()::getInstance()-> chequear_subasta();
+			$model = SubastaRepository::getInstance()-> chequear_subasta();
 			if($model){
 				self::getInstance()->listar_propiedades();
 			}
@@ -76,8 +94,8 @@ class ResourceController {
 			}
 		}
 		
-		$model_subasta = SubastaRespository::getInstance()->buscar_mejor_postor($model_propiedad);
-		$costo_actual = $model['monto'];
+	//	$model_subasta = SubastaRespository::getInstance()->buscar_mejor_postor($model_propiedad);
+	//	$costo_actual = $model['monto'];
 
 			}
 

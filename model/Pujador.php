@@ -28,9 +28,6 @@ Class Pujador {
 		return $this->monto;
 	}
 
-	public function getMonto() {
-		return $this->monto;
-	}
 
 	public function getIdSubasta() {
 		return $this->id_subasta;

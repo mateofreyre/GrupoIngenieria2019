@@ -12,7 +12,7 @@ Class SubastaRepository extends PDORepository {
 		return self::$instance;
 	}
 
-	private function __construct {
+	private function __construct() {
 
 	}
 

@@ -1,0 +1,130 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+
+body {
+	background: url(../img/fondo2.jpg);
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: tahoma;
+}
+
+.contenedor-form {
+	background: rgba(0,0,0,.7);
+	width: 100%;
+	max-width: 500px;
+	margin:48px auto;
+	color: #fff;
+	border-radius: 5px;
+	position: relative;
+}
+
+.contenedor-form h2 {
+	margin: 0 0 28px 0;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1;
+}
+
+.contenedor-form input[type="text"],
+.contenedor-form input[type="date"],
+.contenedor-form input[type="password"],
+.contenedor-form input[type="email"] {
+	outline: none;
+	background: rgba(0,0,0,.5);
+	width: 100%;
+	padding: 10px 15px;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	border-bottom: 4px solid #585858;
+	font-family: tahoma;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0 0 20px 0;
+	transition: all 0.8s ease;
+}
+
+.contenedor-form input [type="number"]:focus,
+.contenedor-form input[type="text"]:focus,
+.contenedor-form input[type="date"]:focus,
+.contenedor-form input[type="password"]:focus,
+.contenedor-form input[type="email"]:focus {
+	border-bottom: 4px solid #0174DF;
+}
+
+.contenedor-form input[type="submit"] {
+	background: #013ADF;
+	color: #fff;
+	border: none;
+	width: 100%;
+	padding: 10px 0;
+	font-weight: normal;
+	font-family: tahoma;
+	font-size: 16px;
+	letter-spacing: 0.5px;
+	cursor: pointer;
+	transition: all .5s ease;
+}
+
+.contenedor-form input[type="submit"]:hover {
+	box-shadow: 0 0 20px #013ADF;
+}
+
+.contenedor-form .reset-password {
+	background: #585858;
+	width: 100%;
+	padding: 15px 0;
+	text-align: center;
+	transition: all .5s ease-out;
+}
+
+.contenedor-form .reset-password a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+.contenedor-form .in-admin {
+	background: #013ADF;
+	color: #fff;
+	border: none;
+	width: 100%;
+	padding: 10px 0;
+	margin-top:
+	font-weight: normal;
+	font-family: tahoma;
+	font-size: 16px;
+	letter-spacing: 0.5px;
+	cursor: pointer;
+	transition: all .5s ease;
+	text-align: center;
+
+}
+
+.contenedor-form .in-admin a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+.contenedor-form .in-admin:hover {
+	box-shadow: 0 0 20px #013ADF;
+}
+
+
+.contenedor-form .formulario {
+	padding: 40px;
+	display: none;
+}
+
+
+.contenedor-form .formulario:nth-child(2) {
+	display: block;
+}
