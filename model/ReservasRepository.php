@@ -12,7 +12,7 @@ Class ReservasRespository extends PDORepository {
 		return self::$instance;
 	}
 
-	private function __construct {
+	private function __construct() {
 
 	}
 
@@ -26,13 +26,13 @@ Class ReservasRespository extends PDORepository {
     $fecha_hasta = $nuevafecha;
 
     $query = self::getInstance()->queryAll("SELECT * FROM alquiler WHERE id_propiedad = '{$id_propiedad}'");
-    if(!isEmpty($query)){
+    if(!empty($query)){
         $alquileres= [];
         foreach ($query as $row) {
           $alquiler = new Reservas($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['monto'], $row['id_usuario'], $row['id_propiedad']);
           $alquileres[] = $alquiler;
         }
-        foreach ($alquileres[] as $alquier) {
+        foreach ($alquileres as $alquier) {
           if($alquiler->seRealizaDentroDe($fecha_desde, $fecha_hasta)){
             return false;
           }

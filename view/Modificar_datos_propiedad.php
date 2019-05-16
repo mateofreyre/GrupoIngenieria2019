@@ -1,5 +1,5 @@
 <?php
-class Listar_propiedades extends TwigView {
+class Modificar_datos_propiedad extends TwigView {
 
   public function show($propiedades) {
 
@@ -7,7 +7,7 @@ class Listar_propiedades extends TwigView {
       $loader = new Twig_Loader_Filesystem($templateDir);
       $twig = new Twig_Environment($loader);
       $template = $twig->loadTemplate("modificar_datos_propiedad.html.twig");
-      $template->display(array('rol' => $_SESSION['rol'], 'propiedades' => $propiedades));
+      $template->display(array('rol' => $_SESSION['rol'], 'propiedad' => $propiedades));
     }
 
 }

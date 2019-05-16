@@ -12,14 +12,14 @@ Class AdminRepository extends PDORepository {
 		return self::$instance;
 	}
 
-	private function __construct {
+	private function __construct() {
 
 	}
 
 	public function chequear_codigo($codigo){
-  		$query = self::queryAll("SELECT * FROM Administrador WHERE codigo = '{$codigo}'");
+  		$query = self::queryAll("SELECT * FROM administrador WHERE codigo = '{$codigo}'");
     	$res = $query->fetch(PDO::FETCH_ASSOC);
-    	if(!empty($res)){
+    	if(empty($res)){
     		$query = null;
       	$mensaje = "Codigo incorrecto, intentelo otra vez.";
       	echo "<script>";
@@ -30,5 +30,6 @@ Class AdminRepository extends PDORepository {
     	$query = null;
     	return true;
   }
+}
 
 ?>

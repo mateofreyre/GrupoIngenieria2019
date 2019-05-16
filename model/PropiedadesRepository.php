@@ -12,21 +12,23 @@ Class PropiedadesRepository extends PDORepository {
 		return self::$instance;
 	}
 
-	private function __construct {
+	private function __construct() {
 
 	}
 
     //**AGREGAR PROPIEDAD**//
 
     public function agregar_propiedad(){
-        $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $lugar = $_POST['lugar'];
         $monto_normal = $_POST['monto_normal'];
-        $hot_sale = $_POST['hot_sale'];
         $monto_base = $_POST['monto_base'];
+        $mensaje = $lugar;
+echo "<script>";
+          echo "alert('$mensaje');";
+          echo "</script>";
         try{
-          PropiedadesRepository::getInstance() -> queryAll("INSERT INTO propiedad (id, nombre, lugar, monto_normal, hotsale, monto_base) VALUES ('$id', $nombre', '$lugar', '$monto_normal', '$hot_sale', '$monto_base')");
+          self::getInstance() -> queryAll("INSERT INTO propiedad (nombre, lugar, monto_normal, monto_base, hotsale) VALUES ('{$nombre}', '{$lugar}', '{$monto_normal}', '{$monto_base}', false)");
           $mensaje = "Propiedad agregada exitosamente";
           echo "<script>";
           echo "alert('$mensaje');";
@@ -49,7 +51,7 @@ Class PropiedadesRepository extends PDORepository {
         $propiedades = [];
         $query = PropiedadesRepository::getInstance()->queryAll("SELECT * FROM propiedad ");
         foreach ($query as $row) {
-          $propiedad = new Propertie($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hot_sale'], $row['monto_base']);
+          $propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hotsale'], $row['monto_base']);
           $propiedades[]=$propiedad;
         }
         $query = null;
@@ -65,18 +67,14 @@ Class PropiedadesRepository extends PDORepository {
 
     public function buscar_propiedad(){
 			$id = $_GET['id'];
-      try {
-          $query = PropiedadesRepository::getInstance()->queryAll("SELECT * FROM propiedad WHERE id = '{$id}'");
-          foreach ($query as $row) {
-              $propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hot_sale'], $row['monto_base']);
-          }
-          $query = null;
-          return $propiedad;
+      $propiedad;
+      $consulta = self::getInstance()->queryAll("SELECT * FROM propiedad WHERE id = '{$id}'");
+      foreach ($consulta as $row) {
+          $propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hotsale'], $row['monto_base']);
       }
-      catch (PDOException $e) {
-         print "¡Error!: " . $e->getMessage() . "<br/>";
-         die();
-      }
+      $consulta = null;
+      return $propiedad;
+      
     }
 
     //** ELIMINAR PROPIEDAD **//
@@ -99,12 +97,12 @@ Class PropiedadesRepository extends PDORepository {
 			$id = $_GET['id'];
 			$consulta = self::getInstance()->queryAll("SELECT * FROM propiedad WHERE id = '{$id}'");
 			foreach ($consulta as $row) {
-					$propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hot_sale'], $row['monto_base']);
+					$propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hotsale'], $row['monto_base']);
 			}
 			$consulta = null;
 			$propiedad->cambiar_estado();
-			$estado_nuevo = $propiedad->getEstado();
-			self::getInstance()->queryAll("UPDATE propiedad SET hot_sale='{$estado_nuevo}' WHERE id = '{$id}'");
+			$estado_nuevo = $propiedad->getHotSale();
+			self::getInstance()->queryAll("UPDATE propiedad SET hotsale='{$estado_nuevo}' WHERE id = '{$id}'");
 		}
 
 		//Modifica todos los datos de una propiedad
@@ -122,5 +120,5 @@ Class PropiedadesRepository extends PDORepository {
           }
     }
 
-}
+
 ?>

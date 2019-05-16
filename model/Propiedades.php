@@ -7,9 +7,9 @@ Class Propiedades {
 	private $id;
 	private $nombre;
 	private $lugar;
-	private $monto_normal
+	private $monto_normal;
 	private $hot_sale;
-	private $monto_base
+	private $monto_base;
 
 	/**Constructor**/
 
@@ -49,9 +49,15 @@ Class Propiedades {
 		return $this->monto_base;
 	}
 
-	public function cambiar_estado(){
-		$this->hot_sale= !($this->hot_sale);
+	public function setHotSale($boolean){
+		$this-> hot_sale = $boolean;
 	}
+
+	public function cambiar_estado(){
+		$this->setHotSale(!($this->getHotSale()));
+	}
+
+
 
 }
 

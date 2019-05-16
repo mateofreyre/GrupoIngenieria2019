@@ -49,27 +49,27 @@ Class Reservas {
 	}
 
 	public function seRealizaDentroDe($fecha_desde, $fecha_hasta){
-		return (self->seEncuentraDentro($fecha_desde,$fecha_hasta) OR (self->desfazadoHaciaIzquierda($fecha_desde,$fecha_hasta)) OR (self->desfazadoHaciaDerecha($fecha_desde,$fecha_hasta)));
+		return ($this->seEncuentraDentro($fecha_desde,$fecha_hasta) OR ($this->desfazadoHaciaIzquierda($fecha_desde,$fecha_hasta)) OR ($this->desfazadoHaciaDerecha($fecha_desde,$fecha_hasta)));
 	}
 
 	public function seEncuentraDentro($fecha_desde,$fecha_hasta){
-		return (self->yoMeEncuentroDentro($fecha_desde,$fecha_hasta) OR (self->seEncuentraDentro($fecha_desde,$fecha_hasta)));
+		return ($this->yoMeEncuentroDentro($fecha_desde,$fecha_hasta) OR ($this->elSeEncuentraDentro($fecha_desde,$fecha_hasta)));
 	}
 
 	public function yoMeEncuentroDentro($fecha_desde,$fecha_hasta){
-		return (self->getFechaDesde > $fecha_desde) AND (self->getFechaHasta < $fecha_hasta);
+		return ($this->getFechaDesde > $fecha_desde) AND ($this->getFechaHasta < $fecha_hasta);
 	}
 
-	public function seEncuentraDentro($fecha_desde,$fecha_hasta){
-		return (self->getFechaDesde < $fecha_desde) AND (self->getFechaHasta > $fecha_hasta);
+	public function elSeEncuentraDentro($fecha_desde,$fecha_hasta){
+		return ($this->getFechaDesde < $fecha_desde) AND ($this->getFechaHasta > $fecha_hasta);
 	}
 
 	public function desfazadoHaciaIzquierda($fecha_desde, $fecha_hasta){
-		return (self-> getFechaDesde > $fecha_desde) AND (self-> getFechaHasta < $fecha_hasta);
+		return ($this-> getFechaDesde > $fecha_desde) AND ($this-> getFechaHasta < $fecha_hasta);
 	}
 
 	public function desfazadoHaciaDerecha($fecha_Desde, $fecha_hasta){
-		return (self-> getFechaDesde < $fecha_desde) AND (self-> getFechaHasta > $fecha_hasta);
+		return ($this-> getFechaDesde < $fecha_desde) AND ($this-> getFechaHasta > $fecha_hasta);
 	}
 
 }
