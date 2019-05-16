@@ -13,8 +13,7 @@ Class Reservas {
 
 	/**Constructor**/
 
-	public function __construct($id, $monto, $fecha_desde, $fecha_hasta, $id_propiedad, $id_usuario) {
-		$this->id = $id;
+	public function __construct($monto, $fecha_desde, $fecha_hasta, $id_propiedad, $id_usuario) {
 		$this->monto = $monto;
 		$this->fecha_desde = $fecha_desde;
 		$this->fecha_hasta = $fecha_hasta;

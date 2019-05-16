@@ -23,10 +23,7 @@ Class PropiedadesRepository extends PDORepository {
         $lugar = $_POST['lugar'];
         $monto_normal = $_POST['monto_normal'];
         $monto_base = $_POST['monto_base'];
-        $mensaje = $lugar;
-echo "<script>";
-          echo "alert('$mensaje');";
-          echo "</script>";
+        
         try{
           self::getInstance() -> queryAll("INSERT INTO propiedad (nombre, lugar, monto_normal, monto_base, hotsale) VALUES ('{$nombre}', '{$lugar}', '{$monto_normal}', '{$monto_base}', false)");
           $mensaje = "Propiedad agregada exitosamente";
@@ -74,7 +71,7 @@ echo "<script>";
       }
       $consulta = null;
       return $propiedad;
-      
+
     }
 
     //** ELIMINAR PROPIEDAD **//

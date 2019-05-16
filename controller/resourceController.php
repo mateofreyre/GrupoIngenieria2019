@@ -87,13 +87,10 @@ class ResourceController {
 				self::getInstance()->listar_propiedades();
 			}
 			else{
-				$error="Se ha producido un error en la consulta";
-						$view = new Error_display();
-						$view->show($error);
 				self::getInstance()-> formulario_subastar_propiedad();
 			}
 		}
-		
+
 	//	$model_subasta = SubastaRespository::getInstance()->buscar_mejor_postor($model_propiedad);
 	//	$costo_actual = $model['monto'];
 

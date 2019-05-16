@@ -20,6 +20,7 @@ Class SubastaRepository extends PDORepository {
 	//	$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
 		$model_reservas = ReservasRespository::getInstance()->chequear_superposicion_fechas();
 		if($model_reservas){
+
 			self::getInstance()->agregar_subasta();
 			return true;
 		}
@@ -36,7 +37,7 @@ Class SubastaRepository extends PDORepository {
 		$nuevafecha = strtotime ( '+7 day' , strtotime ($fecha_desde ) ) ;
 		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
 		$fecha_hasta = $nuevafecha;
-		self::getInstance()->queryAll("INSERT INTO subasta(id_propiedad,fecha_desde,fecha_hasta) VALUES ($id_propiedad,$fecha_desde,$fecha_hasta)");
+		self::getInstance()->queryAll("INSERT INTO subasta(id_propiedad,fecha_desde,fecha_hasta) VALUES ('{$id_propiedad}','{$fecha_desde}','{$fecha_hasta}')");
 	  return true;
 	}
 
