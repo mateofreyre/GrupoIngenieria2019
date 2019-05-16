@@ -75,7 +75,7 @@ class ResourceController {
 				self::getInstance()-> formulario_subastar_propiedad();
 			}
 		}
-
+		
 		$model_subasta = SubastaRespository::getInstance()->buscar_mejor_postor($model_propiedad);
 		$costo_actual = $model['monto'];
 

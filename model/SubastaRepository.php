@@ -37,7 +37,7 @@ Class SubastaRepository extends PDORepository {
 		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
 		$fecha_hasta = $nuevafecha;
 		self::getInstance()->queryAll("INSERT INTO subasta(id_propiedad,fecha_desde,fecha_hasta) VALUES ($id_propiedad,$fecha_desde,$fecha_hasta)");
-	  return true;	
+	  return true;
 	}
 
 
