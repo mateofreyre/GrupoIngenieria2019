@@ -29,11 +29,11 @@
                 <li><a href="./?action=modificar_propiedad&id={{propiedad.getId}}">Modificar propiedad</a></li>
                 <li><a href="./?action=eliminar_propiedad&id={{propiedad.getId}}">Eliminar propiedad</a></li>
                 <li><a href="./?action=formulario_subastar_propiedad&id={{propiedad.getId}}">Agregar nueva subasta para esta propiedad</a></li>
-                
+
                     <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}">Poner en hot sale</a></li>
-               
+
                     <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}">Sacar de hot sale</a></li>
-               
+
                 {%endif%}
             </ul>
             <form method="post" action="./?action=chequear_subasta&id={{propiedad.getId}}" class="">

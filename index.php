@@ -34,6 +34,8 @@ require_once('view/Agregar_propiedad.php');
 require_once('view/Modificar_datos_propiedad.php');
 require_once('view/Subastarpropiedad.php');
 require_once('view/Listar_propiedades.php');
+require_once('view/Listar_subastas.php');
+
 
 
 if(isset($_GET["action"])) {

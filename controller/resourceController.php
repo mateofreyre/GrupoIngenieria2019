@@ -75,6 +75,15 @@ class ResourceController {
 
 
 		//SUBASTAS
+
+		public function listar_subastas(){
+			$model = SubastaRepository::getInstance()->listar_subastas();
+			$view = new Listar_subastas();
+			$view -> show($model);
+		}
+
+
+
 		public function formulario_subastar_propiedad(){
 			$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
 			$view = new SubastarPropiedad();

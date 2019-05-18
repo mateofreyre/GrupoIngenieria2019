@@ -41,7 +41,22 @@ Class SubastaRepository extends PDORepository {
 	  return true;
 	}
 
-
+ public function listar_subastas(){
+		try {
+			$subastas = [];
+			$query = SubastaRepository::getInstance()->queryAll("SELECT * FROM subasta");
+			foreach ($query as $row) {
+				$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad']);
+				$subastas[]=$subasta;
+			}
+			$query = null;
+			return $subastas;
+		}
+		catch (PDOException $e) {
+			 print "¡Error!: " . $e->getMessage() . "<br/>";
+			 die();
+		}
+	}
 
 }
 ?>
