@@ -1,0 +1,146 @@
+/** ESTILOS PARA PROPIEDADES **/
+
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+
+body {
+	background: url(../img/fondo4.jpg);
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: tahoma;
+}
+h2 {
+	text-align: center;
+	padding-top: 20px;
+	text-decoration: underline;
+}
+
+/**PORTFOLIO**/
+
+.portfolio {
+  background-color: #edf6ff;
+  padding-bottom: 0;
+}
+
+.portfolio h2 {
+  color: #199EB8;
+  margin-bottom: 25px;
+}
+.row {
+		5px 30px 45px 60px;
+}
+.portafolio-over {
+	/* cambia estos dos valores para definir el tamaño de tu círculo */
+  	border-radius: 30%
+    /* los siguientes valores son independientes del tamaño del círculo */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}
+.portfolio-grid {
+  margin-top: 65px;
+}
+
+.portfolio-grid .row {
+  margin: 0;
+	margin-left: 3%;
+}
+
+.portfolio-grid .row > div {
+  padding: 0;
+}
+
+.portfolio-grid .row > div .card img {
+  width: 100%;
+}
+
+.portfolio-grid .row > div .card .portfolio-over {
+  position: absolute;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.portfolio-grid .row > div .card .portfolio-over > div {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.portfolio-grid .row > div .card .portfolio-over .card-title {
+  color: #fff;
+  font-size: 30px;
+}
+
+.portfolio-grid .row > div .card .portfolio-over .card-text {
+  color: #fff;
+  opacity: .75;
+  padding: 0 45px;
+}
+
+.portfolio-grid .row > div .card:hover .portfolio-over {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*ESTETICA DE BOTONES*/
+
+ul li {
+	margin-bottom: 5px;
+  list-style: none;
+}
+.row ul li a:hover {
+	text-decoration: none;
+}
+
+/* BOTONES DE OPCIONES*/
+
+.enlaceboton {
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	color: white;
+	opacity: 0.60;
+	background-color: #0040FF;
+	background-image: none;
+	border-color: #0040FF;
+	margin-left: 15px;
+}
+
+.enlaceboton:hover {
+		transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		transition: margin-left .25s ease-in-out;
+		color: white;
+		box-shadow: 0 0 20px #0000FF;
+		background-color: #0000FF;
+		opacity: 1;
+		margin-left: 10px;
+	}

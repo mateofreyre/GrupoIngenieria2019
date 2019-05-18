@@ -24,7 +24,7 @@ class ResourceController {
     	$codigo = $_POST['codigo'];
     	$model = AdminRepository::getInstance()-> chequear_codigo($codigo);
     	if($model){
-    		self::getInstance()->listar_propiedades();
+    		self::getInstance()->listar_subastas();
     	}
     	else{
     		self::getInstance()-> home();
@@ -98,6 +98,16 @@ class ResourceController {
 			else{
 				self::getInstance()-> formulario_subastar_propiedad();
 			}
+		}
+
+		public function eliminar_subasta(){
+			$model = SubastaRepository::getInstance()-> eliminar_subasta();
+			self::getInstance()-> listar_subastas();
+		}
+
+		public function cancelar_subasta(){
+			$model = SubastaRepository::getInstance()-> cancelar_subasta();
+			self::getInstance()-> listar_subastas();
 		}
 
 	//	$model_subasta = SubastaRespository::getInstance()->buscar_mejor_postor($model_propiedad);

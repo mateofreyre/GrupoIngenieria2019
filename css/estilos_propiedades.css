@@ -22,7 +22,11 @@ h2 {
 	text-decoration: underline;
 }
 
-/**PORTFOLIO**/
+h5 {
+	margin-left: 3%;
+}
+
+/**ESTETICA DE LA PAGINA**/
 
 .portfolio {
   background-color: #edf6ff;
@@ -89,9 +93,18 @@ h2 {
   visibility: visible;
 }
 
+/*ESTETICA DE BOTONES*/
+
 ul li {
 	margin-bottom: 5px;
+	list-style: none;
 }
+
+.row ul li a:hover {
+	text-decoration: none;
+}
+
+/* BOTONES DE OPCIONES*/
 .enlaceboton {
 	display: inline-block;
 	font-weight: 400;
@@ -123,6 +136,4 @@ ul li {
 		background-color: #0000FF;
 		opacity: 1;
 		margin-left: 10px;
-
-
 	}
