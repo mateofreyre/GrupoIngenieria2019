@@ -49,6 +49,11 @@ h5 {
 
 .portfolio-grid .row > div {
   padding: 0;
+	box-shadow: 5px 3px 10px #666666;
+}
+
+.portfolio-grid .row > div:hover {
+	box-shadow: 6px 5px 5px #444444;
 }
 
 .portfolio-grid .row > div .card img {
@@ -132,8 +137,8 @@ ul li {
 		transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 		transition: margin-left .25s ease-in-out;
 		color: white;
-		box-shadow: 0 0 20px #0000FF;
+		box-shadow: 5px 2px 3px 3px #444444;
 		background-color: #0000FF;
 		opacity: 1;
-		margin-left: 10px;
+		margin-left: 8px;
 	}

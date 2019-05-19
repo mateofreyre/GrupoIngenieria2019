@@ -4,9 +4,8 @@
         <title>Modificar propiedad</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+        <link rel="stylesheet" type="text/css" href="css/modificar_datos.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     </head>
@@ -16,29 +15,33 @@
             {% include 'nav-bar.html.twig' %}
         </div>
         </header>
-        <h3>Modificá la propiedad a continuación:</h3>
-        <h5>Escribí solo los datos que quieras actualizar</h5>
-        <form method="post" action="./?action=check_modificar_propiedad&id={{propiedad.getId}}" class="userForm">
-            <div class="">
+        <div class="contenedor-form">
+      		<div class="toggle">
+          </div>
+          <div class="formulario">
+            <h2> Modificar Propiedad</h3>
+            <h5> Escribí solo los datos que quieras actualizar</h5>
+            <form method="post" action="./?action=check_modificar_propiedad&id={{propiedad.getId}}" class="login">
+              <div class="">
                 <div class="">
                     <label for="nombre" class="">Nuevo nombre</label>
-                    <input type="text" id="nombre" name="nombre" class="inputElement" placeholder="Sin guiones ni espacios" value="{{propiedad.getNombre}}" required>
+                    <input type="text" id="nombre" name="nombre" class="login-input" placeholder="Nombre nuevo" value="{{propiedad.getNombre}}" required>
                 </div>
                 <div class="">
                 <div class="">
                     <label for="lugar" class="">Nuevo lugar</label>
-                    <input type="text" id="lugar" name="lugar" class="inputElement" placeholder="Nuevo lugar de la propiedad" value="{{propiedad.getLugar}}" required>
+                    <input type="text" id="lugar" name="lugar" class="login-input" placeholder="Nuevo lugar de la propiedad" value="{{propiedad.getLugar}}" required>
                 </div>
                 <div class="">
                     <label for="monto_normal" class="">Nuevo monto normal</label>
-                    <input type="text" id="monto_normal" name="monto_normal" class="inputElement" placeholder="Nuevo monto normal para comprar directamente un fin de semana." value="{{propiedad.getMontoNormal}}" required>
+                    <input type="text" id="monto_normal" name="monto_normal" class="login-input" placeholder="Nuevo monto normal para comprar directamente un fin de semana." value="{{propiedad.getMontoNormal}}" required>
                 </div>
                 <div class="">
                     <label for="monto_base" class="">Nuevo monto base</label>
-                    <input type="text" id="monto_base" name="monto_base" class="inputElement" placeholder="Nuevo monto inicial para una subasta" value="{{propiedad.getMontoBase}}" required>
+                    <input type="text" id="monto_base" name="monto_base" class="login-input" placeholder="Nuevo monto inicial para una subasta" value="{{propiedad.getMontoBase}}" required>
                 </div>
-              <button id="izquierda" type="submit">Guardar</button>
-              <button id="derecha" type="reset">Reset</button>
+              <button id="arriba" type="submit" class="login-input">Guardar</button>
+              <button id="abajo" type="reset" class="login-input">Reset</button>
           </div>
         </form>
     </body>

@@ -1,0 +1,121 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+
+body {
+	background: url(../img/fondo1.jpg);
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: tahoma;
+}
+
+.contenedor-form {
+	background: rgba(0,0,0,.7);
+	width: 100%;
+	max-width: 500px;
+	margin:48px auto;
+	color: #fff;
+	border-radius: 5px;
+	position: relative;
+}
+
+ h2 {
+	margin: 0 0 28px 0;
+	font-size: 30px;
+	font-weight: 400;
+	line-height: 1;
+	text-decoration: underline;
+	text-align: center;
+
+}
+
+h5 {
+	margin: 0 0 28px 0;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1;
+}
+
+.contenedor-form input[type="text"] {
+	outline: none;
+	background: rgba(0,0,0,.5);
+	width: 100%;
+	padding: 10px 15px;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	border-bottom: 4px solid #585858;
+	font-family: tahoma;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0 0 20px 0;
+	transition: all 0.8s ease;
+}
+
+.contenedor-form input[type="text"]:focus {
+	border-bottom: 4px solid #0174DF;
+}
+
+.contenedor-form input[type="submit"] {
+	background: #013ADF;
+	color: #fff;
+	border: none;
+	width: 100%;
+	padding: 10px 0;
+	font-weight: normal;
+	font-family: tahoma;
+	font-size: 16px;
+	letter-spacing: 0.5px;
+	cursor: pointer;
+	transition: all .5s ease;
+}
+
+.contenedor-form input[type="submit"]:hover {
+	box-shadow: 0 0 20px #013ADF;
+}
+
+.contenedor-form .formulario {
+	padding: 40px;
+	display: none;
+}
+
+.contenedor-form .formulario:nth-child(2) {
+	display: block;
+}
+
+.login-input {
+	background: #013ADF;
+	color: #fff;
+	border: none;
+	width: 100%;
+	padding: 10px 0;
+	margin-top:
+	font-weight: normal;
+	font-family: tahoma;
+	font-size: 16px;
+	letter-spacing: 0.5px;
+	transition: all .5s ease;
+}
+
+#arriba {
+	margin-bottom: 15px;
+	border-radius: 3px 2px 2px;
+	cursor: pointer;
+
+}
+
+#abajo {
+	border-radius: 3px 2px 2px;
+	cursor: pointer;
+}
+
+#abajo:hover, 
+#arriba:hover {
+	box-shadow: 0 0 20px #013ADF;
+}
