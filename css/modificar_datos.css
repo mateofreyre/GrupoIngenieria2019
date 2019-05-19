@@ -62,19 +62,6 @@ h5 {
 	border-bottom: 4px solid #0174DF;
 }
 
-.contenedor-form input[type="submit"] {
-	background: #013ADF;
-	color: #fff;
-	border: none;
-	width: 100%;
-	padding: 10px 0;
-	font-weight: normal;
-	font-family: tahoma;
-	font-size: 16px;
-	letter-spacing: 0.5px;
-	cursor: pointer;
-	transition: all .5s ease;
-}
 
 .contenedor-form input[type="submit"]:hover {
 	box-shadow: 0 0 20px #013ADF;
@@ -90,7 +77,7 @@ h5 {
 }
 
 .login-input {
-	background: #013ADF;
+	background: #0404B4;
 	color: #fff;
 	border: none;
 	width: 100%;
@@ -101,21 +88,17 @@ h5 {
 	font-size: 16px;
 	letter-spacing: 0.5px;
 	transition: all .5s ease;
+	border-radius: 3px 5px 3px;
 }
 
 #arriba {
-	margin-bottom: 15px;
-	border-radius: 3px 2px 2px;
-	cursor: pointer;
-
+	margin-bottom: 10px;
 }
 
-#abajo {
-	border-radius: 3px 2px 2px;
-	cursor: pointer;
-}
-
-#abajo:hover, 
+#abajo:hover,
 #arriba:hover {
-	box-shadow: 0 0 20px #013ADF;
+	box-shadow: 0 0 20px #0000FF;
+	transition: all .5s ease;
+	background-color: #0000FF;
+	}
 }
