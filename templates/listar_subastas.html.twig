@@ -41,13 +41,16 @@
                           </a>
                         </div>
                       </div>
+
                     {% if rol == 2 %}
                       <ul>
                         <li><a href="./?action=eliminar_subasta&id={{subasta.getId}}"class ="enlaceboton">Eliminar subasta</a></li>
                         <li><a href="./?action=cancelar_subasta&id={{subasta.getId}}"class ="enlaceboton">Cancelar subasta</a></li>
                       </ul>
                     {%endif%}
-                </ul>
+                  </div>
+                </div>
+              </ul>
           <hr />
               {% endfor %}
             {% if subastas is empty %}

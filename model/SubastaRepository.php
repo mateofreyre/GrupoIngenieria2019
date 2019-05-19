@@ -77,7 +77,7 @@ Class SubastaRepository extends PDORepository {
 		$id = $_GET['id'];
 		self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$id}'");
 		$mensaje = "La subasta ha sido cancelada";
-		echo "<script";
+		echo "<script>";
 		echo "alert('$mensaje');";
 		echo "</script>";
 		return true;

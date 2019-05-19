@@ -36,15 +36,6 @@ h2 {
 .row {
 		5px 30px 45px 60px;
 }
-.portafolio-over {
-	/* cambia estos dos valores para definir el tamaño de tu círculo */
-  	border-radius: 30%
-    /* los siguientes valores son independientes del tamaño del círculo */
-    background-repeat: no-repeat;
-    background-position: 50%;
-    border-radius: 50%;
-    background-size: 100% auto;
-}
 .portfolio-grid {
   margin-top: 65px;
 }
@@ -137,15 +128,12 @@ ul li {
 	background-color: #0040FF;
 	background-image: none;
 	border-color: #0040FF;
-	margin-left: 15px;
 }
 
 .enlaceboton:hover {
 		transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-		transition: margin-left .25s ease-in-out;
 		color: white;
 		box-shadow: 5px 2px 3px 3px #444444;
 		background-color: #0000FF;
 		opacity: 1;
-		margin-left: 8px;
 	}

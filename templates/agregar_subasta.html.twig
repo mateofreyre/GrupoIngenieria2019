@@ -4,9 +4,8 @@
         <title>Propiedades</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+        <link rel="stylesheet" type="text/css" href="css/estilos_subastas.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
@@ -18,32 +17,36 @@
                 {% include 'nav-bar.html.twig' %}
             </div>
         </header>
-        <h2>Propiedad</h2>
+        <h2>Subastar propiedad</h2>
         <hr/>
             <ul>
-                <li>Nombre: {{propiedad.getNombre}}</li>
-                <li>Lugar: {{propiedad.getLugar}}</li>
-                <li>Monto normal: {{propiedad.getMontoNormal}}</li>
-                <li>Monto base: {{propiedad.getBase}}</li>
-                {% if rol == 2 %}
-                <li><a href="./?action=modificar_propiedad&id={{propiedad.getId}}">Modificar propiedad</a></li>
-                <li><a href="./?action=eliminar_propiedad&id={{propiedad.getId}}">Eliminar propiedad</a></li>
-                <li><a href="./?action=formulario_subastar_propiedad&id={{propiedad.getId}}">Agregar nueva subasta para esta propiedad</a></li>
-
-                    <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}">Poner en hot sale</a></li>
-
-                    <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}">Sacar de hot sale</a></li>
-
-                {%endif%}
-            </ul>
-            <form method="post" action="./?action=chequear_subasta&id={{propiedad.getId}}" class="">
-            <div class="">
-                <div class="">
-                    <label for="fecha" class="">Seleccione la fecha desde la que quiere realizar la subasta: </label>
-                    <input type="datetime-local" name="fecha" id="fecha" class="inputElement" placeholder="DD-MM-AAAA HH-MM" required>
-                </div>
-              <button id="izquierda" type="submit">Registrar</button>
-              <button id="derecha" type="reset">Reset</button>
+              <div class="portfolio-grid">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <div class="card card-block">
+                      <a href="#"><img alt="" src="img/fondo2.jpg">
+                        <div class="portfolio-over">
+                          <div>
+                            <h3 class="card-title">
+                              <li>Nombre: {{propiedad.getNombre}} </li>
+                            </h3>
+                            <p class="card-text">
+                                <li>IdPropiedad: {{subasta.getIdPropiedad}}</li>
+                                <li>Fecha de inicio: {{subasta.getFechaDesde}}</li>
+                                <li>Fecha de finalizacion: {{subasta.getFechaHasta}}</li>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                <form method="post" action="./?action=chequear_subasta&id={{propiedad.getId}}" class="">
+                    <div class="">
+                      <label for="fecha"> Seleccione la fecha desde la que quiere realizar la subasta: </label>
+                      <input type="date" name="fecha" id="fecha" placeholder="DD-MM-AAAA" required>
+                    </div>
+              <button id="izquierda" type="submit" class="enlaceboton">Registrar</button>
+              <button id="derecha" type="reset" class="enlaceboton">Reset</button>
           </div>
         </form>
         <hr/>
