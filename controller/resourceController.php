@@ -126,6 +126,8 @@ class ResourceController {
 			}
 		}
 
+		
+
 		public function agregar_oferta(){
 			$model = PujadorRepository::getInstance()-> agregar_oferta();
 			self::getInstance()-> listar_subastas();
