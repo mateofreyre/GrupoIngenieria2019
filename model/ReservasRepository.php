@@ -25,7 +25,6 @@ Class ReservasRespository extends PDORepository {
     $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
     $fecha_hasta = $nuevafecha;
 
-
     $query = self::getInstance()->queryAll("SELECT * FROM alquiler WHERE id_propiedad = '{$id_propiedad}'");
     if(!empty($query)){
         $alquileres= [];
@@ -49,7 +48,19 @@ Class ReservasRespository extends PDORepository {
     }
   }
 
-
+  public function agregar_reserva($fecha_desde, $fecha_hasta, $monto, $id_usuario, $id_propiedad){
+    try{
+        self::getInstance() -> queryAll("INSERT INTO alquiler(fecha_desde, fecha_hasta, monto, id_usuario, id_propiedad) VALUES ('{$fecha_desde}', '{$fecha_hasta}', '{$monto}', '{$id_usuario}', '{$id_propiedad}')");
+        return true;
+    }
+    catch(PDO $e){
+      $mensaje = "Se produjo un error y no se pudo agregar la reserva";
+      echo "<script>";
+      echo "alert('$mensaje');";
+      echo "</script>";
+      return false;
+    }
+}
 
 }
 ?>
