@@ -111,18 +111,18 @@ class ResourceController {
 		}
 
 		public function finalizar_subasta(){
-			$model = SubastaRepository::getInstance()-> cancelar_subasta();
+			$model = SubastaRepository::getInstance()->finalizar_subasta();
 			self::getInstance()-> listar_subastas();
 		}
 
 		public function detalle_subasta(){
 			$subasta = SubastaRepository::getInstance()-> detalle_subasta();
-			$mejor_oferta = PujadorRepository::getInstance()->listar_ofertas_by_propiedad($subasta[0]->getIdPropiedad());
+			$mejor_oferta = PujadorRepository::getInstance()->listar_ofertas_by_propiedad($subasta->getIdPropiedad());
 			$view = new Detalle_Subasta();
 			if(!empty($mejor_oferta)){
-				$view -> show($subasta[0], $mejor_oferta[0]->getMonto());
+				$view -> show($subasta, $mejor_oferta[0]->getMonto());
 			}else{
-				$view -> show($subasta[0], 0);
+				$view -> show($subasta, 0);
 			}
 		}
 

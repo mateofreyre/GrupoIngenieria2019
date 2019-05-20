@@ -17,6 +17,7 @@ require_once('model/PDORepository.php');
 require_once('model/AdminRepository.php');
 
 //require_once('model/UsuarioRepository.php');
+require_once('model/UsuarioRepository.php');
 require_once('model/Usuario.php');
 require_once('model/PropiedadesRepository.php');
 require_once('model/Propiedades.php');

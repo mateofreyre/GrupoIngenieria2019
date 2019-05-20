@@ -51,7 +51,7 @@ Class SubastaRepository extends PDORepository {
 			  	$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad']);
 			  	$subastas[] = $subasta;
 			}
-			return $subastas;
+			return $subastas[0];
 		}else{
 		  return false;
 		}
@@ -104,13 +104,14 @@ Class SubastaRepository extends PDORepository {
 	}
 
 	public function finalizar_subasta() {
-		$id = $_GET['id'];
-		$subasta = self::getInstance()->queryAll("SELECT * FROM subasta WHERE id = '{$id}'");
-		$id_propiedad = $subasta['id_propiedad'];
+		$subasta = self::getInstance()->detalle_subasta();
+		$id_propiedad = $subasta->getIdPropiedad();
 		$ofertas = PujadorRepository::getInstance()->listar_ofertas_by_propiedad($id_propiedad);
-		echo($ofertas);
-		$mensaje = "La subasta ha sido cancelada";
-		echo "<script";
+		$id_usuario = $ofertas[0]->getIdUsuario();
+		$usuario = UsuarioRepository::getInstance()->obtener_usuario_by_id($id_usuario);
+		$mensaje = "La subasta ha finalizado, el ganador es el usuario {$usuario->getNombre()} {$usuario->getApellido()}";
+		// PujadorRepository::getInstance()->eliminar_ofertas_by_propiedad($id_propiedad);
+		echo "<script>";
 		echo "alert('$mensaje');";
 		echo "</script>";
 		return true;

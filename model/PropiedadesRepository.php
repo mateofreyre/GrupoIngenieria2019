@@ -74,6 +74,17 @@ Class PropiedadesRepository extends PDORepository {
 
     }
 
+    public function buscar_propiedad_by_id($id){
+      $propiedad;
+      $consulta = self::getInstance()->queryAll("SELECT * FROM propiedad WHERE id = '{$id}'");
+      foreach ($consulta as $row) {
+          $propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hotsale'], $row['monto_base']);
+      }
+      $consulta = null;
+      return $propiedad;
+
+    }
+
     //** ELIMINAR PROPIEDAD **//
 
     public function eliminar_propiedad(){
