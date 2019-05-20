@@ -114,7 +114,7 @@ CREATE TABLE `usuario` (
 CREATE TABLE `usuario_subasta` (
   `id` int(11) NOT NULL,
   `monto` int(11) NOT NULL,
-  `id_propiedad` int(11) NOT NULL,
+  `id_subasta` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -162,7 +162,7 @@ ALTER TABLE `usuario`
 ALTER TABLE `usuario_subasta`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Si se borra el usuario` (`id_usuario`),
-  ADD KEY `Si se borra la propiedad` (`id_propiedad`);
+  ADD KEY `Si se borra la subasta` (`id_subasta`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -232,7 +232,7 @@ ALTER TABLE `tarjeta`
 --
 ALTER TABLE `usuario_subasta`
   ADD CONSTRAINT `Si se borra el usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Si se borra la propiedad` FOREIGN KEY (`id_propiedad`) REFERENCES `propiedad` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Si se borra la subasta` FOREIGN KEY (`id_subasta`) REFERENCES `subasta` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

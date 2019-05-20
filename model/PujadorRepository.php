@@ -63,10 +63,10 @@ Class PujadorRepository extends PDORepository {
 
     //**ELIMINAR OFERTAS**//
 
-    public function eliminar_ofertas_by_propiedad($id_propiedad){
+    public function eliminar_ofertas_by_subasta($id_subasta){
       try {
         $ofertas = [];
-        $query = PujadorRepository::getInstance()->queryAll("DELETE FROM usuario_subasta WHERE id_propiedad = '{$id_propiedad}'");
+        $query = PujadorRepository::getInstance()->queryAll("DELETE FROM usuario_subasta WHERE id_subasta = '{$id_subasta}'");
         return true;
       }
       catch (PDOException $e) {
