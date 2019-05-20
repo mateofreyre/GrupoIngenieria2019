@@ -25,7 +25,7 @@
                     <div class="row">
                       <div class="col-lg-3 col-sm-6 col-xs-12">
                         <div class="card card-block">
-                          <a href="#"><img alt="" src="img/fondo2.jpg">
+                          <a href="./?action=detalle_subasta&id={{subasta.getId}}"><img alt="" src="img/fondo2.jpg">
                             <div class="portfolio-over">
                               <div>
                                 <h3 class="card-title">
@@ -41,10 +41,10 @@
                           </a>
                         </div>
                       </div>
-
                     {% if rol == 2 %}
                       <ul>
                         <li><a href="./?action=eliminar_subasta&id={{subasta.getId}}"class ="enlaceboton">Eliminar subasta</a></li>
+                        <li><a href="./?action=finalizar_subasta&id={{subasta.getId}}"class ="enlaceboton">Finalizar subasta</a></li>
                         <li><a href="./?action=cancelar_subasta&id={{subasta.getId}}"class ="enlaceboton">Cancelar subasta</a></li>
                       </ul>
                     {%endif%}

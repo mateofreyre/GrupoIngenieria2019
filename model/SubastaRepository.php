@@ -41,7 +41,27 @@ Class SubastaRepository extends PDORepository {
 	  return true;
 	}
 
- public function listar_subastas(){
+	public function detalle_subasta(){
+		//recuperar datos de la fecha ingresada y id de propiedad
+		$id_subasta = $_GET['id'];
+		$query = self::getInstance()->queryAll("SELECT * FROM subasta WHERE id = '{$id_subasta}'");
+		if(!empty($query)){
+			$subastas = [];
+			foreach ($query as $row) {
+			  	$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad']);
+			  	$subastas[] = $subasta;
+			}
+			return $subastas;
+		}else{
+		  return false;
+		}
+	}
+		// foreach ($query as $row) {
+		// 	return new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad']);
+		// }
+	  	// return $subasta;
+
+ 	public function listar_subastas(){
 		try {
 			$subastas = [];
 			$query = SubastaRepository::getInstance()->queryAll("SELECT * FROM subasta");
@@ -78,6 +98,19 @@ Class SubastaRepository extends PDORepository {
 		self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$id}'");
 		$mensaje = "La subasta ha sido cancelada";
 		echo "<script>";
+		echo "alert('$mensaje');";
+		echo "</script>";
+		return true;
+	}
+
+	public function finalizar_subasta() {
+		$id = $_GET['id'];
+		$subasta = self::getInstance()->queryAll("SELECT * FROM subasta WHERE id = '{$id}'");
+		$id_propiedad = $subasta['id_propiedad'];
+		$ofertas = PujadorRepository::getInstance()->listar_ofertas_by_propiedad($id_propiedad);
+		echo($ofertas);
+		$mensaje = "La subasta ha sido cancelada";
+		echo "<script";
 		echo "alert('$mensaje');";
 		echo "</script>";
 		return true;

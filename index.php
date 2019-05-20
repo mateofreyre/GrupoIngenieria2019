@@ -24,6 +24,7 @@ require_once('model/Tarjeta.php');
 require_once('model/SubastaRepository.php');
 require_once('model/Subasta.php');
 require_once('model/Pujador.php');
+require_once('model/PujadorRepository.php');
 require_once('model/Reservas.php');
 require_once('model/ReservasRepository.php');
 require_once('model/Admin.php');
@@ -35,6 +36,8 @@ require_once('view/Modificar_datos_propiedad.php');
 require_once('view/Subastarpropiedad.php');
 require_once('view/Listar_propiedades.php');
 require_once('view/Listar_subastas.php');
+require_once('view/Detalle_Subasta.php');
+require_once('view/SubastarPropiedad.php');
 
 
 
