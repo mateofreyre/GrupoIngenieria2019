@@ -44,12 +44,12 @@ Class PujadorRepository extends PDORepository {
 
     //**LISTAR OFERTAS**//
 
-    public function listar_ofertas_by_propiedad($id_propiedad){
+    public function listar_ofertas_by_subasta($id_subasta){
       try {
         $ofertas = [];
-        $query = PujadorRepository::getInstance()->queryAll("SELECT * FROM usuario_subasta WHERE id_propiedad = '{$id_propiedad}' ORDER BY monto DESC");
+        $query = PujadorRepository::getInstance()->queryAll("SELECT * FROM usuario_subasta WHERE id_subasta = '{$id_subasta}' ORDER BY monto DESC");
         foreach ($query as $row) {
-          $oferta = new Pujador($row['id'], $row['monto'], $row['id_propiedad'], $row['id_usuario']);
+          $oferta = new Pujador($row['id'], $row['monto'], $row['id_subasta'], $row['id_usuario']);
           $ofertas[]=$oferta;
         }
         $query = null;
