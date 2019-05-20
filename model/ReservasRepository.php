@@ -26,20 +26,27 @@ Class ReservasRespository extends PDORepository {
     $fecha_hasta = $nuevafecha;
 
     $query = self::getInstance()->queryAll("SELECT * FROM alquiler WHERE id_propiedad = '{$id_propiedad}'");
-    if(!empty($query)){
+		if(!empty($query)){
         $alquileres= [];
         foreach ($query as $row) {
           $alquiler = new Reservas($row['monto'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'],  $row['id_usuario']);
           $alquileres[] = $alquiler;
-
         }
 				if(!empty($alquiler)){
 		      foreach ($alquileres as $alquier) {
 						if($alquiler->seRealizaDentroDe($fecha_desde, $fecha_hasta)){
+							$mensaje = "Ya existe un evento para esa fecha";
+							echo "<script>";
+							echo "alert('$mensaje');";
+							echo "</script>";
 		          return false;
 		        }
         	}
 				}
+				$mensaje = "Subasta agregada exitosamente";
+				echo "<script>";
+				echo "alert('$mensaje');";
+				echo "</script>";
         return true;
 
     }

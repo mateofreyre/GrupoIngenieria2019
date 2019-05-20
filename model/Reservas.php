@@ -56,19 +56,19 @@ Class Reservas {
 	}
 
 	public function yoMeEncuentroDentro($fecha_desde,$fecha_hasta){
-		return ($this->getFechaDesde > $fecha_desde) AND ($this->getFechaHasta < $fecha_hasta);
+		return ($this->getFechaHasta() > $fecha_desde) AND ($this->getFechaHasta() < $fecha_hasta);
 	}
 
 	public function elSeEncuentraDentro($fecha_desde,$fecha_hasta){
-		return ($this->getFechaDesde < $fecha_desde) AND ($this->getFechaHasta > $fecha_hasta);
+		return ($this->getFechaDesde() < $fecha_desde) AND ($this->getFechaHasta() > $fecha_hasta);
 	}
 
 	public function desfazadoHaciaIzquierda($fecha_desde, $fecha_hasta){
-		return ($this-> getFechaDesde > $fecha_desde) AND ($this-> getFechaHasta < $fecha_hasta);
+		return ($this->getFechaDesde() > $fecha_desde) AND ($this->getFechaHasta() < $fecha_hasta);
 	}
 
-	public function desfazadoHaciaDerecha($fecha_Desde, $fecha_hasta){
-		return ($this-> getFechaDesde < $fecha_desde) AND ($this-> getFechaHasta > $fecha_hasta);
+	public function desfazadoHaciaDerecha($fecha_desde, $fecha_hasta){
+		return ($this->getFechaDesde() < $fecha_desde) AND ($this->getFechaHasta() > $fecha_hasta);
 	}
 
 }
