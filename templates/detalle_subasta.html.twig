@@ -29,7 +29,7 @@
                 <div class="">
                     <label for="monto" class="">Seleccione el monto a subastar: </label>
                     <input type="number" name="monto" id="monto" class="inputElement" min={{mejor_oferta + 1}} required>
-                    <input type="text" name="id_propiedad" id="id_propiedad" class="inputElement" value="{{subasta.getIdPropiedad}}" hidden required>
+                    <input type="text" name="id_subasta" id="id_subasta" class="inputElement" value="{{subasta.getId}}" hidden required>
                     <input type="number" name="id_usuario" id="id_usuario" class="inputElement" value=1 hidden required>
                 </div>
               <button id="izquierda" type="submit">Ofertar</button>

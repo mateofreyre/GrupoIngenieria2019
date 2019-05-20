@@ -20,16 +20,18 @@ Class PujadorRepository extends PDORepository {
 
     public function agregar_oferta(){
         $monto = $_POST['monto'];
-        $id_propiedad = $_POST['id_propiedad'];
+        $id_subasta = $_POST['id_subasta'];
         $id_usuario = $_POST['id_usuario'];
 
+
         try{
-          	self::getInstance() -> queryAll("INSERT INTO usuario_subasta(monto, id_propiedad, id_usuario) VALUES ('{$monto}', '{$id_propiedad}', '{$id_usuario}')");
-          	$mensaje = "Oferta agregada exitosamente";
-          	echo "<script>";
-          	echo "alert('$mensaje');";
-          	echo "</script>";
-          	return true;
+          	$query = self::getInstance()->queryAll("INSERT INTO usuario_subasta (monto, id_subasta, id_usuario) VALUES ('{$monto}', '{$id_subasta}', '{$id_usuario}')");
+						$mensaje = "Se agrego una oferta";
+						echo "<script>";
+						echo "alert('$mensaje');";
+						echo "</script>";
+						return false;
+						return true;
         }
         catch(PDO $e){
           $mensaje = "Se produjo un error y no se pudo agregar la oferta";
