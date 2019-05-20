@@ -24,6 +24,7 @@ class ResourceController {
     	$codigo = $_POST['codigo'];
     	$model = AdminRepository::getInstance()-> chequear_codigo($codigo);
     	if($model){
+
     		self::getInstance()->listar_propiedades();
     	}
     	else{
@@ -126,7 +127,7 @@ class ResourceController {
 			}
 		}
 
-		
+
 
 		public function agregar_oferta(){
 			$model = PujadorRepository::getInstance()-> agregar_oferta();
