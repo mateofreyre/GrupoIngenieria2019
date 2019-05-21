@@ -116,6 +116,8 @@ Class SubastaRepository extends PDORepository {
 			$mensaje = "La subasta ha finalizado, el ganador es el usuario {$usuario->getNombre()} {$usuario->getApellido()}";
 			ReservasRespository::getInstance()->agregar_reserva($subasta->getFechaDesde(), $subasta->getFechaHasta(), $ofertas[0]->getMonto(), $id_usuario, $id_propiedad);
 			PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id_subasta);
+			$credito_actualizado = $usuario->getCreditos() - 1;
+			UsuarioRepository::getInstance()->queryAll("UPDATE usuario SET creditos='{$credito_actualizado}' WHERE id = '{$id_usuario}'");
 			self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$subasta->getId()}'");
 			echo "<script>";
 			echo "alert('$mensaje');";
