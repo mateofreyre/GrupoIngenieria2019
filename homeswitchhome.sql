@@ -57,7 +57,7 @@ CREATE TABLE `alquiler` (
 CREATE TABLE `propiedad` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `lugar` int(100) NOT NULL,
+  `lugar` varchar(100) NOT NULL,
   `monto_normal` int(100) NOT NULL,
   `monto_base` int(100) NOT NULL,
   `hotsale` tinyint(1) NOT NULL
