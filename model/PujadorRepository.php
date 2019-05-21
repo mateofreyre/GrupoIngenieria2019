@@ -23,23 +23,32 @@ Class PujadorRepository extends PDORepository {
         $id_subasta = $_POST['id_subasta'];
         $id_usuario = $_POST['id_usuario'];
 
-
-        try{
-          	$query = self::getInstance()->queryAll("INSERT INTO usuario_subasta (monto, id_subasta, id_usuario) VALUES ('{$monto}', '{$id_subasta}', '{$id_usuario}')");
-						$mensaje = "Se agrego una oferta";
-						echo "<script>";
-						echo "alert('$mensaje');";
-						echo "</script>";
-						return false;
-						return true;
-        }
-        catch(PDO $e){
-          $mensaje = "Se produjo un error y no se pudo agregar la oferta";
-          echo "<script>";
-          echo "alert('$mensaje');";
-          echo "</script>";
-          return false;
-        }
+				$cant_creditos = self::getInstance() -> queryAll("SELECT creditos FROM usuario WHERE id = '{$id_usuario}'");
+				if($cant_creditos > 0) {
+	        try{
+	          	$query = self::getInstance()->queryAll("INSERT INTO usuario_subasta (monto, id_subasta, id_usuario) VALUES ('{$monto}', '{$id_subasta}', '{$id_usuario}')");
+							$mensaje = "Se agrego una oferta";
+							echo "<script>";
+							echo "alert('$mensaje');";
+							echo "</script>";
+							return false;
+							return true;
+	        }
+	        catch(PDO $e){
+	          $mensaje = "Se produjo un error y no se pudo agregar la oferta";
+	          echo "<script>";
+	          echo "alert('$mensaje');";
+	          echo "</script>";
+	          return false;
+	        }
+				}
+				else{
+					$mensaje = "Se produjo un error y no se pudo agregar la oferta. No posee creditos para realizarla";
+					echo "<script>";
+					echo "alert('$mensaje');";
+					echo "</script>";
+					return false;
+				}
     }
 
     //**LISTAR OFERTAS**//
