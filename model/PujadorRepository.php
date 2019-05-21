@@ -35,6 +35,7 @@ Class PujadorRepository extends PDORepository {
 							echo "alert('$mensaje');";
 							echo "</script>";
 							return true;
+							return false;
 	        }
 	        catch(PDO $e){
 	          $mensaje = "Se produjo un error y no se pudo agregar la oferta";
