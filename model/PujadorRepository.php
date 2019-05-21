@@ -30,7 +30,6 @@ Class PujadorRepository extends PDORepository {
 						echo "<script>";
 						echo "alert('$mensaje');";
 						echo "</script>";
-						return false;
 						return true;
         }
         catch(PDO $e){
