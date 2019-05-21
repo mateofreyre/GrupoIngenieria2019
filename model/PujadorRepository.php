@@ -23,6 +23,7 @@ Class PujadorRepository extends PDORepository {
         $id_subasta = $_POST['id_subasta'];
         $id_usuario = $_POST['id_usuario'];
 
+<<<<<<< HEAD
 				$creditos = self::getInstance() -> queryAll("SELECT * FROM usuario WHERE id = '{$id_usuario}'");
 				foreach ($creditos as $row ) {
 					$cant_creditos = $row['creditos'];
@@ -52,6 +53,24 @@ Class PujadorRepository extends PDORepository {
 					echo "</script>";
 					return false;
 				}
+=======
+
+        try{
+          	$query = self::getInstance()->queryAll("INSERT INTO usuario_subasta (monto, id_subasta, id_usuario) VALUES ('{$monto}', '{$id_subasta}', '{$id_usuario}')");
+						$mensaje = "Se agrego una oferta";
+						echo "<script>";
+						echo "alert('$mensaje');";
+						echo "</script>";
+						return true;
+        }
+        catch(PDO $e){
+          $mensaje = "Se produjo un error y no se pudo agregar la oferta";
+          echo "<script>";
+          echo "alert('$mensaje');";
+          echo "</script>";
+          return false;
+        }
+>>>>>>> aa6cc0f6e2b86ee4a0cd35c55b38dfb2ef4c24da
     }
 
     //**LISTAR OFERTAS**//
