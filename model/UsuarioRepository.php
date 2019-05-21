@@ -34,6 +34,25 @@ Class UsuarioRepository extends PDORepository {
     }
   }
 
+	public function chequear_cantidad_creditos(){
+		$id_usuario = $_POST['id_usuario'];
+
+		$creditos = self::getInstance() -> queryAll("SELECT * FROM usuario WHERE id = '{$id_usuario}'");
+		foreach ($creditos as $row ) {
+			$cant_creditos = $row['creditos'];
+		}
+		if($cant_creditos > 0){
+			return true;
+		}
+		else{
+			$mensaje = "Se produjo un error y no se pudo agregar la oferta. No posee creditos para realizarla";
+			echo "<script>";
+			echo "alert('$mensaje');";
+			echo "</script>";
+			return false;
+		}
+	}
+
 //     //** BUSCAR PROPIEDAD **//
 
 //     public function buscar_propiedad(){
