@@ -80,6 +80,7 @@ Class SubastaRepository extends PDORepository {
 
 	public function eliminar_subasta(){
 		$id = $_GET['id'];
+		PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id);
 		self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$id}'");
 		/* me fijo si el atributo del monto pujado para esa subasta es distinto de 0 y devuelvo en "var".
 		hago un if("var"){
@@ -95,6 +96,7 @@ Class SubastaRepository extends PDORepository {
 
 	public function cancelar_subasta() {
 		$id = $_GET['id'];
+		PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id);
 		self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$id}'");
 		$mensaje = "La subasta ha sido cancelada";
 		echo "<script>";

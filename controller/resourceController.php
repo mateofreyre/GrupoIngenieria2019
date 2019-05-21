@@ -119,11 +119,12 @@ class ResourceController {
 		public function detalle_subasta(){
 			$subasta = SubastaRepository::getInstance()-> detalle_subasta();
 			$mejor_oferta = PujadorRepository::getInstance()->listar_ofertas_by_subasta($subasta->getId());
+			$propiedad = PropiedadesRepository::getInstance()->buscar_propiedad_by_id($subasta->getIdPropiedad());
 			$view = new Detalle_Subasta();
 			if(!empty($mejor_oferta)){
 				$view -> show($subasta, $mejor_oferta[0]->getMonto());
 			}else{
-				$view -> show($subasta, 0);
+				$view -> show($subasta, $propiedad->getMontoBase());
 			}
 		}
 
