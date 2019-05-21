@@ -110,15 +110,22 @@ Class SubastaRepository extends PDORepository {
 		$id_propiedad = $subasta->getIdPropiedad();
 		$id_subasta = $subasta->getId();
 		$ofertas = PujadorRepository::getInstance()->listar_ofertas_by_subasta($id_subasta);
-		$id_usuario = $ofertas[0]->getIdUsuario();
-		$usuario = UsuarioRepository::getInstance()->obtener_usuario_by_id($id_usuario);
-		$mensaje = "La subasta ha finalizado, el ganador es el usuario {$usuario->getNombre()} {$usuario->getApellido()}";
-		ReservasRespository::getInstance()->agregar_reserva($subasta->getFechaDesde(), $subasta->getFechaHasta(), $ofertas[0]->getMonto(), $id_usuario, $id_propiedad);
-		PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id_subasta);
-		self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$subasta->getId()}'");
-		echo "<script>";
-		echo "alert('$mensaje');";
-		echo "</script>";
+		if (!empty($ofertas)){
+			$id_usuario = $ofertas[0]->getIdUsuario();
+			$usuario = UsuarioRepository::getInstance()->obtener_usuario_by_id($id_usuario);
+			$mensaje = "La subasta ha finalizado, el ganador es el usuario {$usuario->getNombre()} {$usuario->getApellido()}";
+			ReservasRespository::getInstance()->agregar_reserva($subasta->getFechaDesde(), $subasta->getFechaHasta(), $ofertas[0]->getMonto(), $id_usuario, $id_propiedad);
+			PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id_subasta);
+			self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$subasta->getId()}'");
+			echo "<script>";
+			echo "alert('$mensaje');";
+			echo "</script>";
+		}else{
+			$mensaje = "La subasta ha finalizado, no hay ganadores";
+			echo "<script>";
+			echo "alert('$mensaje');";
+			echo "</script>";
+		}
 		return true;
 	}
 

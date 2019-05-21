@@ -42,16 +42,16 @@ Class PujadorRepository extends PDORepository {
 	          echo "alert('$mensaje');";
 	          echo "</script>";
 	          return false;
-	        }
-				}
-				else{
-					$mensaje = "Se produjo un error y no se pudo agregar la oferta. No posee creditos para realizarla";
-					echo "<script>";
-					echo "alert('$mensaje');";
-					echo "</script>";
-					return false;
-				}
-    }
+          }
+        }
+        else{
+          $mensaje = "Se produjo un error y no se pudo agregar la oferta. No posee creditos para realizarla";
+          echo "<script>";
+          echo "alert('$mensaje');";
+          echo "</script>";
+          return false;
+        }
+      }
 
     //**LISTAR OFERTAS**//
 
@@ -61,7 +61,10 @@ Class PujadorRepository extends PDORepository {
         $query = PujadorRepository::getInstance()->queryAll("SELECT * FROM usuario_subasta WHERE id_subasta = '{$id_subasta}' ORDER BY monto DESC");
         foreach ($query as $row) {
           $oferta = new Pujador($row['id'], $row['monto'], $row['id_subasta'], $row['id_usuario']);
-          $ofertas[]=$oferta;
+          $usuario = UsuarioRepository::getInstance()->obtener_usuario_by_id($row['id_usuario']);
+          if ($usuario->getCreditos() > 0){
+            $ofertas[]=$oferta;
+          }
         }
         $query = null;
         return $ofertas;
