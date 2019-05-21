@@ -47,7 +47,7 @@ Class PujadorRepository extends PDORepository {
 					echo "<script>";
 					echo "alert('$mensaje');";
 					echo "</script>";
-					return false
+					return false;
 				}
     }
 
