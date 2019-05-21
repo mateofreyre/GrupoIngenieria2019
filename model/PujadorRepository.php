@@ -23,7 +23,10 @@ Class PujadorRepository extends PDORepository {
         $id_subasta = $_POST['id_subasta'];
         $id_usuario = $_POST['id_usuario'];
 
-				$cant_creditos = self::getInstance() -> queryAll("SELECT creditos FROM usuario WHERE id = '{$id_usuario}'");
+				$creditos = self::getInstance() -> queryAll("SELECT * FROM usuario WHERE id = '{$id_usuario}'");
+				foreach ($creditos as $row ) {
+					$cant_creditos = $row['creditos'];
+				}
 				if($cant_creditos > 0) {
 	        try{
 	          	$query = self::getInstance()->queryAll("INSERT INTO usuario_subasta (monto, id_subasta, id_usuario) VALUES ('{$monto}', '{$id_subasta}', '{$id_usuario}')");
