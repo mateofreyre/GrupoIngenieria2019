@@ -142,6 +142,14 @@ Class PropiedadesRepository extends PDORepository {
           $monto_normal = 0;
 					$monto_base = $_POST['monto_base'];
 					$id= $_GET['id'];
+					$chequear_nombre_repetido = self::getInstance()-> nombre_repetido($nombre);
+					if($chequear_nombre_repetido){
+						$mensaje = "Se produjo un error y no se pudo agregar la propiedad. El nombre elegido ya esta en uso";
+	          echo "<script>";
+	          echo "alert('$mensaje');";
+	          echo "</script>";
+	          return false;
+					}
           self::getInstance()->queryAll("UPDATE propiedad SET nombre='{$nombre}', monto_normal='{$monto_normal}', monto_base='{$monto_base}', lugar='{$lugar}' WHERE id = '{$id}'");
           $mensaje = "La operacion ha sido realizada con exito.";
               echo "<script>";
