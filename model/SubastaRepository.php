@@ -19,7 +19,8 @@ Class SubastaRepository extends PDORepository {
 	public function chequear_subasta(){
 	//	$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
 		$model_reservas = ReservasRespository::getInstance()->chequear_superposicion_fechas();
-		if($model_reservas){
+		$model_subastas = self::getInstance() -> chequear_superposicion_fechas();
+		if($model_reservas AND $model_subastas){
 			self::getInstance()->agregar_subasta();
 			return true;
 		}
@@ -27,6 +28,48 @@ Class SubastaRepository extends PDORepository {
 			return false;
 		}
 	}
+
+	public function chequear_superposicion_fechas(){
+		//recuperar datos de la fecha ingersada y id de propiedad
+		$id_propiedad = $_GET['id'];
+		$fecha_desde = $_POST['fecha'];
+		//Se le agregan 7 dias a la fecha ingresada
+		$nuevafecha = strtotime ( '+7 day' , strtotime ($fecha_desde ) ) ;
+		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+		$fecha_hasta = $nuevafecha;
+
+		$query = self::getInstance()->queryAll("SELECT * FROM subasta WHERE id_propiedad = '{$id_propiedad}'");
+		if(!empty($query)){
+			$subastas = [];
+			foreach ($query as $row) {
+			  	$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'], $row['monto_base']);
+			  	$subastas[] = $subasta;
+			}
+				if(!empty($subastas)){
+					foreach ($subastas as $subasta) {
+						if($subasta->seRealizaDentroDe($fecha_desde, $fecha_hasta)){
+							$mensaje = "Ya existe un evento para esa fecha (subasta)";
+							echo "<script>";
+							echo "alert('$mensaje');";
+							echo "</script>";
+							return false;
+						}
+					}
+				}
+				$mensaje = "Subasta agregada exitosamente";
+				echo "<script>";
+				echo "alert('$mensaje');";
+				echo "</script>";
+				return true;
+
+		}
+		else{
+			return true;
+		}
+	}
+
+
+
 
 	public function agregar_subasta(){
 		//recuperar datos de la fecha ingresada y id de propiedad

@@ -35,7 +35,7 @@ Class ReservasRespository extends PDORepository {
 				if(!empty($alquiler)){
 		      foreach ($alquileres as $alquier) {
 						if($alquiler->seRealizaDentroDe($fecha_desde, $fecha_hasta)){
-							$mensaje = "Ya existe un evento para esa fecha";
+							$mensaje = "Ya existe un evento para esa fecha(reserva)";
 							echo "<script>";
 							echo "alert('$mensaje');";
 							echo "</script>";
