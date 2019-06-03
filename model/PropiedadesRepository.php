@@ -52,7 +52,7 @@ Class PropiedadesRepository extends PDORepository {
 		//CHEQUEA SI EL NOMBRE ELEGIDO ESTA DENTRO DE LA BASE DE DATOS
 		public function nombre_repetido($nombre){
 			$consulta = self::getInstance()-> queryAll("SELECT * FROM propiedad WHERE nombre = '{$nombre}'");
-			return empty($consulta);
+			return !empty($consulta);
 		}
 
     //**LISTAR PROPIEDADES**//
