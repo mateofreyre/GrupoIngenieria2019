@@ -32,7 +32,7 @@ Class SubastaRepository extends PDORepository {
 		//recuperar datos de la fecha ingresada y id de propiedad
 		$id_propiedad = $_GET['id'];
 		$fecha_desde = $_POST['fecha'];
-		$monto = $_POST['monto'];
+		$monto = $_POST['monto_base'];
 		//Se le agregan 7 dias a la fecha ingresada
 		$nuevafecha = strtotime ( '+7 day' , strtotime ($fecha_desde ) ) ;
 		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
