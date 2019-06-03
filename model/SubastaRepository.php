@@ -94,6 +94,19 @@ Class SubastaRepository extends PDORepository {
 		return true;
 	}
 
+	public function informarBajaDeSubastas($subastas){
+		foreach ($subastas as $row) {
+			$id_usuario = $row['id_usuario'];
+			$usuario = UsuarioRepository::getInstance()->buscarUsuarioPorId($id_usuario);
+			$nombre_usuario = $usuario->getNombre() . $usuario->getApellido();
+			$mensaje = "Se le informo al usuario".$nombre_usuario."Que se dio de baja la subasta.";
+			echo "<script>";
+			echo "alert('$mensaje');";
+			echo "</script>";
+
+		}
+	}
+
 	public function cancelar_subasta() {
 		$id = $_GET['id'];
 		PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id);

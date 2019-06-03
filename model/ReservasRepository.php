@@ -55,6 +55,19 @@ Class ReservasRespository extends PDORepository {
     }
   }
 
+	public function informarBajaDeReservas($reservas){
+		foreach ($reservas as $row) {
+			$id_usuario = $row['id_usuario'];
+			$usuario = UsuarioRepository::getInstance()->buscarUsuarioPorId($id_usuario);
+			$nombre_usuario = $usuario->getNombre() . $usuario->getApellido();
+			$mensaje = "Se le informo al usuario".$nombre_usuario."Que se dio de baja la reserva.";
+			echo "<script>";
+			echo "alert('$mensaje');";
+			echo "</script>";
+
+		}
+	}
+
   public function agregar_reserva($fecha_desde, $fecha_hasta, $monto, $id_usuario, $id_propiedad){
     try{
         self::getInstance() -> queryAll("INSERT INTO alquiler(fecha_desde, fecha_hasta, monto, id_usuario, id_propiedad) VALUES ('{$fecha_desde}', '{$fecha_hasta}', '{$monto}', '{$id_usuario}', '{$id_propiedad}')");

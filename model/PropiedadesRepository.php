@@ -104,6 +104,14 @@ Class PropiedadesRepository extends PDORepository {
     public function eliminar_propiedad(){
   //    $propiedad = self::getInstance()->buscar_propiedad($nombre)[0];
 			$id = $_GET['id'];
+
+			$hoy = date("y-m-d");
+			$reservas = self::getInstance()-> queryAll("SELECT * FROM alquiler WHERE id_propiedad '{$id}' AND fecha_desde < '{$hoy}' ");
+			ReservasRespository::getInstance()->informarBajaDeReservas($reservas);
+
+			$subastas = self::getInstance()-> queryAll("SELECT * FROM subasta WHERE id_propiedad '{$id}'");
+			SubastaRepository::getInstance()-> informarBajaDeSubastas($subastas);
+
       self::getInstance()->queryAll("DELETE FROM propiedad WHERE id = '{$id}'");
       $mensaje = "La propiedad ha sido eliminada";
       echo "<script>";
