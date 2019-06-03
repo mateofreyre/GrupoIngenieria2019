@@ -8,14 +8,16 @@ Class Subasta {
 	private $fecha_desde;
 	private $fecha_hasta;
 	private $id_propiedad;
+	private $monto_base;
 
 	/**Constructor**/
 
-	public function __construct($id, $fecha_desde, $fecha_hasta, $id_propiedad) {
+	public function __construct($id, $fecha_desde, $fecha_hasta, $id_propiedad, $monto_base) {
 		$this->id = $id;
 		$this->fecha_desde = $fecha_desde;
 		$this->fecha_hasta = $fecha_hasta;
 		$this->id_propiedad = $id_propiedad;
+		$this->monto_base = $monto_base;
 	}
 
 	/**Getters & Setters**/
@@ -34,6 +36,10 @@ Class Subasta {
 
 	public function getIdPropiedad() {
 		return $this->id_propiedad;
+	}
+
+	public function getMontoBase(){
+		return $this->monto_base;
 	}
 }
 

@@ -20,7 +20,6 @@ Class SubastaRepository extends PDORepository {
 	//	$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
 		$model_reservas = ReservasRespository::getInstance()->chequear_superposicion_fechas();
 		if($model_reservas){
-
 			self::getInstance()->agregar_subasta();
 			return true;
 		}
@@ -33,11 +32,12 @@ Class SubastaRepository extends PDORepository {
 		//recuperar datos de la fecha ingresada y id de propiedad
 		$id_propiedad = $_GET['id'];
 		$fecha_desde = $_POST['fecha'];
+		$monto = $_POST['monto'];
 		//Se le agregan 7 dias a la fecha ingresada
 		$nuevafecha = strtotime ( '+7 day' , strtotime ($fecha_desde ) ) ;
 		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
 		$fecha_hasta = $nuevafecha;
-		self::getInstance()->queryAll("INSERT INTO subasta(id_propiedad,fecha_desde,fecha_hasta) VALUES ('{$id_propiedad}','{$fecha_desde}','{$fecha_hasta}')");
+		self::getInstance()->queryAll("INSERT INTO subasta(id_propiedad,fecha_desde,fecha_hasta,monto_base) VALUES ('{$id_propiedad}','{$fecha_desde}','{$fecha_hasta}','{$monto}')");
 	  return true;
 	}
 
@@ -48,7 +48,7 @@ Class SubastaRepository extends PDORepository {
 		if(!empty($query)){
 			$subastas = [];
 			foreach ($query as $row) {
-			  	$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad']);
+			  	$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'], $row['monto_base']);
 			  	$subastas[] = $subasta;
 			}
 			return $subastas[0];
@@ -66,7 +66,7 @@ Class SubastaRepository extends PDORepository {
 			$subastas = [];
 			$query = SubastaRepository::getInstance()->queryAll("SELECT * FROM subasta");
 			foreach ($query as $row) {
-				$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad']);
+				$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'], $row['monto_base']);
 				$subastas[]=$subasta;
 			}
 			$query = null;

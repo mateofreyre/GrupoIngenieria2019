@@ -124,7 +124,7 @@ class ResourceController {
 			if(!empty($mejor_oferta)){
 				$view -> show($subasta, $mejor_oferta[0]->getMonto());
 			}else{
-				$view -> show($subasta, $propiedad->getMontoBase());
+				$view -> show($subasta, $subasta->getMontoBase());
 			}
 		}
 

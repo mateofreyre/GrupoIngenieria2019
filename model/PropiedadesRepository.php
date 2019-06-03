@@ -20,12 +20,20 @@ Class PropiedadesRepository extends PDORepository {
 
     public function agregar_propiedad(){
         $nombre = $_POST['nombre'];
+				$chequear_nombre_repetido = self::getInstance()-> nombre_repetido($nombre);
+				if($chequear_nombre_repetido){
+					$mensaje = "Se produjo un error y no se pudo agregar la propiedad. El nombre elegido ya esta en uso";
+          echo "<script>";
+          echo "alert('$mensaje');";
+          echo "</script>";
+          return false;
+				}
         $lugar = $_POST['lugar'];
-        $monto_normal = $_POST['monto_normal'];
-        $monto_base = $_POST['monto_base'];
+        //$monto_normal = $_POST['monto_normal'];
+        //$monto_base = $_POST['monto_base'];
 
         try{
-          	self::getInstance() -> queryAll("INSERT INTO propiedad (nombre, lugar, monto_normal, monto_base, hotsale) VALUES ('{$nombre}', '{$lugar}', '{$monto_normal}', '{$monto_base}', false)");
+          	self::getInstance() -> queryAll("INSERT INTO propiedad (nombre, lugar, monto_normal, monto_base, hotsale) VALUES ('{$nombre}', '{$lugar}', 0, 0, false)");
           	$mensaje = "Propiedad agregada exitosamente";
           	echo "<script>";
           	echo "alert('$mensaje');";
@@ -40,6 +48,12 @@ Class PropiedadesRepository extends PDORepository {
           return false;
         }
     }
+
+		//CHEQUEA SI EL NOMBRE ELEGIDO ESTA DENTRO DE LA BASE DE DATOS
+		public function nombre_repetido($nombre){
+			$consulta = self::getInstance()-> queryAll("SELECT * FROM propiedad WHERE nombre = '{$nombre}'");
+			return empty($consulta);
+		}
 
     //**LISTAR PROPIEDADES**//
 
@@ -117,7 +131,7 @@ Class PropiedadesRepository extends PDORepository {
 		public function modificar_datos_propiedad(){
           $nombre= $_POST['nombre'];
 					$lugar= $_POST['lugar'];
-          $monto_normal = $_POST['monto_normal'];
+          $monto_normal = 0;
 					$monto_base = $_POST['monto_base'];
 					$id= $_GET['id'];
           self::getInstance()->queryAll("UPDATE propiedad SET nombre='{$nombre}', monto_normal='{$monto_normal}', monto_base='{$monto_base}', lugar='{$lugar}' WHERE id = '{$id}'");
