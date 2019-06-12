@@ -73,7 +73,8 @@ CREATE TABLE `subasta` (
   `id` int(11) NOT NULL,
   `fecha_desde` date NOT NULL,
   `fecha_hasta` date NOT NULL,
-  `id_propiedad` int(100) NOT NULL
+  `id_propiedad` int(100) NOT NULL,
+  `monto_base` int(100) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
