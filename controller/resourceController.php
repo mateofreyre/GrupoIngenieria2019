@@ -53,7 +53,12 @@ class ResourceController {
 
 		public function check_agregar_propiedad(){
 			$model = PropiedadesRepository::getInstance()->agregar_propiedad();
-			self::getInstance()-> listar_propiedades();
+			if($model){
+				self::getInstance()-> listar_propiedades();
+			}
+			else{
+				self::getInstance()-> formulario_agregar_propiedad();
+			}
 		}
 
 		public function cambiar_estado_hotSale(){
