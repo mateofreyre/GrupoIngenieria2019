@@ -103,7 +103,8 @@ CREATE TABLE `usuario` (
   `email` varchar(50) NOT NULL,
   `password` varchar(16) NOT NULL,
   `creditos` int(10) NOT NULL,
-  `premium` tinyint(1) NOT NULL
+  `premium` tinyint(1) NOT NULL,
+  `fecha_registro` date NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
