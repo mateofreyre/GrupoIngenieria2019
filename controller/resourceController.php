@@ -18,6 +18,11 @@ class ResourceController {
         $view->show();
     }
 
+		public function formulario_ingresar_administrador(){
+			$view = new Ingresar_como_administrador();
+			$view -> show();
+		}
+
     //ADMINISTRADOR
 
     public function chequear_administrador(){
@@ -177,6 +182,16 @@ class ResourceController {
 			public function check_modificar_usuario(){
 				$model = UsuarioRepository::getInstance()->modificar_datos_usuario();
 				self::getInstance()-> listar_usuarios();
+			}
+
+			public function alquilar_propiedad(){
+
+			}
+
+			public function detalles_propiedad(){
+				$model = PropiedadesRepository::getInstance()->buscar_propiedad();
+				$view = new Detallar_propiedad();
+				$view-> show($model);
 			}
 
  }
