@@ -61,6 +61,13 @@ Class Usuario {
     	return $this->premium;
     }
 
+    public function setPremium($boolean){
+      	$this-> premium = $boolean;
+    }
+    public function cambiar_estado(){
+  		$this->setPremium(!($this->getPremium()));
+  	}
+
 }
 
 ?>

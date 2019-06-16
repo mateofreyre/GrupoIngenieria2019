@@ -37,6 +37,11 @@ class ResourceController {
     	}
     }
 
+		public function cambiar_tipo_usuario(){
+			$model = UsuarioRepository::getInstance()-> cambiar_suscripcion();
+			self::getInstance()-> listar_usuarios();
+
+		}
 
 
 

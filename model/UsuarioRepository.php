@@ -50,6 +50,17 @@ Class UsuarioRepository extends PDORepository {
 			}
 	}
 
+	public function cambiar_suscripcion(){
+		$id = $_GET['id'];
+		$consulta = self::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id}'");
+		foreach ($consulta as $row) {
+				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+		}
+		$consulta = null;
+		$usuario->cambiar_estado();
+		$estado_nuevo = $usuario->getPremium();
+		self::getInstance()->queryAll("UPDATE usuario SET premium='{$estado_nuevo}' WHERE id = '{$id}'");
+	}
 
 	public function email_repetido($email){
 		$consulta = self::getInstance()-> queryAll("SELECT * FROM usuario WHERE email = '{$email}'");
