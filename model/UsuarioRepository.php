@@ -163,7 +163,7 @@ Class UsuarioRepository extends PDORepository {
 		$password= $_POST['password'];
 		$email = $_POST['email'];
 		$users = self::getInstance()->queryAll("SELECT * FROM usuario WHERE email = '{$email}' AND password = '{$password}'");
-		if(($user->rowCount()) > 0){
+		if(($users->rowCount()) > 0){
 			$_SESSION['rol'] = 1;
 			foreach ($users as $user) {
         $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], 0, $row['creditos'], $row['premium']);
