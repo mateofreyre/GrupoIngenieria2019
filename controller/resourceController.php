@@ -197,7 +197,12 @@ class ResourceController {
 
 				}
 				else{
-					self::getInstance()-> formulario_agregar_usuario();
+					if($_SESSION['rol'] = 2){
+						self::getInstance()->home();
+					}
+					else{
+						self::getInstance()-> formulario_agregar_usuario();
+					}
 				}
 			}
 
