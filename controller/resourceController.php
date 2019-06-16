@@ -18,6 +18,18 @@ class ResourceController {
         $view->show();
     }
 
+		public function logout(){
+        try{
+            $model= UsuarioRepository::getInstance()->logout_user();
+						self::getInstance()-> home();
+        }
+				catch (PDOException $e){
+            $error="Se ha producido un error en la consulta: " . $e->getMessage() . "<br/>";
+            $view = new Error_display();
+            $view->show($error);
+        }
+			}
+
 		public function formulario_ingresar_administrador(){
 			$view = new Ingresar_como_administrador();
 			$view -> show();
@@ -166,10 +178,28 @@ class ResourceController {
 			public function chequear_agregar_usuario(){
 				$model = UsuarioRepository::getInstance()->agregar_usuario();
 				if($model){
-					self::getInstance()-> listar_usuarios();
+					if($_SESSION['rol'] = 2){
+						self::getInstance()->home();
+					}
+					else{
+						self::getInstance()-> listar_usuarios();
+					}
+
 				}
 				else{
 					self::getInstance()-> formulario_agregar_usuario();
+				}
+			}
+
+			public function chequear_ingreso_usuario(){
+				$model = UsuarioRepository::getInstance()-> chequear_inicio();
+				if($model){
+					$_SESSION['rol'] = 1;
+					$_SESSION['usuario'] = $model;
+					self::getInstance()->listar_propiedades();
+				}
+				else{
+					self::getInstance()->home();
 				}
 			}
 
