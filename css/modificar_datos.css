@@ -82,13 +82,13 @@ h5 {
 	border: none;
 	width: 100%;
 	padding: 10px 0;
-	margin-top:
 	font-weight: normal;
 	font-family: tahoma;
 	font-size: 16px;
 	letter-spacing: 0.5px;
 	transition: all .5s ease;
 	border-radius: 3px 5px 3px;
+	margin-bottom: 5px;
 }
 
 #arriba {

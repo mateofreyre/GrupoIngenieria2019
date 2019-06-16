@@ -9,21 +9,23 @@ Class Usuario {
 	private $apellido;
 	private $email;
 	private $password;
-	private $fecha_nacimiento;
 	private $creditos;
 	private $premium;
+  private $fecha_registro;
+
 
     /**Constructor**/
 
-	public function __construct($id,$nombre, $apellido, $email, $password, $fecha_nacimiento, $creditos, $premium){
+	public function __construct($id,$nombre, $apellido, $email, $password, $creditos, $premium, $fecha_registro){
 		$this->id = $id;
     $this->nombre = $nombre;
 		$this->apellido = $apellido;
 		$this->email = $email;
 		$this->password = $password;
-		$this->fecha_nacimiento = $fecha_nacimiento;
 		$this->creditos = $creditos;
 		$this->premium = $premium;
+    $this->fecha_registro = $fecha_registro;
+
 	}
 
     /**Getters & Setters**/
@@ -47,8 +49,8 @@ Class Usuario {
         return $this->password;
     }
 
-    public function getFechaNacimiento() {
-        return $this->fecha_nacimiento;
+    public function getFechaRegistro() {
+        return $this->fecha_registro;
     }
 
     public function getCreditos() {

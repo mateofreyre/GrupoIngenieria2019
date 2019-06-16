@@ -1,0 +1,105 @@
+/** ESTILOS PARA USUARIOS **/
+
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+
+body {
+	background: url(../img/fondo6.jpg);
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: tahoma;
+}
+h2 {
+	text-align: center;
+	padding-top: 20px;
+	text-decoration: underline;
+}
+
+h5 {
+	margin-left: 3%;
+}
+
+table {
+  display: table;
+  border-spacing: 2px;
+  border-color: grey;
+}
+.list-user {
+  font-family: 'Raleway',sans-serif;
+  font-size: 1.2em;
+  text-align: justify;
+  line-height: 2.2em;
+  background: #fff;
+  margin: 3em 5% 10em;
+}
+
+.list-user th {
+    padding: .2em .8em;
+    border: 1px solid #666666;
+    background: rgba(0,102,255,0.25);
+    text-align: center;
+}
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+}
+.list-user td {
+    padding: .2em .8em;
+    border: 1px solid #666666;
+    background: #E4EEFA;
+    text-align: left;
+}
+
+td {
+  text-align: center;
+	margin-right: 2px;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+
+.enlaceboton {
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	color: white;
+	opacity: 0.60;
+	background-color: #0040FF;
+	background-image: none;
+	border-color: #0040FF;
+	margin-left: 15px;
+}
+
+.enlaceboton:hover {
+		transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		transition: margin-left .25s ease-in-out;
+		color: white;
+		box-shadow: 5px 2px 3px 3px #444444;
+		background-color: #0000FF;
+		opacity: 1;
+		margin-left: 8px;
+	}

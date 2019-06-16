@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modificar usuario</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/modificar_datos.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+        <div class="">
+            {% include 'nav-bar.html.twig' %}
+        </div>
+        </header>
+        <div class="contenedor-form">
+          <div class="toggle">
+          </div>
+          <div class="formulario">
+            <h2> Modificar Usuario</h3>
+            <h5> Escribí solo los datos que quieras actualizar</h5>
+            <form method="post" action="./?action=check_modificar_usuario&id={{usuario.getId}}" class="login">
+              <div class="">
+                <div class="">
+                    <label class="">Nuevo nombre</label>
+                    <input type="text" id="" name="nombre" class="login-input" placeholder="Nombre nuevo" value="{{usuario.getNombre}}" required>
+                </div>
+                <div class="">
+                    <label class="">Nuevo apellido</label>
+                    <input type="text" id="" name="apellido" class="login-input" placeholder="Nombre apellido" value="{{usuario.getApellido}}" required>
+                </div>
+                <div class="">
+                  <label class="">Nuevo email</label>
+                  <input type="text" id="" name="email" class="login-input" placeholder="Nuevo email" value="{{usuario.getEmail}}" required>
+                </div>
+                <div class="">
+                    <label class="">Nueva Contraseña</label>
+                    <input type="password" id="password" name="password" class="login-input" placeholder="Nueva contraseña" value="{{usuario.getPassword}}" required>
+                </div>
+              <button id="arriba" type="submit" class="login-input">Guardar</button>
+              <button id="abajo" type="reset" class="login-input">Reset</button>
+          </div>
+        </form>
+    </body>
+</html>
