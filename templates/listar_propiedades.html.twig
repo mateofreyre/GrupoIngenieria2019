@@ -34,7 +34,7 @@
                                 </h3>
                                 <p class="card-text">
                                     <li>Lugar: {{propiedad.getLugar}} </li>
-          
+
                                     <li>En HotSale: {{propiedad.getHotSale}}</li>
                                 </p>
                               </div>
@@ -54,8 +54,13 @@
 
                           <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}"class="enlaceboton">Poner en hot sale</a></li>
                           {%endif%}
+                        </ul>
                       {%endif%}
-                      </ul>
+                      {% if rol == 1%}
+                        <ul>
+                          <li><a href="./?action=alquilar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Alquilar</a></li>
+                          <li><a href="./?action=detalles_propiedad&id={{propiedad.getId}}"class="enlaceboton">Detalles</a></li>
+                      {%endif%}
                     </div>
                   </div>
                 </ul>

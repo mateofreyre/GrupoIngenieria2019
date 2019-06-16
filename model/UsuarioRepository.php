@@ -59,7 +59,7 @@ Class UsuarioRepository extends PDORepository {
 	public function listar_usuarios(){
 		try {
 			$usuarios = [];
-			$query = UsuarioRepository::getInstance()->queryAll("SELECT * FROM usuario ");
+			$query = UsuarioRepository::getInstance()->queryAll("SELECT * FROM usuario u ORDER BY fecha_registro DESC");
 			foreach ($query as $row) {
 				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
 				$usuarios[]=$usuario;
