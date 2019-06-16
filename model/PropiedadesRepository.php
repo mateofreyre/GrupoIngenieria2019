@@ -156,8 +156,8 @@ Class PropiedadesRepository extends PDORepository {
               echo "<script>";
               echo "alert('$mensaje');";
               echo "</script>";
-          }
+
     }
 
-
+	}
 ?>

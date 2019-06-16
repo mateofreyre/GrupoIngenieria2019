@@ -18,18 +18,6 @@ class ResourceController {
         $view->show();
     }
 
-		public function logout(){
-        try{
-            $model= UsuarioRepository::getInstance()->logout_user();
-						self::getInstance()-> home();
-        }
-				catch (PDOException $e){
-            $error="Se ha producido un error en la consulta: " . $e->getMessage() . "<br/>";
-            $view = new Error_display();
-            $view->show($error);
-        }
-			}
-
 		public function formulario_ingresar_administrador(){
 			$view = new Ingresar_como_administrador();
 			$view -> show();
@@ -38,6 +26,20 @@ class ResourceController {
 		public function mostrar_contactanos(){
 			$view = new Mostrar_contactanos();
 			$view -> show();
+		}
+
+		public function mostrar_precios(){
+			$model = SuscripcionRepository::getInstance()->devolver_precio();
+			$view = new Mostrar_precios();
+			$view -> show($model);
+		}
+
+		public function chequear_precios(){
+			$model = SuscripcionRepository::getInstance()-> chequear_precios();
+			if($model){
+				self::getInstance()->mostrar_precios();
+			}
+
 		}
 
     //ADMINISTRADOR
@@ -188,13 +190,7 @@ class ResourceController {
 			public function chequear_agregar_usuario(){
 				$model = UsuarioRepository::getInstance()->agregar_usuario();
 				if($model){
-					if($_SESSION['rol'] = 2){
-						self::getInstance()->home();
-					}
-					else{
-						self::getInstance()-> listar_usuarios();
-					}
-
+					self::getInstance()-> listar_usuarios();
 				}
 				else{
 					if($_SESSION['rol'] = 2){
@@ -203,18 +199,6 @@ class ResourceController {
 					else{
 						self::getInstance()-> formulario_agregar_usuario();
 					}
-				}
-			}
-
-			public function chequear_ingreso_usuario(){
-				$model = UsuarioRepository::getInstance()-> chequear_inicio();
-				if($model){
-					$_SESSION['rol'] = 1;
-					$_SESSION['usuario'] = $model;
-					self::getInstance()->listar_propiedades();
-				}
-				else{
-					self::getInstance()->home();
 				}
 			}
 
