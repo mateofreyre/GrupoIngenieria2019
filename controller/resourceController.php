@@ -34,7 +34,9 @@ class ResourceController {
 
 
 
-		//PROPIEDADES ABM Y LISTAR
+
+		///////////////////PROPIEDADES ABM Y LISTAR/////////////////////////
+
 		public function listar_propiedades(){
 			$model = PropiedadesRepository::getInstance()->listar_propiedades();
 			$view = new Listar_propiedades();
@@ -78,9 +80,7 @@ class ResourceController {
 			self::getInstance()-> listar_propiedades();
 		}
 
-
-
-		//SUBASTAS
+		///////////////////////SUBASTAS//////////////////////////
 
 		public function listar_subastas(){
 			$model_subastas = SubastaRepository::getInstance()->listar_subastas();
@@ -134,7 +134,6 @@ class ResourceController {
 		}
 
 
-
 		public function agregar_oferta(){
 			$model = PujadorRepository::getInstance()-> agregar_oferta();
 			self::getInstance()-> listar_subastas();
@@ -143,6 +142,42 @@ class ResourceController {
 	//	$model_subasta = SubastaRespository::getInstance()->buscar_mejor_postor($model_propiedad);
 	//	$costo_actual = $model['monto'];
 
+
+
+
+			//////////////////////////Usuarios////////////////////////
+
+			public function listar_usuarios(){
+				$model = UsuarioRepository::getInstance()->listar_usuarios();
+				$view = new Listar_usuarios();
+				$view -> show($model);
 			}
 
+			public function formulario_agregar_usuario(){
+				$view = new Agregar_usuario();
+				$view -> show();
+			}
+
+			public function chequear_agregar_usuario(){
+				$model = UsuarioRepository::getInstance()->agregar_usuario();
+				if($model){
+					self::getInstance()-> listar_usuarios();
+				}
+				else{
+					self::getInstance()-> formulario_agregar_usuario();
+				}
+			}
+
+			public function modificar_usuario(){
+				$model = UsuarioRepository::getInstance()->buscar_usuario();
+				$view = new Modificar_datos_usuario();
+				$view -> show($model);
+			}
+
+			public function check_modificar_usuario(){
+				$model = UsuarioRepository::getInstance()->modificar_datos_usuario();
+				self::getInstance()-> listar_usuarios();
+			}
+
+ }
 ?>

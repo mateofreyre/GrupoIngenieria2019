@@ -32,11 +32,14 @@ require_once('model/Admin.php');
 
 require_once('view/TwigView.php');
 require_once('view/Home.php');
+require_once('view/Agregar_usuario.php');
+require_once('view/Modificar_datos_usuario.php');
 require_once('view/Agregar_propiedad.php');
 require_once('view/Modificar_datos_propiedad.php');
 require_once('view/Subastarpropiedad.php');
 require_once('view/Listar_propiedades.php');
 require_once('view/Listar_subastas.php');
+require_once('view/Listar_usuarios.php');
 require_once('view/Detalle_Subasta.php');
 require_once('view/SubastarPropiedad.php');
 

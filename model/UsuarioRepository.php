@@ -18,6 +18,72 @@ Class UsuarioRepository extends PDORepository {
 
   //**OBTENER USUARIOS**//
 
+	public function agregar_usuario(){
+			$email = $_POST['email'];
+			$chequear_email_repetido = self::getInstance()-> email_repetido($email);
+			if($chequear_email_repetido){
+				$mensaje = "Se produjo un error y no se pudo agregar el usuario. Ya existe un usuario para ese email";
+				echo "<script>";
+				echo "alert('$mensaje');";
+				echo "</script>";
+				return false;
+			}
+			$nombre = $_POST['nombre'];
+			$apellido = $_POST['apellido'];
+			$password = $_POST['password'];
+			$hoy = date("Y-m-d H:i:s");
+
+			try{
+					self::getInstance() -> queryAll("INSERT INTO usuario (nombre, apellido, password, email, creditos, premium, fecha_registro) VALUES ('{$nombre}', '{$apellido}','{$password}','{$email}',1,0,'{$hoy}')");
+					$mensaje = "Usuario agregado exitosamente";
+					echo "<script>";
+					echo "alert('$mensaje');";
+					echo "</script>";
+					return true;
+			}
+			catch(PDO $e){
+				$mensaje = "Se produjo un error y no se pudo agregar el usuario";
+				echo "<script>";
+				echo "alert('$mensaje');";
+				echo "</script>";
+				return false;
+			}
+	}
+
+
+	public function email_repetido($email){
+		$consulta = self::getInstance()-> queryAll("SELECT * FROM usuario WHERE email = '{$email}'");
+		return ($consulta->rowCount()) > 0;
+	}
+
+	public function listar_usuarios(){
+		try {
+			$usuarios = [];
+			$query = UsuarioRepository::getInstance()->queryAll("SELECT * FROM usuario ");
+			foreach ($query as $row) {
+				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+				$usuarios[]=$usuario;
+			}
+			$query = null;
+			return $usuarios;
+		}
+		catch (PDOException $e) {
+			 print "¡Error!: " . $e->getMessage() . "<br/>";
+			 die();
+		}
+	}
+
+	public function buscar_usuario(){
+		$id = $_GET['id'];
+		$consulta = self::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id}'");
+		foreach ($consulta as $row) {
+				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+		}
+		$consulta = null;
+		return $usuario;
+
+	}
+
   public function obtener_usuario_by_id($id_usuario){
     try {
       $usuarios = [];
@@ -36,7 +102,6 @@ Class UsuarioRepository extends PDORepository {
 
 	public function chequear_cantidad_creditos(){
 		$id_usuario = $_POST['id_usuario'];
-
 		$creditos = self::getInstance() -> queryAll("SELECT * FROM usuario WHERE id = '{$id_usuario}'");
 		foreach ($creditos as $row ) {
 			$cant_creditos = $row['creditos'];
@@ -52,6 +117,38 @@ Class UsuarioRepository extends PDORepository {
 			return false;
 		}
 	}
+
+
+	//Modifica todos los datos de un usuario//
+	public function modificar_datos_usuario(){
+				$id= $_GET['id'];
+				$nombre= $_POST['nombre'];
+				$apellido= $_POST['apellido'];
+				$password= $_POST['password'];
+				$email = $_POST['email'];
+				if ( $_SESSION['email'] = $email){
+					self::getInstance()->queryAll("UPDATE usuario SET nombre='{$nombre}', apellido='{$apellido}', email='{$email}', password='{$password}' WHERE id = '{$id}'");
+					$mensaje = "La operacion ha sido realizada con exito.";
+					echo "<script>";
+					echo "alert('$mensaje');";
+					echo "</script>";
+					return true;
+				}
+				else {
+					$chequear_email_repetido = self::getInstance()-> email_repetido($email);
+					if($chequear_email_repetido){
+						$mensaje = "Se produjo un error y no se pudo modificar sus datos. El email elegido ya esta en uso";
+						echo "<script>";
+						echo "alert('$mensaje');";
+						echo "</script>";
+						return false;
+					}
+				}
+	}
+}
+
+
+
 
 //     //** BUSCAR PROPIEDAD **//
 
@@ -119,7 +216,6 @@ Class UsuarioRepository extends PDORepository {
 //               echo "alert('$mensaje');";
 //               echo "</script>";
 //           }
-    }
 
 
 ?>
