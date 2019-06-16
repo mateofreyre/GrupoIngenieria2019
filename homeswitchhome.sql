@@ -51,6 +51,18 @@ CREATE TABLE `alquiler` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `suscripcion`
+--
+
+CREATE TABLE `suscripcion` (
+  `id` int(11) NOT NULL,
+  `monto_normal` int(11) NOT NULL,
+  `monto_premium` int(11) NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `propiedad`
 --
 

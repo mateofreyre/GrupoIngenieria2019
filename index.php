@@ -29,6 +29,8 @@ require_once('model/PujadorRepository.php');
 require_once('model/Reservas.php');
 require_once('model/ReservasRepository.php');
 require_once('model/Admin.php');
+require_once('model/SuscripcionRepository.php');
+require_once('model/Suscripcion.php');
 
 require_once('view/TwigView.php');
 require_once('view/Home.php');

@@ -19,17 +19,17 @@
       		<div class="toggle">
           </div>
           <div class="formulario">
-            <h2> Modificar Precios</h3>
+            <h2> Modificar Precios</h2>
             <h5> Escribí solo los datos que quieras actualizar</h5>
-            <form method="post" action="./?action=check_modificar_precios" class="login">
+            <form method="post" action="./?action=chequear_precios"  class="login">
               <div class="">
                 <div class="">
                     <label for="nombre" class="">Monto Normal</label>
-                    <input type="text" id="nombre" name="nombre" class="login-input" placeholder="Nombre nuevo" value="{{suscripcion.getNormal}}" required>
+                    <input type="text" id="monto_normal" name="monto_normal" class="login-input" placeholder="precio  normal" value="{{suscripcion.getMonto_normal}}" required>
                 </div>
                 <div class="">
                     <label for="lugar" class="">Monto Premium</label>
-                    <input type="text" id="lugar" name="lugar" class="login-input" placeholder="Nuevo lugar de la propiedad" value="{{suscripcion.getPremium}}" required>
+                    <input type="text" id="monto_premium" name="monto_premium" class="login-input" placeholder="precio premium" value="{{suscripcion.getMonto_premium}}" required>
                 </div>
               <button id="arriba" type="submit" class="login-input">Guardar</button>
               <button id="abajo" type="reset" class="login-input">Reset</button>
