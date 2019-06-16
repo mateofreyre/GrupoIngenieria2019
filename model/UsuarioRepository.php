@@ -89,8 +89,10 @@ Class UsuarioRepository extends PDORepository {
 		$consulta = self::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id}'");
 		foreach ($consulta as $row) {
 				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+				$_SESSION['email'] = $row['email'];
 		}
 		$consulta = null;
+
 		return $usuario;
 
 	}
@@ -137,7 +139,7 @@ Class UsuarioRepository extends PDORepository {
 				$apellido= $_POST['apellido'];
 				$password= $_POST['password'];
 				$email = $_POST['email'];
-				if ( ($_SESSION['usuario']).getEmail() == $email){
+				if ( $_SESSION['email'] = $email){
 					self::getInstance()->queryAll("UPDATE usuario SET nombre='{$nombre}', apellido='{$apellido}', email='{$email}', password='{$password}' WHERE id = '{$id}'");
 					$mensaje = "La operacion ha sido realizada con exito.";
 					echo "<script>";
@@ -160,10 +162,13 @@ Class UsuarioRepository extends PDORepository {
 	public function chequear_inicio(){
 		$password= $_POST['password'];
 		$email = $_POST['email'];
-		$user = self::getInstance()->queryAll("SELECT * FROM usuario WHERE email = '{$email}' AND password = '{$password}'");
+		$users = self::getInstance()->queryAll("SELECT * FROM usuario WHERE email = '{$email}' AND password = '{$password}'");
 		if(($user->rowCount()) > 0){
 			$_SESSION['rol'] = 1;
-			$_SESSION['usuario'] = $user;
+			foreach ($users as $user) {
+        $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], 0, $row['creditos'], $row['premium']);
+      }
+			$_SESSION['usuario'] = $usuario;
 			return true;
 			}
 			else{
