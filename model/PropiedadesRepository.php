@@ -74,6 +74,7 @@ Class PropiedadesRepository extends PDORepository {
       }
     }
 
+
     //** BUSCAR PROPIEDAD **//
 
     public function buscar_propiedad(){

@@ -23,6 +23,11 @@ class ResourceController {
 			$view -> show();
 		}
 
+		public function mostrar_contactanos(){
+			$view = new Mostrar_contactanos();
+			$view -> show();
+		}
+
     //ADMINISTRADOR
 
     public function chequear_administrador(){
