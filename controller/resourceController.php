@@ -208,6 +208,30 @@ class ResourceController {
 				$view -> show($model);
 			}
 
+			public function chequear_ingreso_usuario(){
+				$model = UsuarioRepository::getInstance()-> chequear_inicio();
+				if($model){
+					$_SESSION['rol'] = 1;
+					$_SESSION['usuario'] = $model;
+					self::getInstance()->listar_propiedades();
+				}
+				else{
+					self::getInstance()->home();
+				}
+			}
+
+			public function logout(){
+	        try{
+	            $model= UsuarioRepository::getInstance()->logout_user();
+							self::getInstance()-> home();
+	        }
+					catch (PDOException $e){
+	            $error="Se ha producido un error en la consulta: " . $e->getMessage() . "<br/>";
+	            $view = new Error_display();
+	            $view->show($error);
+	        }
+				}
+
 			public function check_modificar_usuario(){
 				$model = UsuarioRepository::getInstance()->modificar_datos_usuario();
 				self::getInstance()-> listar_usuarios();
