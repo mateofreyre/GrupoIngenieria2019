@@ -88,9 +88,9 @@ class ResourceController {
 		///////////////////////SUBASTAS//////////////////////////
 
 		public function listar_subastas(){
-			$model = SubastaRepository::getInstance()->listar_subastas();
+			$model_subastas = SubastaRepository::getInstance()->listar_subastas();
 			$view = new Listar_subastas();
-			$view -> show($model);
+			$view -> show($model_subastas);
 		}
 
 

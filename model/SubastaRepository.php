@@ -42,7 +42,7 @@ Class SubastaRepository extends PDORepository {
 		if(!empty($query)){
 			$subastas = [];
 			foreach ($query as $row) {
-			  	$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'], $row['monto_base']);
+			  	$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'], $row['monto_base'],0);
 			  	$subastas[] = $subasta;
 			}
 				if(!empty($subastas)){
@@ -88,16 +88,12 @@ Class SubastaRepository extends PDORepository {
 		//recuperar datos de la fecha ingresada y id de propiedad
 		$id_subasta = $_GET['id'];
 		$query = self::getInstance()->queryAll("SELECT * FROM subasta WHERE id = '{$id_subasta}'");
-		if(!empty($query)){
-			$subastas = [];
-			foreach ($query as $row) {
-			  	$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'], $row['monto_base']);
+		foreach ($query as $row) {
+			  	$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'], $row['monto_base'],0);
 			  	$subastas[] = $subasta;
 			}
 			return $subastas[0];
-		}else{
-		  return false;
-		}
+
 	}
 		// foreach ($query as $row) {
 		// 	return new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad']);
@@ -107,9 +103,9 @@ Class SubastaRepository extends PDORepository {
  	public function listar_subastas(){
 		try {
 			$subastas = [];
-			$query = SubastaRepository::getInstance()->queryAll("SELECT * FROM subasta");
-			foreach ($query as $row) {
-				$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'], $row['monto_base']);
+			$query = SubastaRepository::getInstance()->queryAll("SELECT * FROM propiedad, subasta  WHERE subasta.id_propiedad = propiedad.id");
+			foreach ($query as $row) {;
+				$subasta = new Subasta($row['id'], $row['fecha_desde'], $row['fecha_hasta'], $row['id_propiedad'], $row['monto_base'], $row['nombre']);
 				$subastas[]=$subasta;
 			}
 			$query = null;

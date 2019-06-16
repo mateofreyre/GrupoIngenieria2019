@@ -9,15 +9,25 @@ Class Subasta {
 	private $fecha_hasta;
 	private $id_propiedad;
 	private $monto_base;
+	private $lugar;
 
 	/**Constructor**/
 
-	public function __construct($id, $fecha_desde, $fecha_hasta, $id_propiedad, $monto_base) {
+	/*public function __construct($id, $fecha_desde, $fecha_hasta, $id_propiedad, $monto_base) {
 		$this->id = $id;
 		$this->fecha_desde = $fecha_desde;
 		$this->fecha_hasta = $fecha_hasta;
 		$this->id_propiedad = $id_propiedad;
 		$this->monto_base = $monto_base;
+	}*/
+
+	public function __construct($id, $fecha_desde, $fecha_hasta, $id_propiedad, $monto_base, $lugar) {
+		$this->id = $id;
+		$this->fecha_desde = $fecha_desde;
+		$this->fecha_hasta = $fecha_hasta;
+		$this->id_propiedad = $id_propiedad;
+		$this->monto_base = $monto_base;
+		$this->lugar= $lugar;
 	}
 
 	/**Getters & Setters**/
@@ -40,6 +50,10 @@ Class Subasta {
 
 	public function getMontoBase(){
 		return $this->monto_base;
+	}
+
+	public function getLugar(){
+		return $this->lugar;
 	}
 
 	public function seRealizaDentroDe($fecha_desde, $fecha_hasta){
