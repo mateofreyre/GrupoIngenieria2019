@@ -20,55 +20,60 @@
         <h2>Propiedades</h2>
         <h5> ¿Querés agregar otra propiedad? <a href="./?action=formulario_agregar_propiedad">Hacelo desde acá</a></h5>
         <hr />
-            {% for propiedad in propiedades %}
-                <ul>
-                  <div class="portfolio-grid">
-                    <div class="row">
-                      <div class="col-lg-3 col-sm-6 col-xs-12">
-                        <div class="card card-block">
-                          <a href="#"><img alt="" src="img/fondo2.jpg">
-                            <div class="portfolio-over">
-                              <div>
-                                <h3 class="card-title">
-                                  <li>Nombre: {{propiedad.getNombre}} </li>
-                                </h3>
-                                <p class="card-text">
-                                    <li>Lugar: {{propiedad.getLugar}} </li>
+        {% if rol == 1%}
+          <form method="get" action="./?action=listar_propiedades_by_location" class="form-inline my-2 my-lg-0">
+          <label for="property_search">Buscar Propiedades: </label>
+          <input id="property_search" name="property_search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        {% endif %}
+        {% for propiedad in propiedades %}
+            <ul>
+              <div class="portfolio-grid">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <div class="card card-block">
+                      <a href="#"><img alt="" src="img/fondo2.jpg">
+                        <div class="portfolio-over">
+                          <div>
+                            <h3 class="card-title">
+                              <li>Nombre: {{propiedad.getNombre}} </li>
+                            </h3>
+                            <p class="card-text">
+                                <li>Lugar: {{propiedad.getLugar}} </li>
 
-                                    <li>En HotSale: {{propiedad.getHotSale}}</li>
-                                </p>
-                              </div>
-                            </div>
-                          </a>
+                                <li>En HotSale: {{propiedad.getHotSale}}</li>
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                      {% if rol == 2 %}
-                        <ul>
-                          <li><a href="./?action=modificar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Modificar propiedad</a></li>
-                          <li><a href="./?action=eliminar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Eliminar propiedad</a></li>
-                          <li><a href="./?action=formulario_subastar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Agregar nueva subasta para esta propiedad</a></li>
-
-                          {% if propiedad.getHotSale == true  %}
-                            <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}"class="enlaceboton">Sacar de hot sale</a></li>
-                          {% else %}
-
-                          <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}"class="enlaceboton">Poner en hot sale</a></li>
-                          {%endif%}
-                        </ul>
-                      {%endif%}
-                      {% if rol == 1%}
-                        <ul>
-                          <li><a href="./?action=alquilar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Alquilar</a></li>
-                          <li><a href="./?action=detalles_propiedad&id={{propiedad.getId}}"class="enlaceboton">Detalles</a></li>
-                      {%endif%}
+                      </a>
                     </div>
                   </div>
-                </ul>
-                <hr />
-            {% endfor %}
-            {% if propiedades is empty %}
-                <h5>Todavía no subiste ningúna propeidad. <a href="./?action=agregar_propiedad">Hacelo desde acá</a></h5>
-            {%endif%}
+                  {% if rol == 2 %}
+                    <ul>
+                      <li><a href="./?action=modificar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Modificar propiedad</a></li>
+                      <li><a href="./?action=eliminar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Eliminar propiedad</a></li>
+                      <li><a href="./?action=formulario_subastar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Agregar nueva subasta para esta propiedad</a></li>
 
+                      {% if propiedad.getHotSale == true  %}
+                        <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}"class="enlaceboton">Sacar de hot sale</a></li>
+                      {% else %}
+
+                      <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}"class="enlaceboton">Poner en hot sale</a></li>
+                      {%endif%}
+                    </ul>
+                  {%endif%}
+                  {% if rol == 1%}
+                    <ul>
+                      <li><a href="./?action=alquilar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Alquilar</a></li>
+                      <li><a href="./?action=detalles_propiedad&id={{propiedad.getId}}"class="enlaceboton">Detalles</a></li>
+                  {%endif%}
+                </div>
+              </div>
+            </ul>
+            <hr />
+        {% endfor %}
+        {% if propiedades is empty %}
+            <h5>Todavía no subiste ningúna propeidad. <a href="./?action=agregar_propiedad">Hacelo desde acá</a></h5>
+        {%endif%}
     </body>
 </html>

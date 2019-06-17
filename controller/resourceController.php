@@ -12,35 +12,35 @@ class ResourceController {
     }
 
 
-		//PAGINAS COMUNES
-		public function home(){
-        $view = new Home();
-        $view->show();
-    }
+	//PAGINAS COMUNES
+	public function home(){
+		$view = new Home();
+		$view->show();
+	}
 
-		public function formulario_ingresar_administrador(){
-			$view = new Ingresar_como_administrador();
-			$view -> show();
+	public function formulario_ingresar_administrador(){
+		$view = new Ingresar_como_administrador();
+		$view -> show();
+	}
+
+	public function mostrar_contactanos(){
+		$view = new Mostrar_contactanos();
+		$view -> show();
+	}
+
+	public function mostrar_precios(){
+		$model = SuscripcionRepository::getInstance()->devolver_precio();
+		$view = new Mostrar_precios();
+		$view -> show($model);
+	}
+
+	public function chequear_precios(){
+		$model = SuscripcionRepository::getInstance()-> chequear_precios();
+		if($model){
+			self::getInstance()->mostrar_precios();
 		}
 
-		public function mostrar_contactanos(){
-			$view = new Mostrar_contactanos();
-			$view -> show();
-		}
-
-		public function mostrar_precios(){
-			$model = SuscripcionRepository::getInstance()->devolver_precio();
-			$view = new Mostrar_precios();
-			$view -> show($model);
-		}
-
-		public function chequear_precios(){
-			$model = SuscripcionRepository::getInstance()-> chequear_precios();
-			if($model){
-				self::getInstance()->mostrar_precios();
-			}
-
-		}
+	}
 
     //ADMINISTRADOR
 
@@ -56,117 +56,118 @@ class ResourceController {
     	}
     }
 
-		public function cambiar_tipo_usuario(){
-			$model = UsuarioRepository::getInstance()-> cambiar_suscripcion();
-			self::getInstance()-> listar_usuarios();
+	public function cambiar_tipo_usuario(){
+		$model = UsuarioRepository::getInstance()-> cambiar_suscripcion();
+		self::getInstance()-> listar_usuarios();
 
-		}
+	}
 
+	///////////////////PROPIEDADES ABM Y LISTAR/////////////////////////
 
+	public function listar_propiedades(){
+		$model = PropiedadesRepository::getInstance()->listar_propiedades();
+		$view = new Listar_propiedades();
+		$view -> show($model);
+	}
 
-		///////////////////PROPIEDADES ABM Y LISTAR/////////////////////////
+	public function listar_propiedades_by_location(){
+		$model = PropiedadesRepository::getInstance()->listar_propiedades_by_location();
+		$view = new Listar_propiedades();
+		$view -> show($model);
+	}
 
-		public function listar_propiedades(){
-			$model = PropiedadesRepository::getInstance()->listar_propiedades();
-			$view = new Listar_propiedades();
-			$view -> show($model);
-		}
+	public function eliminar_propiedad(){
+		$model = PropiedadesRepository::getInstance()-> eliminar_propiedad();
+		self::getInstance()-> listar_propiedades();
+	}
 
-		public function eliminar_propiedad(){
-			$model = PropiedadesRepository::getInstance()-> eliminar_propiedad();
+	public function formulario_agregar_propiedad(){
+		$view = new Agregar_propiedad();
+		$view -> show();
+	}
+
+	public function check_agregar_propiedad(){
+		$model = PropiedadesRepository::getInstance()->agregar_propiedad();
+		if($model){
 			self::getInstance()-> listar_propiedades();
 		}
-
-		public function formulario_agregar_propiedad(){
-			$view = new Agregar_propiedad();
-			$view -> show();
+		else{
+			self::getInstance()-> formulario_agregar_propiedad();
 		}
+	}
 
-		public function check_agregar_propiedad(){
-			$model = PropiedadesRepository::getInstance()->agregar_propiedad();
-			if($model){
-				self::getInstance()-> listar_propiedades();
-			}
-			else{
-				self::getInstance()-> formulario_agregar_propiedad();
-			}
-		}
+	public function cambiar_estado_hotSale(){
+		$model = PropiedadesRepository::getInstance()-> cambiar_estado_hotSale();
+		self::getInstance()->listar_propiedades();
+	}
 
-		public function cambiar_estado_hotSale(){
-			$model = PropiedadesRepository::getInstance()-> cambiar_estado_hotSale();
+	public function modificar_propiedad(){
+		$model = PropiedadesRepository::getInstance()->buscar_propiedad();
+		$view = new Modificar_datos_propiedad();
+		$view -> show($model);
+	}
+
+	public function check_modificar_propiedad(){
+		$model = PropiedadesRepository::getInstance()->modificar_datos_propiedad();
+		self::getInstance()-> listar_propiedades();
+	}
+
+	///////////////////////SUBASTAS//////////////////////////
+
+	public function listar_subastas(){
+		$model_subastas = SubastaRepository::getInstance()->listar_subastas();
+		$view = new Listar_subastas();
+		$view -> show($model_subastas);
+	}
+
+	public function formulario_subastar_propiedad(){
+		$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
+		$view = new SubastarPropiedad();
+		$view -> show($model_propiedad);
+	}
+
+	public function chequear_subasta(){
+		$model = SubastaRepository::getInstance()-> chequear_subasta();
+		if($model){
 			self::getInstance()->listar_propiedades();
 		}
-
-
-		public function modificar_propiedad(){
-			$model = PropiedadesRepository::getInstance()->buscar_propiedad();
-			$view = new Modificar_datos_propiedad();
-			$view -> show($model);
+		else{
+			self::getInstance()-> formulario_subastar_propiedad();
 		}
+	}
 
-		public function check_modificar_propiedad(){
-			$model = PropiedadesRepository::getInstance()->modificar_datos_propiedad();
-			self::getInstance()-> listar_propiedades();
+	public function eliminar_subasta(){
+		$model = SubastaRepository::getInstance()-> eliminar_subasta();
+		self::getInstance()-> listar_subastas();
+	}
+
+	public function cancelar_subasta(){
+		$model = SubastaRepository::getInstance()-> cancelar_subasta();
+		self::getInstance()-> listar_subastas();
+	}
+
+	public function finalizar_subasta(){
+		$model = SubastaRepository::getInstance()->finalizar_subasta();
+		self::getInstance()-> listar_subastas();
+	}
+
+	public function detalle_subasta(){
+		$subasta = SubastaRepository::getInstance()-> detalle_subasta();
+		$mejor_oferta = PujadorRepository::getInstance()->listar_ofertas_by_subasta($subasta->getId());
+		$propiedad = PropiedadesRepository::getInstance()->buscar_propiedad_by_id($subasta->getIdPropiedad());
+		$view = new Detalle_Subasta();
+		if(!empty($mejor_oferta)){
+			$view -> show($subasta, $mejor_oferta[0]->getMonto());
+		}else{
+			$view -> show($subasta, $subasta->getMontoBase());
 		}
-
-		///////////////////////SUBASTAS//////////////////////////
-
-		public function listar_subastas(){
-			$model_subastas = SubastaRepository::getInstance()->listar_subastas();
-			$view = new Listar_subastas();
-			$view -> show($model_subastas);
-		}
+	}
 
 
-
-		public function formulario_subastar_propiedad(){
-			$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
-			$view = new SubastarPropiedad();
-			$view -> show($model_propiedad);
-		}
-
-		public function chequear_subasta(){
-			$model = SubastaRepository::getInstance()-> chequear_subasta();
-			if($model){
-				self::getInstance()->listar_propiedades();
-			}
-			else{
-				self::getInstance()-> formulario_subastar_propiedad();
-			}
-		}
-
-		public function eliminar_subasta(){
-			$model = SubastaRepository::getInstance()-> eliminar_subasta();
-			self::getInstance()-> listar_subastas();
-		}
-
-		public function cancelar_subasta(){
-			$model = SubastaRepository::getInstance()-> cancelar_subasta();
-			self::getInstance()-> listar_subastas();
-		}
-
-		public function finalizar_subasta(){
-			$model = SubastaRepository::getInstance()->finalizar_subasta();
-			self::getInstance()-> listar_subastas();
-		}
-
-		public function detalle_subasta(){
-			$subasta = SubastaRepository::getInstance()-> detalle_subasta();
-			$mejor_oferta = PujadorRepository::getInstance()->listar_ofertas_by_subasta($subasta->getId());
-			$propiedad = PropiedadesRepository::getInstance()->buscar_propiedad_by_id($subasta->getIdPropiedad());
-			$view = new Detalle_Subasta();
-			if(!empty($mejor_oferta)){
-				$view -> show($subasta, $mejor_oferta[0]->getMonto());
-			}else{
-				$view -> show($subasta, $subasta->getMontoBase());
-			}
-		}
-
-
-		public function agregar_oferta(){
-			$model = PujadorRepository::getInstance()-> agregar_oferta();
-			self::getInstance()-> listar_subastas();
-		}
+	public function agregar_oferta(){
+		$model = PujadorRepository::getInstance()-> agregar_oferta();
+		self::getInstance()-> listar_subastas();
+	}
 
 	//	$model_subasta = SubastaRespository::getInstance()->buscar_mejor_postor($model_propiedad);
 	//	$costo_actual = $model['monto'];
