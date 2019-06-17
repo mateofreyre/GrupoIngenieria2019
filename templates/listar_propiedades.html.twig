@@ -21,7 +21,7 @@
         <h5> ¿Querés agregar otra propiedad? <a href="./?action=formulario_agregar_propiedad">Hacelo desde acá</a></h5>
         <hr />
         {% if rol == 1%}
-          <form method="get" action="./?action=listar_propiedades_by_location" class="form-inline my-2 my-lg-0">
+          <form method="post" action="./?action=listar_propiedades_by_location" class="form-inline my-2 my-lg-0">
           <label for="property_search">Buscar Propiedades: </label>
           <input id="property_search" name="property_search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

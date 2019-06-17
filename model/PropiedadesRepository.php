@@ -76,9 +76,9 @@ Class PropiedadesRepository extends PDORepository {
 
     public function listar_propiedades_by_location(){
       try {
-        $location = $_GET['property_search'];
+        $location = $_POST['property_search'];
         $propiedades = [];
-        $query = PropiedadesRepository::getInstance()->queryAll("SELECT * FROM propiedad WHERE lugar LIKE %$location% ");
+        $query = PropiedadesRepository::getInstance()->queryAll("SELECT * FROM propiedad WHERE lugar LIKE '%$location%' ");
         foreach ($query as $row) {
           $propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hotsale'], $row['monto_base']);
           $propiedades[]=$propiedad;
