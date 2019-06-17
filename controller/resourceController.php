@@ -243,7 +243,7 @@ class ResourceController {
 
 			public function detalles_propiedad(){
 				$model = PropiedadesRepository::getInstance()->buscar_propiedad();
-				$view = new Detallar_propiedad();
+				$view = new Detallar_propiedades();
 				$view-> show($model);
 			}
 

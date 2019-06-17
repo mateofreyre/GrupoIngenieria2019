@@ -37,6 +37,7 @@ require_once('view/Home.php');
 require_once('view/Ingresar_como_administrador.php');
 require_once('view/Agregar_usuario.php');
 require_once('view/Modificar_datos_usuario.php');
+require_once('view/Detallar_propiedades.php');
 require_once('view/Agregar_propiedad.php');
 require_once('view/Modificar_datos_propiedad.php');
 require_once('view/Subastarpropiedad.php');
