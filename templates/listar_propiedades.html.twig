@@ -24,6 +24,7 @@
           <form method="post" action="./?action=listar_propiedades_by_location" class="form-inline my-2 my-lg-0">
           <label for="property_search">Buscar Propiedades: </label>
           <input id="property_search" name="property_search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <input id="property_date" name="property_date" class="form-control mr-sm-2" type="date" min={{ "now"|date_modify("+6 month")|date("Y-m-d") }} max={ "now"|date_modify("+1 year")|date("Y-m-d") }}>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         {% endif %}
         {% for propiedad in propiedades %}
