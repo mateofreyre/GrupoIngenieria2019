@@ -74,6 +74,28 @@ Class PropiedadesRepository extends PDORepository {
       }
     }
 
+    public function listar_propiedades_by_location(){
+      try {
+        $location = $_POST['property_search'];
+        $date = $_POST['property_date'];
+        $propiedades = [];
+        $query = PropiedadesRepository::getInstance()->queryAll("SELECT *
+                                                                 FROM propiedad as p LEFT JOIN alquiler as a ON p.id = a.id_propiedad
+                                                                 WHERE p.lugar LIKE '%$location%'
+                                                                 AND '$date' NOT BETWEEN IFNULL(a.fecha_desde, '2000-01-01') AND IFNULL(a.fecha_hasta, '2000-01-01')");
+        foreach ($query as $row) {
+          $propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hotsale'], $row['monto_base']);
+          $propiedades[]=$propiedad;
+        }
+        $query = null;
+        return $propiedades;
+      }
+      catch (PDOException $e) {
+         print "¡Error!: " . $e->getMessage() . "<br/>";
+         die();
+      }
+    }
+
 
     //** BUSCAR PROPIEDAD **//
 

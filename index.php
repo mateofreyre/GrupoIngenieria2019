@@ -48,8 +48,7 @@ require_once('view/Mostrar_contactanos.php');
 require_once('view/Mostrar_precios.php');
 require_once('view/Detalle_Subasta.php');
 require_once('view/SubastarPropiedad.php');
-
-
+require_once('view/Detallar_propiedad.php');
 
 if(isset($_GET["action"])) {
 	$current_rol = $_SESSION['rol'];

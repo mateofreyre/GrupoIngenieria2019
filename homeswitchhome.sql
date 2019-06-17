@@ -57,7 +57,7 @@ CREATE TABLE `alquiler` (
 CREATE TABLE `suscripcion` (
   `id` int(11) NOT NULL,
   `monto_normal` int(11) NOT NULL,
-  `monto_premium` int(11) NOT NULL,
+  `monto_premium` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -86,7 +86,7 @@ CREATE TABLE `subasta` (
   `fecha_desde` date NOT NULL,
   `fecha_hasta` date NOT NULL,
   `id_propiedad` int(100) NOT NULL,
-  `monto_base` int(100) NOT NULL,
+  `monto_base` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -116,7 +116,7 @@ CREATE TABLE `usuario` (
   `password` varchar(16) NOT NULL,
   `creditos` int(10) NOT NULL,
   `premium` tinyint(1) NOT NULL,
-  `fecha_registro` date NOT NULL,
+  `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
