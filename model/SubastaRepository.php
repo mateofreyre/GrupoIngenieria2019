@@ -88,7 +88,7 @@ Class SubastaRepository extends PDORepository {
 	}
 
 	function saber_dia($nombredia) {
-		$dias = array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
+		$dias = array('','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
 		$fecha = $dias[date('N', strtotime($nombredia))];
 		return $fecha;
 	}
