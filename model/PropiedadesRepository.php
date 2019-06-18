@@ -79,7 +79,7 @@ Class PropiedadesRepository extends PDORepository {
         $location = $_POST['property_search'];
         $date = $_POST['property_date'];
         $propiedades = [];
-        $query = PropiedadesRepository::getInstance()->queryAll("SELECT *
+        $query = PropiedadesRepository::getInstance()->queryAll("SELECT p.id, p.nombre, p.lugar, p.monto_normal, p.hotsale, p.monto_base
                                                                  FROM propiedad as p LEFT JOIN alquiler as a ON p.id = a.id_propiedad
                                                                  WHERE p.lugar LIKE '%$location%'
                                                                  AND '$date' NOT BETWEEN IFNULL(a.fecha_desde, '2000-01-01') AND IFNULL(a.fecha_hasta, '2000-01-01')");
@@ -100,7 +100,7 @@ Class PropiedadesRepository extends PDORepository {
     //** BUSCAR PROPIEDAD **//
 
     public function buscar_propiedad(){
-			$id = $_GET['id'];
+      $id = $_GET['id'];
       $propiedad;
       $consulta = self::getInstance()->queryAll("SELECT * FROM propiedad WHERE id = '{$id}'");
       foreach ($consulta as $row) {
