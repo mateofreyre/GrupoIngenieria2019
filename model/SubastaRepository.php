@@ -21,13 +21,12 @@ Class SubastaRepository extends PDORepository {
 
 
 
-	public function agregar_subasta(){
+	public function agregar_subasta($fecha_desde){
 		//recuperar datos de la fecha ingresada y id de propiedad
 		$id_propiedad = $_GET['id'];
-		$fecha_desde = $_POST['fecha'];
 		$monto = $_POST['monto_base'];
 		//Se le agregan 7 dias a la fecha ingresada
-		$nuevafecha = strtotime ( '+7 day' , strtotime ($fecha_desde ) ) ;
+		$nuevafecha = strtotime ( '+6 day' , strtotime ($fecha_desde ) ) ;
 		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
 		$fecha_hasta = $nuevafecha;
 		self::getInstance()->queryAll("INSERT INTO subasta(id_propiedad,fecha_desde,fecha_hasta,monto_base) VALUES ('{$id_propiedad}','{$fecha_desde}','{$fecha_hasta}','{$monto}')");
@@ -41,7 +40,7 @@ Class SubastaRepository extends PDORepository {
 		$model_reservas = ReservasRespository::getInstance()->chequear_superposicion_fechas($fecha_lunes);
 		$model_subastas = self::getInstance() -> chequear_superposicion_fechas($fecha_lunes);
 		if($model_reservas AND $model_subastas){
-			self::getInstance()->agregar_subasta();
+			self::getInstance()->agregar_subasta($fecha_lunes);
 			$nuevafecha = strtotime ( '+6 day' , strtotime ($fecha_lunes ) ) ;
 			$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
 			$fecha_hasta = $nuevafecha;
@@ -97,7 +96,7 @@ Class SubastaRepository extends PDORepository {
 		//recuperar datos de la fecha ingersada y id de propiedad
 		$id_propiedad = $_GET['id'];
 		//Se le agregan 7 dias a la fecha ingresada
-		$nuevafecha = strtotime ( '+7 day' , strtotime ($fecha_desde ) ) ;
+		$nuevafecha = strtotime ( '+6 day' , strtotime ($fecha_desde ) ) ;
 		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
 		$fecha_hasta = $nuevafecha;
 
@@ -110,7 +109,8 @@ Class SubastaRepository extends PDORepository {
 			}
 				if(!empty($subastas)){
 					foreach ($subastas as $subasta) {
-						if($subasta->seRealizaDentroDe($fecha_desde, $fecha_hasta)){
+
+						if($subasta->seRealizaDentroDe($fecha_desde)){
 							$mensaje = "Ya existe un evento para esa fecha (subasta)";
 							echo "<script>";
 							echo "alert('$mensaje');";

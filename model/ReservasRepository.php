@@ -20,7 +20,7 @@ Class ReservasRespository extends PDORepository {
     //recuperar datos de la fecha ingersada y id de propiedad
     $id_propiedad = $_GET['id'];
     //Se le agregan 7 dias a la fecha ingresada
-    $nuevafecha = strtotime ( '+7 day' , strtotime ($fecha_desde ) ) ;
+    $nuevafecha = strtotime ( '+6 day' , strtotime ($fecha_desde ) ) ;
     $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
     $fecha_hasta = $nuevafecha;
 
@@ -33,7 +33,7 @@ Class ReservasRespository extends PDORepository {
         }
 				if(!empty($alquiler)){
 		      foreach ($alquileres as $alquier) {
-						if($alquiler->seRealizaDentroDe($fecha_desde, $fecha_hasta)){
+						if($alquiler->seRealizaDentroDe($fecha_desde)){
 							$mensaje = "Ya existe un evento para esa fecha(reserva)";
 							echo "<script>";
 							echo "alert('$mensaje');";

@@ -56,29 +56,10 @@ Class Subasta {
 		return $this->lugar;
 	}
 
-	public function seRealizaDentroDe($fecha_desde, $fecha_hasta){
-		return ($this->seEncuentraDentro($fecha_desde,$fecha_hasta) OR ($this->desfazadoHaciaIzquierda($fecha_desde,$fecha_hasta)) OR ($this->desfazadoHaciaDerecha($fecha_desde,$fecha_hasta)));
+	public function seRealizaDentroDe($fecha_desde){
+		return ($this->getFechaDesde()) == $fecha_desde;
 	}
 
-	public function seEncuentraDentro($fecha_desde,$fecha_hasta){
-		return ($this->yoMeEncuentroDentro($fecha_desde,$fecha_hasta) OR ($this->elSeEncuentraDentro($fecha_desde,$fecha_hasta)));
-	}
-
-	public function yoMeEncuentroDentro($fecha_desde,$fecha_hasta){
-		return ($this->getFechaHasta() > $fecha_desde) AND ($this->getFechaHasta() < $fecha_hasta);
-	}
-
-	public function elSeEncuentraDentro($fecha_desde,$fecha_hasta){
-		return ($this->getFechaDesde() < $fecha_desde) AND ($this->getFechaHasta() > $fecha_hasta);
-	}
-
-	public function desfazadoHaciaIzquierda($fecha_desde, $fecha_hasta){
-		return ($this->getFechaDesde() > $fecha_desde) AND ($this->getFechaHasta() < $fecha_hasta);
-	}
-
-	public function desfazadoHaciaDerecha($fecha_desde, $fecha_hasta){
-		return ($this->getFechaDesde() < $fecha_desde) AND ($this->getFechaHasta() > $fecha_hasta);
-	}
 }
 
 ?>
