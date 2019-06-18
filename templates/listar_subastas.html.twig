@@ -45,7 +45,11 @@
                       <ul>
                         <li><a href="./?action=eliminar_subasta&id={{subasta.getId}}"class ="enlaceboton">Eliminar subasta</a></li>
                         <li><a href="./?action=finalizar_subasta&id={{subasta.getId}}"class ="enlaceboton">Finalizar subasta</a></li>
-                        <li><a href="./?action=cancelar_subasta&id={{subasta.getId}}"class ="enlaceboton">Cancelar subasta</a></li>
+                        <li><a href="./?action=detalle_subasta&id={{subasta.getId}}"class="enlaceboton"> Pujar Subasta</a></li>
+                      </ul>
+                    {%endif%}
+                    {% if rol == 1 %}
+                      <ul>
                         <li><a href="./?action=detalle_subasta&id={{subasta.getId}}"class="enlaceboton"> Pujar Subasta</a></li>
                       </ul>
                     {%endif%}
