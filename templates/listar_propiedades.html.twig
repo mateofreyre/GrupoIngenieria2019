@@ -54,7 +54,9 @@
                       <li><a href="./?action=modificar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Modificar propiedad</a></li>
                       <li><a href="./?action=eliminar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Eliminar propiedad</a></li>
                       <li><a href="./?action=formulario_subastar_propiedad&id={{propiedad.getId}}"class="enlaceboton">Agregar nueva subasta para esta propiedad</a></li>
-
+                      {% if propiedades is empty %}
+                          <h5>Todavía no subiste ningúna propeidad. <a href="./?action=agregar_propiedad">Hacelo desde acá</a></h5>
+                      {%endif%}
                       {% if propiedad.getHotSale == true  %}
                         <li><a href="./?action=cambiar_estado_hotSale&id={{propiedad.getId}}"class="enlaceboton">Sacar de hot sale</a></li>
                       {% else %}
@@ -73,8 +75,5 @@
             </ul>
             <hr />
         {% endfor %}
-        {% if propiedades is empty %}
-            <h5>Todavía no subiste ningúna propeidad. <a href="./?action=agregar_propiedad">Hacelo desde acá</a></h5>
-        {%endif%}
     </body>
 </html>

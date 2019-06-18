@@ -23,15 +23,13 @@
             <form method="post" class="login">
               <div class="">
                 <div class="">
-                    <label for="nombre" class="">Nuevo nombre</label>
-                    <input type="text" id="nombre" name="nombre" class="login-input" placeholder="" value="{{propiedades.getNombre}}" required>
+                    <label for="nombre" class="">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" readonly="readonly" class="login-input" placeholder="" value="{{propiedades.getNombre}}" required>
                 </div>
                 <div class="">
-                    <label for="lugar" class="">Nuevo lugar</label>
-                    <input type="text" id="lugar" name="lugar" class="login-input" placeholder="" value="{{propiedades.getLugar}}" required>
+                    <label for="lugar" class="">Lugar</label>
+                    <input type="text" id="lugar" name="lugar" readonly="readonly" class="login-input" placeholder="" value="{{propiedades.getLugar}}" required>
                 </div>
-              <button id="arriba" type="submit" class="login-input">Guardar</button>
-              <button id="abajo" type="reset" class="login-input">Reset</button>
           </div>
         </form>
     </body>
