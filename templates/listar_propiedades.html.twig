@@ -18,7 +18,9 @@
             </div>
         </header>
         <h2>Propiedades</h2>
+        {% if rol == 2 %}
         <h5> ¿Querés agregar otra propiedad? <a href="./?action=formulario_agregar_propiedad">Hacelo desde acá</a></h5>
+        {% endif %}
         <hr />
         {% if rol == 1%}
           <form method="post" action="./?action=listar_propiedades_by_location" class="form-inline my-2 my-lg-0">

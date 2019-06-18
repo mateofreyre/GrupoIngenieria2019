@@ -1,5 +1,5 @@
 <?php
-class Modificar_datos_usuario extends TwigView {
+class Modificar_mis_datos extends TwigView {
 
   public function show($usuarios) {
 

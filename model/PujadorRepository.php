@@ -21,7 +21,7 @@ Class PujadorRepository extends PDORepository {
     public function agregar_oferta(){
         $monto = $_POST['monto'];
         $id_subasta = $_POST['id_subasta'];
-        $id_usuario = $_POST['id_usuario'];
+        $id_usuario = $_SESSION['id'];
 
 				$creditos = self::getInstance() -> queryAll("SELECT * FROM usuario WHERE id = '{$id_usuario}'");
 				foreach ($creditos as $row ) {
@@ -58,12 +58,12 @@ Class PujadorRepository extends PDORepository {
     public function listar_ofertas_by_subasta($id_subasta){
       try {
         $ofertas = [];
-        $query = PujadorRepository::getInstance()->queryAll("SELECT * FROM usuario_subasta WHERE id_subasta = '{$id_subasta}' ORDER BY monto DESC");
+        $query = PujadorRepository::getInstance()->queryAll("SELECT * FROM usuario_subasta WHERE id_subasta = '{$id_subasta}' ORDER BY monto ASC");
         foreach ($query as $row) {
           $oferta = new Pujador($row['id'], $row['monto'], $row['id_subasta'], $row['id_usuario']);
           $usuario = UsuarioRepository::getInstance()->obtener_usuario_by_id($row['id_usuario']);
           if ($usuario->getCreditos() > 0){
-            $ofertas[]=$oferta;
+            $ofertas[0]=$oferta;
           }
         }
         $query = null;

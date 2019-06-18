@@ -36,10 +36,20 @@ Class SubastaRepository extends PDORepository {
 
 	public function chequear_subasta(){
 	//	$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
-		$model_reservas = ReservasRespository::getInstance()->chequear_superposicion_fechas();
-		$model_subastas = self::getInstance() -> chequear_superposicion_fechas();
+		$fecha_ingresada = $_POST['fecha'];
+		$fecha_lunes = SubastaRepository::getInstance()->llevar_fecha_a_lunes($fecha_ingresada);
+		$model_reservas = ReservasRespository::getInstance()->chequear_superposicion_fechas($fecha_lunes);
+		$model_subastas = self::getInstance() -> chequear_superposicion_fechas($fecha_lunes);
 		if($model_reservas AND $model_subastas){
 			self::getInstance()->agregar_subasta();
+			$nuevafecha = strtotime ( '+6 day' , strtotime ($fecha_lunes ) ) ;
+			$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+			$fecha_hasta = $nuevafecha;
+			$mensaje = "Subasta agregada exitosamente desde la fecha:".$fecha_lunes."Hasta la fecha:".$fecha_hasta;
+			echo "<script>";
+			echo "alert('$mensaje');";
+			echo "</script>";
+
 			return true;
 		}
 		else{
@@ -47,10 +57,45 @@ Class SubastaRepository extends PDORepository {
 		}
 	}
 
-	public function chequear_superposicion_fechas(){
+	public function llevar_fecha_a_lunes($fecha){
+			$dia = self::getInstance()->saber_dia($fecha);
+			switch ($dia) {
+				case 'Martes':
+					$nueva = strtotime ( '-1 day' , strtotime ($fecha ) ) ;
+					return date ( 'Y-m-d' , $nueva );
+					break;
+				case 'Miercoles':
+					$nueva = strtotime ( '-2 day' , strtotime ($fecha ) ) ;
+					return date ( 'Y-m-d' , $nueva );
+					break;
+				case 'Jueves':
+					$nueva = strtotime ( '-3 day' , strtotime ($fecha ) ) ;
+					return date ( 'Y-m-d' , $nueva );
+					break;
+				case 'Viernes':
+					$nueva = strtotime ( '-4 day' , strtotime ($fecha ) ) ;
+					return date ( 'Y-m-d' , $nueva );
+					break;
+				case 'Sabado':
+					$nueva = strtotime ( '-5 day' , strtotime ($fecha ) ) ;
+					return date ( 'Y-m-d' , $nueva );
+					break;
+				case 'Domingo':
+					$nueva = strtotime ( '-6 day' , strtotime ($fecha ) ) ;
+					return date ( 'Y-m-d' , $nueva );
+					break;
+			}
+	}
+
+	function saber_dia($nombredia) {
+		$dias = array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
+		$fecha = $dias[date('N', strtotime($nombredia))];
+		return $fecha;
+	}
+
+	public function chequear_superposicion_fechas($fecha_desde){
 		//recuperar datos de la fecha ingersada y id de propiedad
 		$id_propiedad = $_GET['id'];
-		$fecha_desde = $_POST['fecha'];
 		//Se le agregan 7 dias a la fecha ingresada
 		$nuevafecha = strtotime ( '+7 day' , strtotime ($fecha_desde ) ) ;
 		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );

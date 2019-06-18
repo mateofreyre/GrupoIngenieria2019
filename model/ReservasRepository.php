@@ -16,10 +16,9 @@ Class ReservasRespository extends PDORepository {
 
 	}
 
-	public function chequear_superposicion_fechas(){
+	public function chequear_superposicion_fechas($fecha_desde){
     //recuperar datos de la fecha ingersada y id de propiedad
     $id_propiedad = $_GET['id'];
-    $fecha_desde = $_POST['fecha'];
     //Se le agregan 7 dias a la fecha ingresada
     $nuevafecha = strtotime ( '+7 day' , strtotime ($fecha_desde ) ) ;
     $nuevafecha = date ( 'Y-m-d' , $nuevafecha );

@@ -85,7 +85,12 @@ Class UsuarioRepository extends PDORepository {
 	}
 
 	public function buscar_usuario(){
-		$id = $_GET['id'];
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+		}
+		else{
+			$id = ($_SESSION['id']);
+		}
 		$consulta = self::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id}'");
 		foreach ($consulta as $row) {
 				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
@@ -101,7 +106,7 @@ Class UsuarioRepository extends PDORepository {
       $usuarios = [];
       $query = PujadorRepository::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id_usuario}'");
       foreach ($query as $row) {
-        $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], 0, $row['creditos'], $row['premium']);
+        $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
         $usuarios[]=$usuario;
       }
       return $usuarios[0];
@@ -165,6 +170,7 @@ Class UsuarioRepository extends PDORepository {
 		if(($users->rowCount()) > 0){
 			$_SESSION['rol'] = 1;
 			foreach ($users as $row) {
+				$_SESSION['id']=$row['id'];
         $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], 0, $row['creditos'], $row['premium']);
       }
 			$_SESSION['usuario'] = $usuario;

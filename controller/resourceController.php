@@ -165,6 +165,7 @@ class ResourceController {
 	public function detalle_subasta(){
 		$subasta = SubastaRepository::getInstance()-> detalle_subasta();
 		$mejor_oferta = PujadorRepository::getInstance()->listar_ofertas_by_subasta($subasta->getId());
+
 		$propiedad = PropiedadesRepository::getInstance()->buscar_propiedad_by_id($subasta->getIdPropiedad());
 		$view = new Detalle_Subasta();
 		if(!empty($mejor_oferta)){
@@ -268,6 +269,61 @@ class ResourceController {
 
 			public function alquilar_propiedad(){
 
+			}
+			public function agregar_tarjeta(){
+			$view = new agregar_tarjeta();
+			$view -> show();
+		}
+
+		public function agregar_tarjeta_check(){
+				try{
+						$model = TarjetaRepository :: getInstance() -> agregar_tarjeta();
+						if(!$model){
+							$view = new agregar_tarjeta();
+							$view -> show();
+						}
+						else {
+							self::getInstance()->mostrar_perfil();
+						}
+				}
+				catch(Exception $e){
+						$mensaje = "No se pudo agregar la tarjeta. Intentalo nuevamente más tarde.";
+				}
+		}
+
+		public function listar_tarjetas(){
+		try{
+			$tarjetas = TarjetaRepository :: getInstance() -> listar_tarjetas();
+			$view = new listar_tarjetas();
+			$view -> show($tarjetas);
+			}
+			catch(PDOException $e){
+					$error="Se ha producido un error en la consulta: " . $e->getMessage() . "<br/>";
+					$view = new Error_display();
+					$view->show($error);
+			}
+		}
+
+			public function eliminar_tarjeta_check(){
+				try{
+					$tarjetas = TarjetaRepository :: getInstance() -> listar_tarjetas();
+					//if (isset($tarjetas)){
+						if (count($tarjetas)>1){
+							$tarjetas = TarjetaRepository :: getInstance() -> card_delete($_GET['id']);
+							self :: getInstance() -> listar_tarjetas();
+						}
+						else{
+							$mensaje = "No puede eliminar su última tarjeta.";
+							self :: getInstance() -> listar_tarjetas();
+						}
+					//}
+				}
+					catch(PDOException $e){
+						$mensaje = "Se produjo un error y la operación no pudo ser realizada.";
+					}
+					echo "<script>";
+					echo "alert('$mensaje');";
+					echo "</script>";
 			}
 
  }

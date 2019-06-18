@@ -6,17 +6,17 @@ Class Tarjeta {
 
   private $id;
 	private $numero;
-	private $fecha_vencimiento;
-	private $codigo;
+	private $mes_vencimiento;
+  private $year_vencimiento;
 	private $id_titular;
 
     /**Constructor**/
 
-	public function __construct($id, $numero, $fecha_vencimiento, $codigo, $id_titular) {
+	public function __construct($id, $numero, $mes_vencimiento, $year_vencimiento, $id_titular) {
         $this->id = $id;
         $this->numero = $numero;
-        $this->fecha_vencimiento = $fecha_vencimiento;
-        $this->codigo = $codigo;
+        $this->mes_vencimiento = $mes_vencimiento;
+        $this->year_vencimiento = $year_vencimiento;
         $this->id_titular = $id_titular;
     }
 
@@ -30,13 +30,16 @@ Class Tarjeta {
     	return $this->numero;
     }
 
-    public function getFechaVencimiento() {
-    	return $this->fecha_vencimiento;
+    public function getMesVencimiento() {
+    	return $this->mes_vencimiento;
     }
 
-    public function getCodigo() {
-    	return $this->codigo;
+
+    public function getYearVencimiento() {
+    	return $this->year_vencimiento;
     }
+
+  
 
     public function getIdTitular() {
     	return $this->id_titular;

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agregar tarjeta de crédito</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+        <div class="">
+            {% include 'nav-bar.html.twig' %}
+        </div>
+        </header>
+          {% if rol == 2 %}
+        <h3>Necesitás agregar una tarjeta de crédito para usar Aventón.</h3>
+          {% else %}
+        <h3>Agregá tu tarjeta de crédito a continuación: </h3>
+          {% endif %}
+        <section class="tarjeta">
+        <form method="post" action="./?action=agregar_tarjeta_check" class="login">
+            <div class="body">
+
+                    <input type="text" id="numero_tarjeta" name="numero_tarjeta" class="login-input" placeholder="Ingrese los 16 dígitos de su tarjeta." required>
+                    
+               <select name="mes_vencimiento" class="login-button" id="izquierda">
+                   <option value="01">01</option>
+                   <option value="02">02</option>
+                   <option value="03">03</option>
+                   <option value="04">04</option>
+                   <option value="05">05</option>
+                   <option value="06">06</option>
+                   <option value="07">07</option>
+                   <option value="08">08</option>
+                   <option value="09">09</option>
+                   <option value="10">10</option>
+                   <option value="11">11</option>
+                   <option value="12">12</option>
+               </select>
+               <select name="year_vencimiento" class="login-button" id="derecha">
+                   <option value="18">18</option>
+                   <option value="19">19</option>
+                   <option value="20">20</option>
+                   <option value="21">21</option>
+                   <option value="22">22</option>
+                   <option value="23">23</option>
+               </select>
+              <button class="login-button" id="izquierda" type="submit">Guardar</button>
+              <button class="login-button" id="derecha" type="reset">Reset</button>
+          </div>
+        </form>
+        </section>
+    </body>
+</html>
