@@ -96,6 +96,12 @@ class ResourceController {
 		}
 	}
 
+	public function detalles_propiedad(){
+		$model = PropiedadesRepository::getInstance()->buscar_propiedad();
+		$view = new Detallar_propiedades();
+		$view-> show($model);
+	}
+
 	public function cambiar_estado_hotSale(){
 		$model = PropiedadesRepository::getInstance()-> cambiar_estado_hotSale();
 		self::getInstance()->listar_propiedades();
@@ -209,6 +215,12 @@ class ResourceController {
 				$view -> show($model);
 			}
 
+			public function modificar_mis_datos(){
+				$model = UsuarioRepository::getInstance()->buscar_usuario();
+				$view = new Modificar_mis_datos();
+				$view -> show($model);
+			}
+
 			public function chequear_ingreso_usuario(){
 				$model = UsuarioRepository::getInstance()-> chequear_inicio();
 				if($model){
@@ -238,14 +250,19 @@ class ResourceController {
 				self::getInstance()-> listar_usuarios();
 			}
 
-			public function alquilar_propiedad(){
-
+			public function check_modificar_mis_datos(){
+				$model = UsuarioRepository::getInstance()->modificar_datos_usuario();
+				self::getInstance()-> mostrar_perfil();
 			}
 
-			public function detalles_propiedad(){
-				$model = PropiedadesRepository::getInstance()->buscar_propiedad();
-				$view = new Detallar_propiedades();
-				$view-> show($model);
+			public function mostrar_perfil(){
+				$model = UsuarioRepository::getInstance()->buscar_usuario();
+				$view = new Mostrar_perfil();
+				$view -> show($model);
+			}
+
+			public function alquilar_propiedad(){
+
 			}
 
  }

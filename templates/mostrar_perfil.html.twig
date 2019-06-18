@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Detalles de la propiedad</title>
+        <title>Mi perfil</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="css/modificar_datos.css">
@@ -16,22 +16,34 @@
         </div>
         </header>
         <div class="contenedor-form">
-      		<div class="toggle">
+          <div class="toggle">
           </div>
           <div class="formulario">
-            <h2> Detalles de Propiedad</h3>
+            <h2> Mi perfil </h3>
             <form method="post" class="login">
               <div class="">
                 <div class="">
-                    <label for="nombre" class="">Nuevo nombre</label>
-                    <input type="text" id="nombre" name="nombre" class="login-input" placeholder="" value="{{propiedades.getNombre}}" required>
+                    <label class="">Nuevo nombre</label>
+                    <input type="text" id="" name="nombre" readonly="readonly" class="login-input" placeholder="Nombre nuevo"  value="{{usuario.getNombre}}">
                 </div>
                 <div class="">
-                    <label for="lugar" class="">Nuevo lugar</label>
-                    <input type="text" id="lugar" name="lugar" class="login-input" placeholder="" value="{{propiedades.getLugar}}" required>
+                    <label class="">Nuevo apellido</label>
+                    <input type="text" id="" name="apellido" readonly="readonly" class="login-input" placeholder="Nombre apellido" value="{{usuario.getApellido}}">
                 </div>
-              <button id="arriba" type="submit" class="login-input">Guardar</button>
-              <button id="abajo" type="reset" class="login-input">Reset</button>
+                <div class="">
+                  <label class="">Nuevo email</label>
+                  <input type="text" id="" name="email" readonly="readonly" class="login-input" placeholder="Nuevo email" value="{{usuario.getEmail}}">
+                </div>
+                <div class="">
+                    <label class="">Nueva Contraseña</label>
+                    <input type="password" id="password" name="password" readonly="readonly" class="login-input" placeholder="Nueva contraseña" value="{{usuario.getPassword}}">
+                </div>
+                <div class="login-input" align="center">
+                  <a href="./?action=modificar_mis_datos">Modificar datos</a>
+                </div>
+                <div class="login-input" align="center">
+                  <a href="">Quiero ser premium</a>
+                </div>
           </div>
         </form>
     </body>

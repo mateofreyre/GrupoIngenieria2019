@@ -92,10 +92,9 @@ Class UsuarioRepository extends PDORepository {
 				$_SESSION['email'] = $row['email'];
 		}
 		$consulta = null;
-
 		return $usuario;
-
 	}
+
 
   public function obtener_usuario_by_id($id_usuario){
     try {
