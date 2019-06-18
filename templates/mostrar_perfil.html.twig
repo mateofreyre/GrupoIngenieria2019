@@ -23,20 +23,24 @@
             <form method="post" class="login">
               <div class="">
                 <div class="">
-                    <label class="">Nuevo nombre</label>
-                    <input type="text" id="" name="nombre" readonly="readonly" class="login-input" placeholder="Nombre nuevo"  value="{{usuario.getNombre}}">
+                    <label class="">Nombre</label>
+                    <input type="text" id="" name="nombre" readonly="readonly" class="login-input" placeholder=""  value="{{usuario.getNombre}}">
                 </div>
                 <div class="">
-                    <label class="">Nuevo apellido</label>
-                    <input type="text" id="" name="apellido" readonly="readonly" class="login-input" placeholder="Nombre apellido" value="{{usuario.getApellido}}">
+                    <label class="">Apellido</label>
+                    <input type="text" id="" name="apellido" readonly="readonly" class="login-input" placeholder="" value="{{usuario.getApellido}}">
                 </div>
                 <div class="">
-                  <label class="">Nuevo email</label>
-                  <input type="text" id="" name="email" readonly="readonly" class="login-input" placeholder="Nuevo email" value="{{usuario.getEmail}}">
+                  <label class="">Email</label>
+                  <input type="text" id="" name="email" readonly="readonly" class="login-input" placeholder="" value="{{usuario.getEmail}}">
                 </div>
                 <div class="">
-                    <label class="">Nueva Contraseña</label>
-                    <input type="password" id="password" name="password" readonly="readonly" class="login-input" placeholder="Nueva contraseña" value="{{usuario.getPassword}}">
+                  <label class="">Creditos disponibles</label>
+                  <input type="text" id="creditos" name="creditos" readonly="readonly" class="login-input" placeholder="" value="{{usuario.getCreditos}}">
+                </div>
+                <div class="">
+                    <label class="">Contraseña</label>
+                    <input type="password" id="password" name="password" readonly="readonly" class="login-input" placeholder="" value="{{usuario.getPassword}}">
                 </div>
                 <div class="login-input" align="center">
                   <a href="./?action=modificar_mis_datos">Modificar datos</a>

@@ -163,7 +163,6 @@ Class PropiedadesRepository extends PDORepository {
           $nombre= $_POST['nombre'];
 					$lugar= $_POST['lugar'];
           $monto_normal = 0;
-					$monto_base = $_POST['monto_base'];
 					$id= $_GET['id'];
 					$chequear_nombre_repetido = self::getInstance()-> nombre_repetido($nombre);
 					if($chequear_nombre_repetido){
@@ -173,7 +172,7 @@ Class PropiedadesRepository extends PDORepository {
 	          echo "</script>";
 	          return false;
 					}
-          self::getInstance()->queryAll("UPDATE propiedad SET nombre='{$nombre}', monto_normal='{$monto_normal}', monto_base='{$monto_base}', lugar='{$lugar}' WHERE id = '{$id}'");
+          self::getInstance()->queryAll("UPDATE propiedad SET nombre='{$nombre}', monto_normal='{$monto_normal}', lugar='{$lugar}' WHERE id = '{$id}'");
           $mensaje = "La operacion ha sido realizada con exito.";
               echo "<script>";
               echo "alert('$mensaje');";
