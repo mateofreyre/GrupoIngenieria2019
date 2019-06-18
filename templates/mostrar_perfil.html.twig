@@ -3,7 +3,7 @@
     <head>
         <title>Mi Perfil</title>
 
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/modificar_datos.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -21,18 +21,16 @@
         </header>
         <h1>Datos personales</h1>
         <ul>
-            <li>Nombre: {{usuario.getNombre}}</li>
-            <li>Apellido: {{usuario.getApellido}}</li>
-            <li>Mail: {{usuario.getEmail}}</li>
-            <li>Creditos disponibles: {{usuario.getCreditos}}</li>
-            <li><a href="./?action=ver_cambiar_contrasenia">Cambiar Constraseña</a></li>
+            <li><h3>Nombre: {{usuario.getNombre}}</h3></li>
+            <li><h3>Apellido: {{usuario.getApellido}}</h3></li>
+            <li><h3>Mail: {{usuario.getEmail}}</h3></li>
+            <li><h3>Creditos disponibles: {{usuario.getCreditos}}</h3></li>
             <p>
-            <li><a href="./?action=agregar_tarjeta">Agregar tarjeta</a></li>
-            <li><a href="./?action=listar_tarjetas">Mis tarjetas</a></li>
+              <li><h5><a href="./?action=agregar_tarjeta">Agregar tarjeta</a></h5></li>
+              <li><h5><a href="./?action=listar_tarjetas">Mis tarjetas</a></h5></li>
+              <li><h5><a href="./?action=modificar_mis_datos">Modificar datos</a></h5></li>
+              <li><h5><a href="./?action=Mostrar_pagina_premium">Quiero ser premium</a></h5></li>
             <p>
-
-            <li><a href="./?action=modificar_mis_datos">Modificar datos</a></li>
-            <li><a href="./?action=Mostrar_pagina_premium">Quiero ser premium</a></li>
         </ul>
     </body>
 </html>

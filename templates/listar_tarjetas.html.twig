@@ -4,7 +4,7 @@
 
         <meta charset="utf-8"/>
         <title>Mis Tarjetas</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/estilos_usuarios.css">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
@@ -19,18 +19,18 @@
             {% include 'nav-bar.html.twig' %}
         </nav>
         </header>
-        <section class="main" align="center">
+        <section class="main"  align="center">
           <!--{% if tarjetas | length > 0 %}-->
-            <h4>Si eliminas una tarjeta, la misma no estará disponible para saldar los próximos viajes.</h4>
+            <h4>Si eliminas una tarjeta, la misma no estará disponible.</h4>
               <hr />
                   {% for tarjeta in tarjetas %}
-                          <p>Número de tarjeta: {{tarjeta.getNumero}}
-                          <p>Vencimiento: {{tarjeta.getMesVencimiento}} de {{tarjeta.getYearVencimiento}}
-                          <p><a href="./?action=eliminar_tarjeta_check&id={{tarjeta.getId}}">Eliminar</a>
+                          <p><h5>Número de tarjeta: {{tarjeta.getNumero}}</h5>
+                          <p><h5>Vencimiento: {{tarjeta.getMesVencimiento}} de {{tarjeta.getYearVencimiento}}</h5>
+                          <p><h4><a href="./?action=eliminar_tarjeta_check&id={{tarjeta.getId}}">Eliminar</a></h4>
 
                       <hr />
                   {% endfor %}
-                  <h5><a href="./?action=agregar_tarjeta">¿Deseas sumar otra tarjeta?</a></h5>
+                  <h3><a href="./?action=agregar_tarjeta">¿Deseas sumar otra tarjeta?</a></h3>
         <!--{% else %}-->
             <h5>No dispones de tarjetas asociadas a tu cuenta.</h5>
             <h5><a href="./?action=agregar_tarjeta">Agrega una para poder viajar!</a></h5>
