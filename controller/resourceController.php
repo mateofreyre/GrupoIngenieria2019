@@ -28,6 +28,11 @@ class ResourceController {
 		$view -> show();
 	}
 
+	public function Mostrar_pagina_premium(){
+		$view = new Mostrar_pagina_premium();
+		$view -> show();
+	}
+
 	public function mostrar_precios(){
 		$model = SuscripcionRepository::getInstance()->devolver_precio();
 		$view = new Mostrar_precios();

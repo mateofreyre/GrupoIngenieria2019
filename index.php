@@ -46,6 +46,8 @@ require_once('view/Listar_propiedades.php');
 require_once('view/Listar_subastas.php');
 require_once('view/Listar_usuarios.php');
 require_once('view/Mostrar_contactanos.php');
+require_once('view/Mostrar_pagina_premium.php');
+
 require_once('view/Mostrar_precios.php');
 require_once('view/Detalle_Subasta.php');
 require_once('view/SubastarPropiedad.php');
