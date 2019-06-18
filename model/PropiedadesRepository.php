@@ -134,7 +134,7 @@ Class PropiedadesRepository extends PDORepository {
 
 			ReservasRespository::getInstance()->informarBajaDeReservas($reservas);
 
-			$subastas = self::getInstance()-> queryAll("SELECT * FROM subasta WHERE id_propiedad '{$id}'");
+			$subastas = self::getInstance()-> queryAll("SELECT * FROM subasta WHERE id_propiedad = '{$id}'");
 			SubastaRepository::getInstance()-> informarBajaDeSubastas($subastas);
 
       self::getInstance()->queryAll("DELETE FROM propiedad WHERE id = '{$id}'");
