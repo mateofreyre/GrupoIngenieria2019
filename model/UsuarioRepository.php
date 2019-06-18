@@ -100,6 +100,16 @@ Class UsuarioRepository extends PDORepository {
 		return $usuario;
 	}
 
+	public function buscarUsuarioPorId($id){
+		$consulta = self::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id}'");
+		foreach ($consulta as $row) {
+				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+				$_SESSION['email'] = $row['email'];
+		}
+		$consulta = null;
+		return $usuario;
+	}
+
 
   public function obtener_usuario_by_id($id_usuario){
     try {

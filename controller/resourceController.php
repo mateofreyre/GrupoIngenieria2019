@@ -203,7 +203,12 @@ class ResourceController {
 			public function chequear_agregar_usuario(){
 				$model = UsuarioRepository::getInstance()->agregar_usuario();
 				if($model){
-					self::getInstance()-> listar_propiedades();
+					if($_SESSION['rol'] = 2){
+						self::getInstance()->home();
+					}
+					else{
+						self::getInstance()-> listar_propiedades();
+					}
 				}
 				else{
 					if($_SESSION['rol'] = 2){
