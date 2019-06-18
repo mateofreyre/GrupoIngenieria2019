@@ -84,6 +84,7 @@ Class SubastaRepository extends PDORepository {
 					return date ( 'Y-m-d' , $nueva );
 					break;
 			}
+			return $fecha;
 	}
 
 	function saber_dia($nombredia) {
@@ -226,6 +227,7 @@ Class SubastaRepository extends PDORepository {
 			echo "alert('$mensaje');";
 			echo "</script>";
 		}else{
+			self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$subasta->getId()}'");
 			$mensaje = "La subasta ha finalizado, no hay ganadores";
 			echo "<script>";
 			echo "alert('$mensaje');";

@@ -326,5 +326,25 @@ class ResourceController {
 					echo "</script>";
 			}
 
+			public function agregar_reserva(){
+				$id_propiedad = $_GET['id'];
+				$propiedad = PropiedadesRepository::getInstance()->buscar_propiedad_by_id($id_propiedad);
+				$view = new Agregar_reserva();
+				$view -> show($propiedad);
+			}
+
+			public function chequear_reserva(){
+				$model = ReservasRespository::getInstance()->chequear_reserva();
+				if(!$model){
+					$mensaje = "Se produjo un error y la operación no pudo ser realizada.";
+				echo "<script>";
+				echo "alert('$mensaje');";
+				echo "</script>";
+				}
+				else{
+					self::getInstance()->listar_propiedades();
+				}
+			}
+
  }
 ?>

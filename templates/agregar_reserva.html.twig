@@ -33,27 +33,20 @@
                             <h3 class="card-title">
                               <li>Nombre: {{propiedad.getNombre}} </li>
                             </h3>
-                            <p class="card-text">
-                                <li>IdPropiedad: {{subasta.getIdPropiedad}}</li>
-                                <li>Fecha de inicio: {{subasta.getFechaDesde}}</li>
-                                <li>Fecha de finalizacion: {{subasta.getFechaHasta}}</li>
-                            </p>
+                            
                           </div>
                         </div>
                       </a>
                     </div>
                   </div>
 
-                <form method="post" action="./?action=chequear_subasta&id={{propiedad.getId}}" class="formulario_subasta">
+                <form method="post" action="./?action=chequear_reserva&id={{propiedad.getId}}" class="formulario_subasta">
                     <div class="">
                       <label > Seleccione la fecha desde la que quiere realizar la subasta: </label>
                       <input type="date" class="form-control" name="fecha" id="fecha" placeholder="DD-MM-AAAA" required>
                     </div>
 
-                    <div class="">
-                      <label> Seleccione el monto base de la subasta: </label>
-                      <input type="number" name="monto_base" id="monto_base" placeholder="" required>
-                    </div>
+
               <button id="izquierda" type="submit" class="enlaceboton">Registrar</button>
               <button id="derecha" type="reset" class="enlaceboton">Reset</button>
           </div>
