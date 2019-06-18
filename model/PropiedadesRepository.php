@@ -129,7 +129,9 @@ Class PropiedadesRepository extends PDORepository {
 			$id = $_GET['id'];
 
 			$hoy = date("y-m-d");
-			$reservas = self::getInstance()-> queryAll("SELECT * FROM alquiler WHERE id_propiedad '{$id}' AND fecha_desde > '{$hoy}' ");
+			$reservas = self::getInstance()-> queryAll("SELECT * FROM alquiler WHERE id_propiedad = '{$id}' AND fecha_desde > '{$hoy}' ");
+
+
 			ReservasRespository::getInstance()->informarBajaDeReservas($reservas);
 
 			$subastas = self::getInstance()-> queryAll("SELECT * FROM subasta WHERE id_propiedad '{$id}'");
