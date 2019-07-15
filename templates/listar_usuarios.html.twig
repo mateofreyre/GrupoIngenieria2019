@@ -42,7 +42,11 @@
                           <td> {{usuario.getPremium}} </td>
                           <td> {{usuario.getFechaRegistro}} </td>
                           <td><a href="./?action=modificar_usuario&id={{usuario.getId}}"class="enlaceboton">Modificar</a></td>
-                          <td><a href="./?action=cambiar_tipo_usuario&id={{usuario.getId}}"class="enlaceboton">Ser premium</a></td>
+                          {% if usuario.getPremium == 0 %}
+                            <td><a href="./?action=cambiar_tipo_usuario&id={{usuario.getId}}"class="enlaceboton">Ser premium</a></td>
+                          {%else%}
+                            <td><a href="./?action=cambiar_tipo_usuario&id={{usuario.getId}}"class="enlaceboton">Ser usuario normal</a></td>
+                          {%endif%}
                         </tr>
                       {% endfor %}
                     </tbody>

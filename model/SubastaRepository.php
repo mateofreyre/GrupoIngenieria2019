@@ -171,7 +171,6 @@ Class SubastaRepository extends PDORepository {
 
 	public function eliminar_subasta(){
 		$id = $_GET['id'];
-		PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id);
 		self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$id}'");
 		/* me fijo si el atributo del monto pujado para esa subasta es distinto de 0 y devuelvo en "var".
 		hago un if("var"){
@@ -182,7 +181,17 @@ Class SubastaRepository extends PDORepository {
 		echo "<script>";
 		echo "alert('$mensaje');";
 		echo "</script>";
-		return true;
+		$consulta = PujadorRepository::getInstance()-> queryAll("SELECT * FROM usuario_subasta WHERE id_subasta = '{$id}'");
+		/*me traigo si existe algun pujador para esa subasta, si existe alguno "se le avisa" por medio de un pop up*/
+		if($consulta->rowCount() > 0) {
+			PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id);
+			$mensaje = "Se le ha avisado a los pujadores sobre la eliminacion de la propiedad ";
+			echo "<script>";
+			echo "alert('$mensaje');";
+			echo "</script>";
+			return true;
+		}
+
 	}
 
 	public function informarBajaDeSubastas($subastas){
