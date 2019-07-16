@@ -120,7 +120,14 @@ class ResourceController {
 	public function listar_propiedades_by_location(){
 		$model = PropiedadesRepository::getInstance()->listar_propiedades_by_location();
 		$view = new Listar_propiedades();
-		$view -> show($model);
+		if($_SESSION['rol'] == 2){
+			$ok=1;
+			$view -> show($model,$ok);
+			return true;
+		}
+		$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+
+		$view -> show($model,$usuario);
 	}
 
 	public function eliminar_propiedad(){
@@ -242,7 +249,7 @@ class ResourceController {
 		}else{
 			if($_SESSION['rol'] == 2){
 				$ok=1;
-				$view -> show($subasta, $mejor_oferta[0]->getMonto(),$ok);
+				$view -> show($subasta, $subasta->getMontoBase(),$ok);
 				return true;
 			}
 			$view -> show($subasta, $subasta->getMontoBase(),$_SESSION['usuario']);
@@ -432,7 +439,7 @@ class ResourceController {
 			// HOT SALEE!!//
 			public function listar_hotsale(){
 				$model = PropiedadesRepository::getInstance()->listar_hotsale();
-				$view = new Listar_propiedades();
+				$view = new Listar_hotSales();
 				if($_SESSION['rol'] == 2){
 					$ok=1;
 					$view -> show($model, $ok);

@@ -97,14 +97,14 @@ Class PropiedadesRepository extends PDORepository {
 
 		public function listar_hotsale(){
 			try {
-				$propiedades = [];
-				$query = PropiedadesRepository::getInstance()->queryAll("SELECT * FROM propiedad WHERE hotsale = 0");
+				$hot_sales = [];
+				$query = PropiedadesRepository::getInstance()->queryAll("SELECT * FROM propiedad, hot_sale WHERE hot_sale.id_propiedad = propiedad.id");
 				foreach ($query as $row) {
-					$propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hotsale'], $row['monto_base']);
-					$propiedades[]=$propiedad;
+					$hot_sale = new Hot_sale ($row['id'], $row['id_propiedad'], $row['fecha_desde']);
+					$hot_sales[]=$hot_sale;
 				}
 				$query = null;
-				return $propiedades;
+				return $hot_sales;
 			}
 			catch (PDOException $e) {
 				 print "¡Error!: " . $e->getMessage() . "<br/>";
@@ -112,6 +112,8 @@ Class PropiedadesRepository extends PDORepository {
 			}
 
 		}
+		
+
 
     public function listar_propiedades_by_location(){
       try {

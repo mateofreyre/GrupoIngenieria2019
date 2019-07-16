@@ -19,6 +19,8 @@ require_once('model/FotosPropiedadesRepository.php');
 require_once('model/FotoPropiedad.php');
 
 //require_once('model/UsuarioRepository.php');
+require_once('model/Hot_sale.php');
+require_once('model/Hot_saleRepository.php');
 require_once('model/UsuarioRepository.php');
 require_once('model/Usuario.php');
 require_once('model/PropiedadesRepository.php');
@@ -37,6 +39,7 @@ require_once('model/Suscripcion.php');
 
 require_once('view/TwigView.php');
 require_once('view/Mostrar_galeria.php');
+require_once('view/Listar_hotSales.php');
 require_once('view/Mostrar_pagina_principal.php');
 require_once('view/Home.php');
 require_once('view/mostrar_perfil.php');
