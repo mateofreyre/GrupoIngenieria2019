@@ -12,13 +12,13 @@ Class Usuario {
 	private $creditos;
 	private $premium;
   private $fecha_registro;
-//  private $foto;
+private $foto;
 
 
 
     /**Constructor**/
 
-	public function __construct($id,$nombre, $apellido, $email, $password, $creditos, $premium, $fecha_registro){
+	public function __construct($id,$nombre, $apellido, $email, $password, $creditos, $premium, $fecha_registro,$foto_perfil){
 		$this->id = $id;
     $this->nombre = $nombre;
 		$this->apellido = $apellido;
@@ -27,7 +27,7 @@ Class Usuario {
 		$this->creditos = $creditos;
 		$this->premium = $premium;
     $this->fecha_registro = $fecha_registro;
-//    $this->foto = $foto;
+    $this->foto = $foto_perfil;
 
 	}
 
@@ -37,9 +37,9 @@ Class Usuario {
         return $this->id;
     }
 
-  /*  public function getFoto() {
+    public function getImagen() {
         return $this->foto;
-    }*/
+    }
 
     public function getNombre() {
         return $this->nombre;

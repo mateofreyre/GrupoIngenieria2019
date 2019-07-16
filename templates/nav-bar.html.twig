@@ -30,6 +30,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {% if usuario.getNombre is not empty%}
+          <img src="{{usuario.getImagen}}" width="30" height="30" class="d-inline-block align-top">
             {{usuario.getNombre}} {{usuario.getApellido}}
           {% else %}
             Cuenta

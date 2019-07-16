@@ -34,7 +34,7 @@ Class UsuarioRepository extends PDORepository {
 			$hoy = date("Y-m-d H:i:s");
 
 			try{
-					self::getInstance() -> queryAll("INSERT INTO usuario (nombre, apellido, password, email, creditos, premium, fecha_registro) VALUES ('{$nombre}', '{$apellido}','{$password}','{$email}',1,0,'{$hoy}')");
+					self::getInstance() -> queryAll("INSERT INTO usuario (nombre, apellido, password, email, creditos, premium, fecha_registro, foto_perfil) VALUES ('{$nombre}', '{$apellido}','{$password}','{$email}',1,0,'{$hoy}','img/foto_perfil.jpg')");
 					$mensaje = "Usuario agregado exitosamente";
 					echo "<script>";
 					echo "alert('$mensaje');";
@@ -54,7 +54,7 @@ Class UsuarioRepository extends PDORepository {
 		$id = $_GET['id'];
 		$consulta = self::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id}'");
 		foreach ($consulta as $row) {
-				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro'], $row['foto_perfil']);
 		}
 		$consulta = null;
 		$usuario->cambiar_estado();
@@ -72,7 +72,7 @@ Class UsuarioRepository extends PDORepository {
 			$usuarios = [];
 			$query = UsuarioRepository::getInstance()->queryAll("SELECT * FROM usuario u ORDER BY fecha_registro DESC");
 			foreach ($query as $row) {
-				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro'], $row['foto_perfil']);
 				$usuarios[]=$usuario;
 			}
 			$query = null;
@@ -93,7 +93,7 @@ Class UsuarioRepository extends PDORepository {
 		}
 		$consulta = self::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id}'");
 		foreach ($consulta as $row) {
-				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro'], $row['foto_perfil']);
 				$_SESSION['email'] = $row['email'];
 		}
 		$consulta = null;
@@ -103,7 +103,7 @@ Class UsuarioRepository extends PDORepository {
 	public function buscarUsuarioPorId($id){
 		$consulta = self::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id}'");
 		foreach ($consulta as $row) {
-				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+				$usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro'], $row['foto_perfil']);
 				$_SESSION['email'] = $row['email'];
 		}
 		$consulta = null;
@@ -116,7 +116,7 @@ Class UsuarioRepository extends PDORepository {
       $usuarios = [];
       $query = PujadorRepository::getInstance()->queryAll("SELECT * FROM usuario WHERE id = '{$id_usuario}'");
       foreach ($query as $row) {
-        $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro']);
+        $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], $row['creditos'], $row['premium'], $row['fecha_registro'], $row['foto_perfil']);
         $usuarios[]=$usuario;
       }
       return $usuarios[0];
@@ -161,13 +161,31 @@ Class UsuarioRepository extends PDORepository {
 					echo "</script>";
 					return false;
 				}*/
+
+				$tieneFoto = 0;
+				if(!empty($_FILES["imagen"]["name"])){
+						$archivo = $_FILES['imagen']['tmp_name'];
+						$destino = "img/". $_FILES['imagen']['name'];
+						move_uploaded_file($archivo,$destino);
+						$tieneFoto = 1;
+					}
 				if ( $_SESSION['email'] = $email){
-					self::getInstance()->queryAll("UPDATE usuario SET nombre='{$nombre}', apellido='{$apellido}', email='{$email}', password='{$password}' WHERE id = '{$id}'");
+					if($tieneFoto == 1){
+					self::getInstance()->queryAll("UPDATE usuario SET nombre='{$nombre}', apellido='{$apellido}', email='{$email}', password='{$password}', foto_perfil='{$destino}' WHERE id = '{$id}'");
 					$mensaje = "La operacion ha sido realizada con exito.";
 					echo "<script>";
 					echo "alert('$mensaje');";
 					echo "</script>";
 					return true;
+				}
+					else{
+						self::getInstance()->queryAll("UPDATE usuario SET nombre='{$nombre}', apellido='{$apellido}', email='{$email}', password='{$password}' WHERE id = '{$id}'");
+						$mensaje = "La operacion ha sido realizada con exito.";
+						echo "<script>";
+						echo "alert('$mensaje');";
+						echo "</script>";
+						return true;
+					}
 				}
 				else {
 					$chequear_email_repetido = self::getInstance()-> email_repetido($email);
@@ -189,7 +207,7 @@ Class UsuarioRepository extends PDORepository {
 			$_SESSION['rol'] = 1;
 			foreach ($users as $row) {
 				$_SESSION['id']=$row['id'];
-        $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], 0, $row['creditos'], $row['premium'], $row['fecha_registro']);
+        $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], 0, $row['creditos'], $row['premium'], $row['fecha_registro'], $row['foto_perfil']);
       }
 			$_SESSION['usuario'] = $usuario;
 			return true;
