@@ -154,13 +154,13 @@ Class UsuarioRepository extends PDORepository {
 				$password= $_POST['password'];
 				$email = $_POST['email'];
 				$chequear_email_repetido = self::getInstance()-> email_repetido($email);
-				if($chequear_email_repetido){
+			/*	if($chequear_email_repetido){
 					$mensaje = "Se produjo un error y no se pudo agregar el usuario. Ya existe un usuario para ese email";
 					echo "<script>";
 					echo "alert('$mensaje');";
 					echo "</script>";
 					return false;
-				}
+				}*/
 				if ( $_SESSION['email'] = $email){
 					self::getInstance()->queryAll("UPDATE usuario SET nombre='{$nombre}', apellido='{$apellido}', email='{$email}', password='{$password}' WHERE id = '{$id}'");
 					$mensaje = "La operacion ha sido realizada con exito.";

@@ -7,7 +7,7 @@ class Detalle_Subasta extends TwigView {
       $loader = new Twig_Loader_Filesystem($templateDir);
       $twig = new Twig_Environment($loader);
       $template = $twig->loadTemplate("detalle_subasta.html.twig");
-      $template->display(array('rol' => $_SESSION['rol'], 'subasta' => $subasta, 'mejor_oferta' => $mejor_oferta));
+      $template->display(array('rol' => $_SESSION['rol'], 'subasta' => $subasta, 'mejor_oferta' => $mejor_oferta, 'usuario' => $_SESSION['usuario']));
     }
 
 }

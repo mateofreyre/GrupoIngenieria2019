@@ -236,7 +236,6 @@ class ResourceController {
 				$model = UsuarioRepository::getInstance()-> chequear_inicio();
 				if($model){
 					$_SESSION['rol'] = 1;
-					$_SESSION['usuario'] = $model;
 					self::getInstance()->listar_propiedades();
 				}
 				else{

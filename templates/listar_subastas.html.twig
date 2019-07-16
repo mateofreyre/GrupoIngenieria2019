@@ -46,9 +46,6 @@
                         <li><a href="./?action=eliminar_subasta&id={{subasta.getId}}"class ="enlaceboton">Eliminar subasta</a></li>
                         <li><a href="./?action=finalizar_subasta&id={{subasta.getId}}"class ="enlaceboton">Finalizar subasta</a></li>
                       </ul>
-                      {% if subastas is empty %}
-                          <h5> Por el momento no existen subatas. <a href="./?action=listar_propiedades">Subastar alguna de estas propiedades</a></h5>
-                      {%endif%}
                     {%endif%}
                     {% if rol == 1 %}
                       <ul>
@@ -59,5 +56,8 @@
                 </div>
               </ul>
             {% endfor %}
+            {% if subastas is empty %}
+            <h5> Por el momento no existen subatas. <a href="./?action=listar_propiedades">Subastar alguna de estas propiedades</a></h5>
+            {%endif%}
     </body>
 </html>

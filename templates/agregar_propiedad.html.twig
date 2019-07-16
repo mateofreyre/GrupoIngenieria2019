@@ -20,7 +20,7 @@
           </div>
           <div class="formulario">
             <h3>Agregá una propiedad a continuacion: </h3>
-            <form method="post" action="./?action=check_agregar_propiedad" class="userForm">
+            <form method="post" action="./?action=check_agregar_propiedad" class="userForm" enctype="multipart/form-data" >
               <div class="">
                 <div class="">
                     <label for="nombre" class="">Nombre</label>
@@ -30,6 +30,12 @@
                     <label for="lugar" class="">lugar</label>
                     <input type="text" id="lugar" name="lugar" class="login-input" placeholder="Lugar de la propiedad" required>
                 </div>
+                <div class="">
+                    <label for="foto" class="">Agregar Foto</label>
+                    <input type="file" name="imagen"  class="examinar"  >
+
+                </div>
+
             <!--    <div class="">
                     <label for="monto_normal" class="">Monto Normal</label>
                     <input type="text" id="monto_normal" name="monto_normal" class="login-input" placeholder="Monto normal de la propiedad" required>

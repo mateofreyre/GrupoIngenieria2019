@@ -29,7 +29,11 @@
       {% if rol == 1%}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Mi Cuenta
+          {% if usuario.getNombre is not empty%}
+            {{usuario.getNombre}} {{usuario.getApellido}}
+          {% else %}
+            Cuenta
+          {% endif %}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="./?action=mostrar_perfil">Ver Perfil</a>

@@ -28,6 +28,14 @@ Class PropiedadesRepository extends PDORepository {
           echo "</script>";
           return false;
 				}
+
+				$tieneFoto = 0;
+				if(!empty($_FILES["imagen"]["name"])){
+            $archivo = $_FILES['imagen']['tmp_name'];
+            $destino = "img_propiedades/". $_FILES['imagen']['name'];
+            move_uploaded_file($archivo,$destino);
+						$tieneFoto = 1;
+          }
         $lugar = $_POST['lugar'];
         //$monto_normal = $_POST['monto_normal'];
         //$monto_base = $_POST['monto_base'];
@@ -35,6 +43,19 @@ Class PropiedadesRepository extends PDORepository {
         try{
           	self::getInstance() -> queryAll("INSERT INTO propiedad (nombre, lugar, monto_normal, monto_base, hotsale) VALUES ('{$nombre}', '{$lugar}', 0, 0, false)");
           	$mensaje = "Propiedad agregada exitosamente";
+						echo "<script>";
+          	echo "alert('$mensaje');";
+          	echo "</script>";
+
+						if($tieneFoto == 1){
+							$consulta = self::getInstance() -> queryAll("SELECT * FROM propiedad ORDER BY id ASC");
+							foreach ($consulta as $row) {
+								$id_propiedad = $row['id'];
+							}
+
+							self::getInstance() -> queryAll("INSERT INTO foto_propiedad (id_propiedad,destino) VALUES ('{$id_propiedad}', '{$destino}')");
+							$mensaje = "Foto agregada exitosamente";
+						}
           	echo "<script>";
           	echo "alert('$mensaje');";
           	echo "</script>";
