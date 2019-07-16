@@ -110,7 +110,6 @@ class ResourceController {
 		$model = PropiedadesRepository::getInstance()->buscar_propiedad();
 		$id_propiedad = $model->getId();
 		$fotos = FotosPropiedadesRepository::getInstance()-> fotos_propiedad($id_propiedad);
-		
 		$view = new Mostrar_galeria();
 		$view -> show($fotos);
 	}
@@ -252,7 +251,7 @@ class ResourceController {
 				$model = UsuarioRepository::getInstance()-> chequear_inicio();
 				if($model){
 					$_SESSION['rol'] = 1;
-					self::getInstance()->listar_propiedades();
+					self::getInstance()->mostrar_pagina_principal();
 				}
 				else{
 					self::getInstance()->home();
