@@ -117,6 +117,10 @@ Class PropiedadesRepository extends PDORepository {
       }
     }
 
+		public function mostrar_galeria(){
+
+		}
+
 
     //** BUSCAR PROPIEDAD **//
 

@@ -106,6 +106,15 @@ class ResourceController {
 		}
 	}
 
+	public function ver_imagenes_propiedad(){
+		$model = PropiedadesRepository::getInstance()->buscar_propiedad();
+		$id_propiedad = $model->getId();
+		$fotos = FotosPropiedadesRepository::getInstance()-> fotos_propiedad($id_propiedad);
+		
+		$view = new Mostrar_galeria();
+		$view -> show($fotos);
+	}
+
 	public function detalles_propiedad(){
 		$model = PropiedadesRepository::getInstance()->buscar_propiedad();
 		$view = new Detallar_propiedades();
