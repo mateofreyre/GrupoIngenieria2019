@@ -365,5 +365,13 @@ class ResourceController {
 				}
 			}
 
- }
+			// HOT SALEE!!//
+			public function listar_hotsale(){
+				$model = PropiedadesRepository::getInstance()->listar_hotsale();
+				$view = new Listar_propiedades();
+				$view -> show($model);
+				}
+			}
+
+
 ?>

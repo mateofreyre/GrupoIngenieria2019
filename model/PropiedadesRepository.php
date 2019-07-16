@@ -95,6 +95,24 @@ Class PropiedadesRepository extends PDORepository {
       }
     }
 
+		public function listar_hotsale(){
+			try {
+				$propiedades = [];
+				$query = PropiedadesRepository::getInstance()->queryAll("SELECT * FROM propiedad WHERE hotsale = 0");
+				foreach ($query as $row) {
+					$propiedad = new Propiedades($row['id'], $row['nombre'], $row['lugar'], $row['monto_normal'], $row['hotsale'], $row['monto_base']);
+					$propiedades[]=$propiedad;
+				}
+				$query = null;
+				return $propiedades;
+			}
+			catch (PDOException $e) {
+				 print "¡Error!: " . $e->getMessage() . "<br/>";
+				 die();
+			}
+
+		}
+
     public function listar_propiedades_by_location(){
       try {
         $location = $_POST['property_search'];
