@@ -15,12 +15,18 @@ class ResourceController {
 	//PAGINAS COMUNES
 	public function home(){
 		$view = new Home();
-		$view->show();
+		$aux=1;
+		$view->show($aux);
 	}
 
 	public function mostrar_pagina_principal(){
 		$view = new Mostrar_pagina_principal();
-		$view -> show();
+		if($_SESSION['rol'] == 2){
+			$ok=1;
+			$view -> show($ok);
+			return true;
+		}
+		$view -> show($_SESSION['usuario']);
 	}
 
 	public function formulario_ingresar_administrador(){
@@ -30,18 +36,33 @@ class ResourceController {
 
 	public function mostrar_contactanos(){
 		$view = new Mostrar_contactanos();
-		$view -> show();
+		if($_SESSION['rol'] == 2){
+			$ok=1;
+			$view -> show($ok);
+			return true;
+		}
+		$view -> show($_SESSION['usuario']);
 	}
 
 	public function Mostrar_pagina_premium(){
 		$view = new Mostrar_pagina_premium();
-		$view -> show();
+		if($_SESSION['rol'] == 2){
+			$ok=1;
+			$view -> show($ok);
+			return true;
+		}
+		$view -> show($_SESSION['usuario']);
 	}
 
 	public function mostrar_precios(){
 		$model = SuscripcionRepository::getInstance()->devolver_precio();
 		$view = new Mostrar_precios();
-		$view -> show($model);
+		if($_SESSION['rol'] == 2){
+			$ok=1;
+			$view -> show($model,	$ok);
+			return true;
+		}
+		$view -> show($model, $_SESSION['usuario']);
 	}
 
 	public function chequear_precios(){
@@ -76,8 +97,16 @@ class ResourceController {
 
 	public function listar_propiedades(){
 		$model = PropiedadesRepository::getInstance()->listar_propiedades();
+
 		$view = new Listar_propiedades();
-		$view -> show($model);
+
+		if($_SESSION['rol'] == 2){
+			$ok=1;
+			$view -> show($model,$ok);
+			return true;
+		}
+		$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+		$view -> show($model, $usuario);
 	}
 
 	public function listar_propiedades_by_location(){
@@ -117,7 +146,12 @@ class ResourceController {
 	public function detalles_propiedad(){
 		$model = PropiedadesRepository::getInstance()->buscar_propiedad();
 		$view = new Detallar_propiedades();
-		$view-> show($model);
+		if($_SESSION['rol'] == 2){
+			$ok=1;
+			$view -> show($subasta, $mejor_oferta[0]->getMonto(),$ok);
+			return true;
+		}
+		$view-> show($model, $_SESSION['usuario']);
 	}
 
 	public function cambiar_estado_hotSale(){
@@ -143,7 +177,12 @@ class ResourceController {
 	public function listar_subastas(){
 		$model_subastas = SubastaRepository::getInstance()->listar_subastas();
 		$view = new Listar_subastas();
-		$view -> show($model_subastas);
+		if($_SESSION['rol'] == 2){
+			$ok=1;
+			$view -> show($model_subastas,$ok);
+			return true;
+		}
+		$view -> show($model_subastas, $_SESSION['usuario']);
 	}
 
 	public function formulario_subastar_propiedad(){
@@ -184,9 +223,19 @@ class ResourceController {
 		$propiedad = PropiedadesRepository::getInstance()->buscar_propiedad_by_id($subasta->getIdPropiedad());
 		$view = new Detalle_Subasta();
 		if(!empty($mejor_oferta)){
-			$view -> show($subasta, $mejor_oferta[0]->getMonto());
+			if($_SESSION['rol'] == 2){
+				$ok=1;
+				$view -> show($subasta, $mejor_oferta[0]->getMonto(),$ok);
+				return true;
+			}
+			$view -> show($subasta, $mejor_oferta[0]->getMonto(),$_SESSION['usuario']);
 		}else{
-			$view -> show($subasta, $subasta->getMontoBase());
+			if($_SESSION['rol'] == 2){
+				$ok=1;
+				$view -> show($subasta, $mejor_oferta[0]->getMonto(),$ok);
+				return true;
+			}
+			$view -> show($subasta, $subasta->getMontoBase(),$_SESSION['usuario']);
 		}
 	}
 
@@ -291,7 +340,12 @@ class ResourceController {
 			}
 			public function agregar_tarjeta(){
 			$view = new agregar_tarjeta();
-			$view -> show();
+			if($_SESSION['rol'] == 2){
+				$ok=1;
+				$view -> show($subasta, $mejor_oferta[0]->getMonto(),$ok);
+				return true;
+			}
+			$view -> show($_SESSION['usuario']);
 		}
 
 		public function agregar_tarjeta_check(){
@@ -314,7 +368,7 @@ class ResourceController {
 		try{
 			$tarjetas = TarjetaRepository :: getInstance() -> listar_tarjetas();
 			$view = new listar_tarjetas();
-			$view -> show($tarjetas);
+			$view -> show($tarjetas,$_SESSION['usuario']);
 			}
 			catch(PDOException $e){
 					$error="Se ha producido un error en la consulta: " . $e->getMessage() . "<br/>";

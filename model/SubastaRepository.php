@@ -39,11 +39,13 @@ Class SubastaRepository extends PDORepository {
 	//	$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
 
 		$fecha_ingresada =  date("Y-m-d");
+
 		$nuevafecha = strtotime ( '+6 month' , strtotime ($fecha_ingresada ) ) ;
 		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
 
 
 		$fecha_lunes = SubastaRepository::getInstance()->llevar_fecha_a_lunes($nuevafecha);
+
 		$model_reservas = ReservasRespository::getInstance()->chequear_superposicion_fechas($fecha_lunes);
 		$model_subastas = self::getInstance() -> chequear_superposicion_fechas($fecha_lunes);
 		if($model_reservas AND $model_subastas){
@@ -64,7 +66,9 @@ Class SubastaRepository extends PDORepository {
 	}
 
 	public function llevar_fecha_a_lunes($fecha){
+
 			$dia = self::getInstance()->saber_dia($fecha);
+
 			switch ($dia) {
 				case 'Martes':
 					$nueva = strtotime ( '-1 day' , strtotime ($fecha ) ) ;
@@ -91,11 +95,12 @@ Class SubastaRepository extends PDORepository {
 					return date ( 'Y-m-d' , $nueva );
 					break;
 			}
+			
 			return $fecha;
 	}
 
 	function saber_dia($nombredia) {
-		$dias = array('','Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
+		$dias = array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
 		$fecha = $dias[date('N', strtotime($nombredia))];
 		return $fecha;
 	}
