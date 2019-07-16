@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Subastas</title>
+        <title>Hot sales</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="css/estilos_subastas.css">
@@ -17,23 +17,24 @@
                 {% include 'nav-bar.html.twig' %}
             </div>
         </header>
-        <h2>Subastas</h2>
+        <h2>Hot Sales</h2>
         <hr />
-            {% for subasta in subastas %}
+            {% for hot_sale in hot_sales %}
                 <ul>
                   <div class="portfolio-grid">
                     <div class="row">
                       <div class="col-lg-3 col-sm-6 col-xs-12">
                         <div class="card card-block">
-                          <a href="./?action=detalle_subasta&id={{subasta.getId}}"><img alt="" src="img/fondo2.jpg">
+                          <a href="./?action=detalle_hot_sale&id={{hot_sale.getId}}"><img alt="" src="img/fondo2.jpg">
                             <div class="portfolio-over">
                               <div>
                                 <h3 class="card-title">
-                                  <li>Nombre: {{subasta.getLugar}} </li>
+                                  <li>Nombre: {{hot_sale.getLugar}} </li>
                                 </h3>
                                 <p class="card-text">
-                                    <li>IdPropiedad: {{subasta.getIdPropiedad}}</li>
-                                    <li>Fecha de inicio: {{subasta.getFechaDesde}}</li>
+                                    <li>IdPropiedad: {{hot_sale.getIdPropiedad}}</li>
+                                    <li>Fecha de inicio: {{hot_sale.getFechaDesde}}</li>
+                                    <li>Fecha de finalizacion: {{hot_sale.getFechaHasta}}</li>
                                 </p>
                               </div>
                             </div>
@@ -42,21 +43,20 @@
                       </div>
                     {% if rol == 2 %}
                       <ul>
-                        <li><a href="./?action=eliminar_subasta&id={{subasta.getId}}"class ="enlaceboton">Eliminar subasta</a></li>
-                        <li><a href="./?action=finalizar_subasta&id={{subasta.getId}}"class ="enlaceboton">Finalizar subasta</a></li>
+                        <li><a href="./?action=eliminar_hot_sale&id={{hot_sale.getId}}"class ="enlaceboton">Eliminar hot_sale</a></li>
+
                       </ul>
                     {%endif%}
                     {% if rol == 1 %}
                       <ul>
-                        <li><a href="./?action=detalle_subasta&id={{subasta.getId}}"class="enlaceboton"> Pujar Subasta</a></li>
+                        <li><a href="./?action=detalle_hot_sale&id={{hot_sale.getId}}"class="enlaceboton"> Pujar Subasta</a></li>
                       </ul>
                     {%endif%}
-                      <li><a href="./?action=detalle_subasta&id={{subasta.getId}}"class ="enlaceboton">Detalle subasta</a></li>
                   </div>
                 </div>
               </ul>
             {% endfor %}
-            {% if subastas is empty %}
+            {% if hot_sales is empty %}
             <h5> Por el momento no existen subatas. <a href="./?action=listar_propiedades">Subastar alguna de estas propiedades</a></h5>
             {%endif%}
     </body>
