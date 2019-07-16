@@ -423,7 +423,12 @@ class ResourceController {
 			public function listar_hotsale(){
 				$model = PropiedadesRepository::getInstance()->listar_hotsale();
 				$view = new Listar_propiedades();
-				$view -> show($model);
+				if($_SESSION['rol'] == 2){
+					$ok=1;
+					$view -> show($model, $ok);
+					return true;
+				}
+				$view -> show($model, $_SESSION['usuario']);
 				}
 			}
 
