@@ -18,6 +18,11 @@ class ResourceController {
 		$view->show();
 	}
 
+	public function mostrar_pagina_principal(){
+		$view = new Mostrar_pagina_principal();
+		$view -> show();
+	}
+
 	public function formulario_ingresar_administrador(){
 		$view = new Ingresar_como_administrador();
 		$view -> show();
@@ -54,7 +59,7 @@ class ResourceController {
     	$model = AdminRepository::getInstance()-> chequear_codigo($codigo);
     	if($model){
 
-    		self::getInstance()->listar_propiedades();
+    		self::getInstance()->Mostrar_pagina_principal();
     	}
     	else{
     		self::getInstance()-> home();
