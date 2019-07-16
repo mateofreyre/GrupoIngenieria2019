@@ -23,32 +23,12 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Tuvieja</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Propiedades</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Subastas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Hot Sale</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Perfil</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+
   <header>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="">
+        {% include 'nav-bar.html.twig' %}
+    </div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="padding-top:0px">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -84,10 +64,7 @@
 </header>
 
   <!-- Page Content -->
-  <div class="container">
-
-    <h2 class="my-4">Disfrute de nuestros beneficios</h2>
-
+  <div class="container" style="margin-top:5%;>
     <!-- Marketing Icons Section -->
     <div class="row">
       <div class="col-lg-4 mb-4">
