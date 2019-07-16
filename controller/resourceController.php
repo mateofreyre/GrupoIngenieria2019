@@ -26,7 +26,9 @@ class ResourceController {
 			$view -> show($ok);
 			return true;
 		}
-		$view -> show($_SESSION['usuario']);
+		$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+
+		$view -> show($usuario);
 	}
 
 	public function formulario_ingresar_administrador(){
@@ -41,7 +43,9 @@ class ResourceController {
 			$view -> show($ok);
 			return true;
 		}
-		$view -> show($_SESSION['usuario']);
+		$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+
+		$view -> show($usuario);
 	}
 
 	public function Mostrar_pagina_premium(){
@@ -51,7 +55,9 @@ class ResourceController {
 			$view -> show($ok);
 			return true;
 		}
-		$view -> show($_SESSION['usuario']);
+		$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+
+		$view -> show($usuario);
 	}
 
 	public function mostrar_precios(){
@@ -62,7 +68,9 @@ class ResourceController {
 			$view -> show($model,	$ok);
 			return true;
 		}
-		$view -> show($model, $_SESSION['usuario']);
+		$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+
+		$view -> show($model, $usuario);
 	}
 
 	public function chequear_precios(){
@@ -182,7 +190,9 @@ class ResourceController {
 			$view -> show($model_subastas,$ok);
 			return true;
 		}
-		$view -> show($model_subastas, $_SESSION['usuario']);
+		$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+
+		$view -> show($model_subastas, $usuario);
 	}
 
 	public function formulario_subastar_propiedad(){
@@ -428,7 +438,9 @@ class ResourceController {
 					$view -> show($model, $ok);
 					return true;
 				}
-				$view -> show($model, $_SESSION['usuario']);
+				$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+
+				$view -> show($model, $usuario);
 				}
 			}
 
