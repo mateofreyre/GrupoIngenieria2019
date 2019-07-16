@@ -47,17 +47,16 @@
 
                       </ul>
                     {%endif%}
-                    {% if rol == 1 %}
-                      <ul>
-                        <li><a href="./?action=detalle_hot_sale&id={{hot_sale.getId}}"class="enlaceboton"> Pujar Subasta</a></li>
-                      </ul>
-                    {%endif%}
+                    <ul>
+                      <li><a href="./?action=detalle_hot_sale&id={{hot_sale.getId}}"class="enlaceboton"> Detalle Hot sale</a></li>
+                    </ul>
+
                   </div>
                 </div>
               </ul>
             {% endfor %}
             {% if hot_sales is empty %}
-            <h5> Por el momento no existen subatas. <a href="./?action=listar_propiedades">Subastar alguna de estas propiedades</a></h5>
+            <h5> Por el momento no existen hot sales. <a href="./?action=listar_propiedades">Agregar propiedad a hot sale</a></h5>
             {%endif%}
     </body>
 </html>

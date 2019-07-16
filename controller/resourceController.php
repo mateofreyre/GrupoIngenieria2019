@@ -449,6 +449,38 @@ class ResourceController {
 
 				$view -> show($model, $usuario);
 				}
+
+				public function detalle_hot_sale(){
+					$model = Hot_saleRepository::getInstance()->detalle_hot_sale();
+
+					$view = new Detalle_hotSale();
+					if($_SESSION['rol'] == 2){
+						$ok=1;
+						$view -> show($model, $ok);
+						return true;
+					}
+
+					$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+						$view -> show($model, $usuario);
+				}
+
+				public function eliminar_hot_sale(){
+					$model = Hot_saleRepository::getInstance()-> eliminar_hot_sale();
+					if($model){
+						$mensaje = "Se elimino exitosamente el hot sale";
+					echo "<script>";
+					echo "alert('$mensaje');";
+					echo "</script>";
+					self::getInstance()->listar_hotsale();
+					}
+					else{
+						$mensaje = "Se produjo un error y la operación no pudo ser realizada.";
+					echo "<script>";
+					echo "alert('$mensaje');";
+					echo "</script>";
+					self::getInstance()->detalle_hot_sale();
+					}
+				}
 			}
 
 
