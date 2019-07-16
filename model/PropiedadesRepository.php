@@ -187,7 +187,12 @@ Class PropiedadesRepository extends PDORepository {
 					$lugar= $_POST['lugar'];
           $monto_normal = 0;
 					$id= $_GET['id'];
-					$chequear_nombre_repetido = self::getInstance()-> nombre_repetido($nombre);
+					$chequear_nombre_repetido = false;
+					$propiedad_actual = self::getInstance()-> buscar_propiedad_by_id($id);
+					$nombre_propiedad_actual = $propiedad_actual->getNombre();
+					if(!($nombre_propiedad_actual == $nombre)){
+						$chequear_nombre_repetido = self::getInstance()-> nombre_repetido($nombre);
+					}
 					if($chequear_nombre_repetido){
 						$mensaje = "Se produjo un error y no se pudo agregar la propiedad. El nombre elegido ya esta en uso";
 	          echo "<script>";
@@ -195,6 +200,19 @@ Class PropiedadesRepository extends PDORepository {
 	          echo "</script>";
 	          return false;
 					}
+					$tieneFoto = 0;
+					if(!empty($_FILES["imagen"]["name"])){
+	            $archivo = $_FILES['imagen']['tmp_name'];
+	            $destino = "img_propiedades/". $_FILES['imagen']['name'];
+	            move_uploaded_file($archivo,$destino);
+							$tieneFoto = 1;
+	          }
+						if($tieneFoto == 1){
+								self::getInstance() -> queryAll("INSERT INTO foto_propiedad (id_propiedad,destino) VALUES ('{$id}', '{$destino}')");
+								$mensaje = "Foto agregada exitosamente";
+							}
+
+
           self::getInstance()->queryAll("UPDATE propiedad SET nombre='{$nombre}', monto_normal='{$monto_normal}', lugar='{$lugar}' WHERE id = '{$id}'");
           $mensaje = "La operacion ha sido realizada con exito.";
               echo "<script>";

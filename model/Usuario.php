@@ -12,6 +12,8 @@ Class Usuario {
 	private $creditos;
 	private $premium;
   private $fecha_registro;
+//  private $foto;
+
 
 
     /**Constructor**/
@@ -25,6 +27,7 @@ Class Usuario {
 		$this->creditos = $creditos;
 		$this->premium = $premium;
     $this->fecha_registro = $fecha_registro;
+//    $this->foto = $foto;
 
 	}
 
@@ -33,6 +36,10 @@ Class Usuario {
     public function getId() {
         return $this->id;
     }
+
+  /*  public function getFoto() {
+        return $this->foto;
+    }*/
 
     public function getNombre() {
         return $this->nombre;

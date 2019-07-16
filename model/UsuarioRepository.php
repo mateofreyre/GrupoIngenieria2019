@@ -189,7 +189,7 @@ Class UsuarioRepository extends PDORepository {
 			$_SESSION['rol'] = 1;
 			foreach ($users as $row) {
 				$_SESSION['id']=$row['id'];
-        $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], 0, $row['creditos'], $row['premium']);
+        $usuario = new Usuario($row['id'], $row['nombre'], $row['apellido'], $row['email'], $row['password'], 0, $row['creditos'], $row['premium'], $row['fecha_registro']);
       }
 			$_SESSION['usuario'] = $usuario;
 			return true;

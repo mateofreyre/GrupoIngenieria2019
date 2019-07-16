@@ -119,8 +119,10 @@ class ResourceController {
 
 	public function modificar_propiedad(){
 		$model = PropiedadesRepository::getInstance()->buscar_propiedad();
+		$id_propiedad = $model->getId();
+		$fotos = FotosPropiedadesRepository::getInstance()-> fotos_propiedad($id_propiedad);
 		$view = new Modificar_datos_propiedad();
-		$view -> show($model);
+		$view -> show($model,$fotos);
 	}
 
 	public function check_modificar_propiedad(){

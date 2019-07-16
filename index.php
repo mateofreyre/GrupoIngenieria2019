@@ -15,6 +15,8 @@ require_once('vendor/autoload.php');
 
 require_once('model/PDORepository.php');
 require_once('model/AdminRepository.php');
+require_once('model/FotosPropiedadesRepository.php');
+require_once('model/FotoPropiedad.php');
 
 //require_once('model/UsuarioRepository.php');
 require_once('model/UsuarioRepository.php');
