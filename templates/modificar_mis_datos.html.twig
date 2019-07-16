@@ -21,7 +21,7 @@
           <div class="formulario">
             <h2> Modificar Usuario</h3>
             <h5> Escribí solo los datos que quieras actualizar</h5>
-            <form method="post" action="./?action=check_modificar_mis_datos&id={{usuario.getId}}" class="login">
+            <form method="post" action="./?action=check_modificar_mis_datos&id={{usuario.getId}}" class="login" enctype="multipart/form-data">
               <div class="">
                 <div class="">
                     <label class="">Nuevo nombre</label>
@@ -38,6 +38,11 @@
                 <div class="">
                     <label class="">Nueva Contraseña</label>
                     <input type="password" id="password" name="password" class="login-input" placeholder="Nueva contraseña" value="{{usuario.getPassword}}" required>
+                </div>
+                <div class="">
+                    <label for="lugar" class="">Nueva foto de perfil</label>
+                    <img src="{{usuario.getImagen}}" width="300" height="300" class="d-inline-block align-top">
+                    <input type="file" name="imagen"  class="examinar" >
                 </div>
               <button id="arriba" type="submit" class="login-input">Guardar</button>
               <button id="abajo" type="reset" class="login-input">Reset</button>
