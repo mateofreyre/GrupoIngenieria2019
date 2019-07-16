@@ -23,10 +23,12 @@ Class SubastaRepository extends PDORepository {
 
 	public function agregar_subasta($fecha_desde){
 		//recuperar datos de la fecha ingresada y id de propiedad
+
 		$id_propiedad = $_GET['id'];
 		$monto = $_POST['monto_base'];
 		//Se le agregan 7 dias a la fecha ingresada
-		$nuevafecha = strtotime ( '+6 day' , strtotime ($fecha_desde ) ) ;
+		$hoy =  date("Y-m-d");
+		$nuevafecha = strtotime ( '+3 day' , strtotime ($hoy ) ) ;
 		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
 		$fecha_hasta = $nuevafecha;
 		self::getInstance()->queryAll("INSERT INTO subasta(id_propiedad,fecha_desde,fecha_hasta,monto_base) VALUES ('{$id_propiedad}','{$fecha_desde}','{$fecha_hasta}','{$monto}')");
@@ -35,8 +37,13 @@ Class SubastaRepository extends PDORepository {
 
 	public function chequear_subasta(){
 	//	$model_propiedad = PropiedadesRepository::getInstance()->buscar_propiedad();
-		$fecha_ingresada = $_POST['fecha'];
-		$fecha_lunes = SubastaRepository::getInstance()->llevar_fecha_a_lunes($fecha_ingresada);
+
+		$fecha_ingresada =  date("Y-m-d");
+		$nuevafecha = strtotime ( '+6 month' , strtotime ($fecha_ingresada ) ) ;
+		$nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+
+
+		$fecha_lunes = SubastaRepository::getInstance()->llevar_fecha_a_lunes($nuevafecha);
 		$model_reservas = ReservasRespository::getInstance()->chequear_superposicion_fechas($fecha_lunes);
 		$model_subastas = self::getInstance() -> chequear_superposicion_fechas($fecha_lunes);
 		if($model_reservas AND $model_subastas){
