@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 if(!isset($_SESSION['rol'])){
 	$_SESSION['rol']=2;
 }
@@ -61,6 +61,7 @@ require_once('view/Detalle_Subasta.php');
 require_once('view/SubastarPropiedad.php');
 require_once('view/Detallar_propiedad.php');
 
+session_start();
 if(isset($_GET["action"])) {
 	$current_rol = $_SESSION['rol'];
 	$method = $_GET["action"];

@@ -1,7 +1,7 @@
 <?php
 class Mostrar_precios extends TwigView {
 
-  public function show($suscripcion) {
+  public function show($suscripcion, $usuario) {
 
       $templateDir="./templates";
       $loader = new Twig_Loader_Filesystem($templateDir);
