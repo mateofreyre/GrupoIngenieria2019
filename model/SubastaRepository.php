@@ -95,12 +95,12 @@ Class SubastaRepository extends PDORepository {
 					return date ( 'Y-m-d' , $nueva );
 					break;
 			}
-			
+
 			return $fecha;
 	}
 
 	function saber_dia($nombredia) {
-		$dias = array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
+		$dias = array('','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado', 'Domingo');
 		$fecha = $dias[date('N', strtotime($nombredia))];
 		return $fecha;
 	}
@@ -132,10 +132,7 @@ Class SubastaRepository extends PDORepository {
 						}
 					}
 				}
-				$mensaje = "Subasta agregada exitosamente";
-				echo "<script>";
-				echo "alert('$mensaje');";
-				echo "</script>";
+
 				return true;
 
 		}
@@ -184,21 +181,18 @@ Class SubastaRepository extends PDORepository {
 	public function eliminar_subasta(){
 		$id = $_GET['id'];
 		$consulta = PujadorRepository::getInstance()-> queryAll("SELECT * FROM usuario_subasta WHERE id_subasta = '{$id}'");
+
+		$subastas = self::getInstance()-> queryAll("SELECT * FROM subasta, usuario_subasta WHERE subasta.id = '{$id}' AND subasta.id = usuario_subasta.id_subasta ");
+		SubastaRepository::getInstance()-> informarBajaDeSubastas($subastas);
+
 		PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id);
 		self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$id}'");
-
 		$mensaje = "La subasta ha sido eliminada";
 		echo "<script>";
 		echo "alert('$mensaje');";
 		echo "</script>";
 		/*me traigo si existe algun pujador para esa subasta, si existe alguno "se le avisa" por medio de un pop up*/
-		if($consulta->rowCount() > 0) {
-			$mensaje = "Se le ha avisado a los pujadores sobre la eliminacion de la propiedad ";
-			echo "<script>";
-			echo "alert('$mensaje');";
-			echo "</script>";
-			return true;
-		}
+
 
 	}
 
@@ -232,8 +226,22 @@ Class SubastaRepository extends PDORepository {
 		$id_subasta = $subasta->getId();
 		$ofertas = PujadorRepository::getInstance()->listar_ofertas_by_subasta($id_subasta);
 		if (!empty($ofertas)){
-			$id_usuario = $ofertas[0]->getIdUsuario();
+			$aux = 0;
+			$id_usuario = $ofertas[$aux]->getIdUsuario();
 			$usuario = UsuarioRepository::getInstance()->obtener_usuario_by_id($id_usuario);
+			$fecha_viaje = $subasta->getFechaDesde();
+			$segundoViaje = ReservasRespository::getInstance()-> chequear_fecha_duplicada($id_usuario,$fecha_viaje);
+			while($segundoViaje and (count($ofertas) > ($aux + 1))	){
+					$mensaje = "La subasta ha finalizado, el ganador fue {$usuario->getNombre()} {$usuario->getApellido()}. SIN EMBARGO ya tiene reservas para la semana, que pena. Se buscara nuevo ganador. ";
+					echo "<script>";
+					echo "alert('$mensaje');";
+					echo "</script>";
+					$aux= $aux + 1;
+					$id_usuario = $ofertas[$aux]->getIdUsuario();
+					$usuario = UsuarioRepository::getInstance()->obtener_usuario_by_id($id_usuario);
+					$fecha_viaje = $subasta->getFechaDesde();
+					$segundoViaje = ReservasRespository::getInstance()-> chequear_fecha_duplicada($id_usuario,$fecha_viaje);
+			}
 			$mensaje = "La subasta ha finalizado, el ganador es el usuario {$usuario->getNombre()} {$usuario->getApellido()}";
 			ReservasRespository::getInstance()->agregar_reserva($subasta->getFechaDesde(), $subasta->getFechaHasta(), $ofertas[0]->getMonto(), $id_usuario, $id_propiedad);
 			PujadorRepository::getInstance()->eliminar_ofertas_by_subasta($id_subasta);
@@ -245,7 +253,8 @@ Class SubastaRepository extends PDORepository {
 			echo "</script>";
 		}else{
 			self::getInstance()->queryAll("DELETE FROM subasta WHERE id = '{$subasta->getId()}'");
-			$mensaje = "La subasta ha finalizado, no hay ganadores";
+			$mensaje = "La subasta ha finalizado, no hay ganadores. Se creara un Hot sale con la propiedad.";
+			Hot_saleRepository::getInstance()-> crear_hot_sale($subasta ->getFechaDesde(), $subasta -> getIdPropiedad());
 			echo "<script>";
 			echo "alert('$mensaje');";
 			echo "</script>";

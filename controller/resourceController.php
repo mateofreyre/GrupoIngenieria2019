@@ -422,6 +422,27 @@ class ResourceController {
 				$view = new Agregar_reserva();
 				$view -> show($propiedad);
 			}
+			public function agregar_deshabilitacion(){
+				$id_propiedad = $_GET['id'];
+				$propiedad = PropiedadesRepository::getInstance()->buscar_propiedad_by_id($id_propiedad);
+				$view = new Agregar_Deshabilitar();
+				$view -> show($propiedad);
+			}
+
+			public function chequear_deshabilitacion(){
+				$model = ReservasRespository::getInstance()->chequear_deshabilitacion();
+				if(!$model){
+					$mensaje = "Se produjo un error y la operación no pudo ser realizada.";
+				echo "<script>";
+				echo "alert('$mensaje');";
+				echo "</script>";
+				self::getInstance()->agregar_deshabilitacion();
+
+				}
+				else{
+					self::getInstance()->listar_propiedades();
+				}
+			}
 
 			public function chequear_reserva(){
 				$model = ReservasRespository::getInstance()->chequear_reserva();
@@ -430,6 +451,7 @@ class ResourceController {
 				echo "<script>";
 				echo "alert('$mensaje');";
 				echo "</script>";
+				self::getInstance()->agregar_reserva();
 				}
 				else{
 					self::getInstance()->listar_propiedades();
@@ -481,7 +503,34 @@ class ResourceController {
 					self::getInstance()->detalle_hot_sale();
 					}
 				}
-			}
+
+				public function listar_semanas_deshabilitadas(){
+					$model_deshabilitadas = ReservasRespository::getInstance()->listar_semanas_deshabilitadas();
+					$view = new listar_semanas_deshabilitadas();
+					if($_SESSION['rol'] == 2){
+						$ok=1;
+						$view -> show($model_deshabilitadas,$ok);
+						return true;
+					}
+					$usuario= UsuarioRepository::getInstance()-> buscarUsuarioPorId($_SESSION['usuario']->getId());
+
+					$view -> show($model_subastas, $usuario);
+				}
+
+				public function eliminar_reserva(){
+					$model = ReservasRespository::getInstance()-> eliminar_reserva();
+					self::getInstance()-> listar_propiedades();
+				}
+
+				public function adjudicar_hot_sale(){
+					$model = Hot_saleRepository::getInstance()-> adjudicar_hot_sale();
+					if(!$model){
+
+							self::getInstance()-> listar_hotsale();
+					}
+					self::getInstance()->Mostrar_pagina_principal();
+				}
+		}
 
 
 ?>

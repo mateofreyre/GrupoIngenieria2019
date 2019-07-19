@@ -69,7 +69,7 @@ private $foto;
     }
 
     public function setPremium($boolean){
-      	$this-> premium = $boolean;
+      	$this->premium = $boolean;
     }
     public function cambiar_estado(){
   		$this->setPremium(!($this->getPremium()));

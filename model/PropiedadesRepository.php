@@ -112,7 +112,7 @@ Class PropiedadesRepository extends PDORepository {
 			}
 
 		}
-		
+
 
 
     public function listar_propiedades_by_location(){
@@ -171,18 +171,18 @@ Class PropiedadesRepository extends PDORepository {
 
     public function eliminar_propiedad(){
   //    $propiedad = self::getInstance()->buscar_propiedad($nombre)[0];
-			$id = $_GET['id'];
+			$id_propiedad = $_GET['id'];
 
 			$hoy = date("y-m-d");
-			$reservas = self::getInstance()-> queryAll("SELECT * FROM alquiler WHERE id_propiedad = '{$id}' AND fecha_desde > '{$hoy}' ");
+			$reservas = self::getInstance()-> queryAll("SELECT * FROM alquiler WHERE id_propiedad = '{$id_propiedad}' AND fecha_desde > '{$hoy}' ");
 
 
 			ReservasRespository::getInstance()->informarBajaDeReservas($reservas);
 
-			$subastas = self::getInstance()-> queryAll("SELECT * FROM subasta WHERE id_propiedad = '{$id}'");
+			$subastas = self::getInstance()-> queryAll("SELECT * FROM subasta, usuario_subasta WHERE id_propiedad = '{$id_propiedad}' AND subasta.id = usuario_subasta.id_subasta ");
 			SubastaRepository::getInstance()-> informarBajaDeSubastas($subastas);
 
-      self::getInstance()->queryAll("DELETE FROM propiedad WHERE id = '{$id}'");
+      self::getInstance()->queryAll("DELETE FROM propiedad WHERE id = '{$id_propiedad}'");
       $mensaje = "La propiedad ha sido eliminada";
       echo "<script>";
       echo "alert('$mensaje');";

@@ -47,7 +47,15 @@
 
                       </ul>
                     {%endif%}
+                    {% if rol == 1 %}
+                      <ul>
+                        <li><a href="./?action=adjudicar_hot_sale&id={{hot_sale.getId}}"class="enlaceboton">Alquilar</a></li>
+                        
+                      </ul>
+                    {%endif%}
+
                     <ul>
+
                       <li><a href="./?action=detalle_hot_sale&id={{hot_sale.getId}}"class="enlaceboton"> Detalle Hot sale</a></li>
                     </ul>
 
@@ -55,8 +63,12 @@
                 </div>
               </ul>
             {% endfor %}
+            {% if rol == 2 %}
+
             {% if hot_sales is empty %}
-            <h5> Por el momento no existen hot sales. <a href="./?action=listar_propiedades">Agregar propiedad a hot sale</a></h5>
+            <h5> Por el momento no existen hot sales. <a href="./?action=listar_subastas">Agregar propiedad a hot sale</a></h5>
             {%endif%}
+            {%endif%}
+
     </body>
 </html>

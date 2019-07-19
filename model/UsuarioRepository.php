@@ -169,7 +169,7 @@ Class UsuarioRepository extends PDORepository {
 						move_uploaded_file($archivo,$destino);
 						$tieneFoto = 1;
 					}
-				if ( $_SESSION['email'] = $email){
+				if ( $_SESSION['email'] == $email){
 					if($tieneFoto == 1){
 					self::getInstance()->queryAll("UPDATE usuario SET nombre='{$nombre}', apellido='{$apellido}', email='{$email}', password='{$password}', foto_perfil='{$destino}' WHERE id = '{$id}'");
 					$mensaje = "La operacion ha sido realizada con exito.";
@@ -177,7 +177,7 @@ Class UsuarioRepository extends PDORepository {
 					echo "alert('$mensaje');";
 					echo "</script>";
 					return true;
-				}
+					}
 					else{
 						self::getInstance()->queryAll("UPDATE usuario SET nombre='{$nombre}', apellido='{$apellido}', email='{$email}', password='{$password}' WHERE id = '{$id}'");
 						$mensaje = "La operacion ha sido realizada con exito.";

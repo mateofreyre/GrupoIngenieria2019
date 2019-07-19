@@ -10,15 +10,20 @@ Class Reservas {
 	private $fecha_hasta;
 	private $id_propiedad;
 	private $id_usuario;
+	private $deshabilitado;
+	private $nombre_propiedad;
 
 	/**Constructor**/
 
-	public function __construct($monto, $fecha_desde, $fecha_hasta, $id_propiedad, $id_usuario) {
-		$this->monto = $monto;
+	public function __construct($id, $fecha_desde, $fecha_hasta, $id_propiedad, $id_usuario, $deshabilitado, $nombre_propiedad) {
+		$this->id = $id;
 		$this->fecha_desde = $fecha_desde;
 		$this->fecha_hasta = $fecha_hasta;
 		$this->id_propiedad = $id_propiedad;
 		$this->id_usuario = $id_usuario;
+		$this->deshabilitado = $deshabilitado;
+		$this->nombre_propiedad = $nombre_propiedad;
+
 	}
 
 	/**Getters & Setters**/
@@ -51,6 +56,12 @@ Class Reservas {
 		return ($this->getFechaDesde()) == $fecha_desde;
 	}
 
+	public function getDeshabilitado(){
+		return $this->deshabilitado;
+	}
+	public function getNombre_propiedad(){
+			return $this->nombre_propiedad;
+}
 }
 
 ?>
